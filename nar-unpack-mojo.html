@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>maven-nar-plugin - nar:nar-unpack</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                                                    
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+                                                        
+<script type="text/javascript">_uacct = "UA-140879-1";
+        urchinTracker();</script>
+                    </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="" id="bannerLeft">
+    
+                                    <img src="http://maven.apache.org/images/apache-maven-project.png" alt="" />
+    
+            </a>
+                        <a href="http://maven.apache.org/" id="bannerRight">
+    
+                                    <img src="http://maven.apache.org/images/maven-logo-2.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+          
+                <a href="http://www.apache.org/" class="externalLink">Apache</a>
+                &gt;
+      
+                <a href="http://maven.apache.org/index.html" class="externalLink">Maven</a>
+                &gt;
+      
+                <a href="http://maven.apache.org/plugins/index.html" class="externalLink">Plugins</a>
+                &gt;
+      
+                <a href="http://duns.github.com/maven-nar-plugin/" class="externalLink">Maven NAR Plugin</a>
+                  </div>
+            <div class="xright">            <a href="http://java.freehep.org/maven1.x/freehep-nar-plugin" class="externalLink">NAR Plugin for Maven1</a>
+            |
+                <a href="http://maven.apache.org/maven2/" class="externalLink">Maven 2</a>
+            
+  
+
+  
+    
+            
+  
+    
+            &nbsp;| Last Published: 2009-10-13
+              &nbsp;| Version: 2.1-SNAPSHOT
+            </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="philosophy.html">Philosophy</a>
+          </li>
+              
+    <li class="none">
+                    <a href="NARPlugin.ppt">Presentation (ppt)</a>
+          </li>
+          </ul>
+              <h5>User Info</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="plugin-info.html">Goals</a>
+          </li>
+              
+    <li class="none">
+                    <a href="usage.html">Usage</a>
+          </li>
+              
+    <li class="none">
+                    <a href="lifecycle.html">Lifecycle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="configuration.html">Configuration</a>
+          </li>
+              
+    <li class="none">
+                    <a href="faq.html">FAQ</a>
+          </li>
+              
+    <li class="none">
+                    <a href="aol.html">AOL Properties</a>
+          </li>
+          </ul>
+              <h5>Developer Info</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="narDependencies.html">NAR Dependencies</a>
+          </li>
+              
+    <li class="none">
+                    <a href="https://issues.sonatype.org/browse/NAR" class="externalLink">Bug Reports</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://forum.freehep.org/index.php?t=threadt&frm_id=14&rid=4" class="externalLink">Forum</a>
+          </li>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">APIDocs</a>
+          </li>
+              
+    <li class="none">
+                    <a href="narLibrary.html">NAR Library</a>
+          </li>
+              
+    <li class="none">
+                    <a href="cpptasks.html">CPPTasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://github.com/duns/maven-nar-plugin" class="externalLink">Git Browse nar-plugin</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://github.com/duns/cpptasks-parallel" class="externalLink">Git Browse cpptasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="source-repository.html">Git Repository</a>
+          </li>
+          </ul>
+              <h5>Examples</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="HelloWorld.html">HelloWorld</a>
+          </li>
+          </ul>
+              <h5>Other Information</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://docs.codehaus.org/display/MAVEN/Support+for+other+languages" class="externalLink">Maven and other languages</a>
+          </li>
+          </ul>
+                        <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+              <h5>Maven Projects</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/ant-tasks/index.html" class="externalLink">Ant Tasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/doxia/index.html" class="externalLink">Doxia</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/jxr/index.html" class="externalLink">JXR</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/maven-1.x/index.html" class="externalLink">Maven 1.x</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/index.html" class="externalLink">Maven 2</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/mercury/index.html" class="externalLink">Mercury</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/plugins/index.html" class="externalLink">Plugins</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/scm/index.html" class="externalLink">SCM</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/shared/index.html" class="externalLink">Shared Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/surefire/index.html" class="externalLink">Surefire</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/wagon/index.html" class="externalLink">Wagon</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="nar:nar-unpack"></a>nar:nar-unpack</h2>
+<p><strong>Full name</strong>:</p>
+<p>org.apache.maven.plugins:maven-nar-plugin:2.1-SNAPSHOT:nar-unpack</p>
+<p><strong>Description</strong>:</p>
+<div>Unpacks NAR files. Unpacking happens in the local repository, and
+also sets flags on binaries and corrects static libraries.</div><p><strong>Attributes</strong>:</p>
+<ul><li>Requires a Maven 2.0 project to be executed.</li>
+<li>Requires dependency resolution of artifacts in scope: <code>runtime</code>.</li>
+<li>Binds by default to the lifecycle phase: <code>process-sources</code>.</li>
+</ul>
+<div class="section"><h3><a name="Required_Parameters"></a>Required Parameters</h3>
+<table class="bodyTable"><tr class="a"><th>Name</th>
+<th>Type</th>
+<th>Since</th>
+<th>Description</th>
+</tr>
+<tr class="b"><td><strong><a href="#architecture">architecture</a></strong></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>The Architecture for the nar, Some choices are: &quot;x86&quot;, &quot;i386&quot;,
+&quot;amd64&quot;, &quot;ppc&quot;, &quot;sparc&quot;, ... Defaults to a derived value from
+${os.arch}<br />
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
+<table class="bodyTable"><tr class="a"><th>Name</th>
+<th>Type</th>
+<th>Since</th>
+<th>Description</th>
+</tr>
+<tr class="b"><td><strong><a href="#aol">aol</a></strong></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>Architecture-OS-Linker name. Defaults to: arch-os-linker.<br />
+</td>
+</tr>
+<tr class="a"><td><strong><a href="#classifiers">classifiers</a></strong></td>
+<td><code>List</code></td>
+<td><code>-</code></td>
+<td>List of classifiers which you want unpack. Example ppc-MacOSX-g++,
+x86-Windows-msvc, i386-Linux-g++.<br />
+</td>
+</tr>
+<tr class="b"><td><strong><a href="#linker">linker</a></strong></td>
+<td><code>Linker</code></td>
+<td><code>-</code></td>
+<td>Linker<br />
+</td>
+</tr>
+<tr class="a"><td><strong><a href="#os">os</a></strong></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>The Operating System for the nar. Some choices are: &quot;Windows&quot;,
+&quot;Linux&quot;, &quot;MacOSX&quot;, &quot;SunOS&quot;, ... Defaults to a derived value from
+${os.name} FIXME table missing<br />
+</td>
+</tr>
+<tr class="b"><td><strong><a href="#skip">skip</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Skip running of NAR plugins (any) altogether.<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="a"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
+<td><code>File</code></td>
+<td><code>-</code></td>
+<td>Target directory for Nar file construction Defaults to
+&quot;${project.build.directory}/nar&quot; for &quot;nar-compile&quot; goal Defaults to
+&quot;${project.build.directory}/test-nar&quot; for &quot;nar-testCompile&quot; goal<br />
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Parameter_Details"></a>Parameter Details</h3>
+<p><strong><a name="aol">aol</a>:</strong></p>
+<div>Architecture-OS-Linker name. Defaults to: arch-os-linker.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="architecture">architecture</a>:</strong></p>
+<div>The Architecture for the nar, Some choices are: &quot;x86&quot;, &quot;i386&quot;,
+&quot;amd64&quot;, &quot;ppc&quot;, &quot;sparc&quot;, ... Defaults to a derived value from
+${os.arch}</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>Yes</code></li>
+<li><strong>Expression</strong>: <code>${os.arch}</code></li>
+</ul>
+<hr />
+<p><strong><a name="classifiers">classifiers</a>:</strong></p>
+<div>List of classifiers which you want unpack. Example ppc-MacOSX-g++,
+x86-Windows-msvc, i386-Linux-g++.</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="linker">linker</a>:</strong></p>
+<div>Linker</div><ul><li><strong>Type</strong>: <code>org.apache.maven.plugin.nar.Linker</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="os">os</a>:</strong></p>
+<div>The Operating System for the nar. Some choices are: &quot;Windows&quot;,
+&quot;Linux&quot;, &quot;MacOSX&quot;, &quot;SunOS&quot;, ... Defaults to a derived value from
+${os.name} FIXME table missing</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="skip">skip</a>:</strong></p>
+<div>Skip running of NAR plugins (any) altogether.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${nar.skip}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
+<p><strong><a name="targetDirectory">targetDirectory</a>:</strong></p>
+<div>Target directory for Nar file construction Defaults to
+&quot;${project.build.directory}/nar&quot; for &quot;nar-compile&quot; goal Defaults to
+&quot;${project.build.directory}/test-nar&quot; for &quot;nar-testCompile&quot; goal</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2002-2009
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+   - <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a></div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>maven-nar-plugin - Maven NAR Plugin</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                                                    
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+                                                        
+<script type="text/javascript">_uacct = "UA-140879-1";
+        urchinTracker();</script>
+                    </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="" id="bannerLeft">
+    
+                                    <img src="http://maven.apache.org/images/apache-maven-project.png" alt="" />
+    
+            </a>
+                        <a href="http://maven.apache.org/" id="bannerRight">
+    
+                                    <img src="http://maven.apache.org/images/maven-logo-2.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+          
+                <a href="http://www.apache.org/" class="externalLink">Apache</a>
+                &gt;
+      
+                <a href="http://maven.apache.org/index.html" class="externalLink">Maven</a>
+                &gt;
+      
+                <a href="http://maven.apache.org/plugins/index.html" class="externalLink">Plugins</a>
+                &gt;
+      
+                <a href="http://duns.github.com/maven-nar-plugin/" class="externalLink">Maven NAR Plugin</a>
+                  </div>
+            <div class="xright">            <a href="http://java.freehep.org/maven1.x/freehep-nar-plugin" class="externalLink">NAR Plugin for Maven1</a>
+            |
+                <a href="http://maven.apache.org/maven2/" class="externalLink">Maven 2</a>
+            
+  
+
+  
+    
+            
+  
+    
+            &nbsp;| Last Published: 2009-10-13
+              &nbsp;| Version: 2.1-SNAPSHOT
+            </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Introduction</a>
+          </li>
+              
+    <li class="none">
+              <strong>Philosophy</strong>
+        </li>
+              
+    <li class="none">
+                    <a href="NARPlugin.ppt">Presentation (ppt)</a>
+          </li>
+          </ul>
+              <h5>User Info</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="plugin-info.html">Goals</a>
+          </li>
+              
+    <li class="none">
+                    <a href="usage.html">Usage</a>
+          </li>
+              
+    <li class="none">
+                    <a href="lifecycle.html">Lifecycle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="configuration.html">Configuration</a>
+          </li>
+              
+    <li class="none">
+                    <a href="faq.html">FAQ</a>
+          </li>
+              
+    <li class="none">
+                    <a href="aol.html">AOL Properties</a>
+          </li>
+          </ul>
+              <h5>Developer Info</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="narDependencies.html">NAR Dependencies</a>
+          </li>
+              
+    <li class="none">
+                    <a href="https://issues.sonatype.org/browse/NAR" class="externalLink">Bug Reports</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://forum.freehep.org/index.php?t=threadt&frm_id=14&rid=4" class="externalLink">Forum</a>
+          </li>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">APIDocs</a>
+          </li>
+              
+    <li class="none">
+                    <a href="narLibrary.html">NAR Library</a>
+          </li>
+              
+    <li class="none">
+                    <a href="cpptasks.html">CPPTasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://github.com/duns/maven-nar-plugin" class="externalLink">Git Browse nar-plugin</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://github.com/duns/cpptasks-parallel" class="externalLink">Git Browse cpptasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="source-repository.html">Git Repository</a>
+          </li>
+          </ul>
+              <h5>Examples</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="HelloWorld.html">HelloWorld</a>
+          </li>
+          </ul>
+              <h5>Other Information</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://docs.codehaus.org/display/MAVEN/Support+for+other+languages" class="externalLink">Maven and other languages</a>
+          </li>
+          </ul>
+                        <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+              <h5>Maven Projects</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/ant-tasks/index.html" class="externalLink">Ant Tasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/doxia/index.html" class="externalLink">Doxia</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/jxr/index.html" class="externalLink">JXR</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/maven-1.x/index.html" class="externalLink">Maven 1.x</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/index.html" class="externalLink">Maven 2</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/mercury/index.html" class="externalLink">Mercury</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/plugins/index.html" class="externalLink">Plugins</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/scm/index.html" class="externalLink">SCM</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/shared/index.html" class="externalLink">Shared Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/surefire/index.html" class="externalLink">Surefire</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/wagon/index.html" class="externalLink">Wagon</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>NAR Philosophy</h2>
+<p>In the NAR plugin we follow Maven's main principles:</p>
+<ul><li><a href="#Convention over configuration">Convention over configuration</a></li>
+<li><a href="#Reuse of build logic">Reuse of build logic</a></li>
+<li><a href="#Declarative execution">Declarative execution</a></li>
+<li><a href="#Coherent organization of dependencies">Coherent organization of dependencies</a></li>
+</ul>
+<p>below we explain how:</p>
+<div class="section"><h3><a name="Convention_over_configuration">Convention over configuration</a></h3>
+<p>The NAR Plugin enables a cross-platform build technology for native artifacts using Maven. Though the user has full flexibility in the choice of compiler/linker and their options, sensible defaults are provided by the NAR Plugin. The three primary conventions for the NAR Plugin are:</p>
+<ul><li><a href="#Standard directory layout for Native projects">Standard directory layout for Native projects</a></li>
+<li><a href="#A single Native project produces a single output">A single Native project produces a single output</a></li>
+<li><a href="#Standard naming conventions">Standard naming conventions</a></li>
+</ul>
+<p>and are detailed below:</p>
+<div class="section"><h4><a name="Standard_directory_layout_for_Native_projects">Standard directory layout for Native projects</a></h4>
+<p>The NAR Plugin assumes to find its native sources and resources in a directory structure parallel to the java sources. Test sources and test resources are organized the same way.</p>
+<div class="source"><pre>/yourproject
+            /src
+                /main
+                     /java
+                     /resources
+                     /include
+                     /c++
+                     /c
+                     /fortran
+               /test
+                    /java
+                    /resources
+                    /include
+                    /c++
+                    /c
+                    /fortran                        </pre>
+</div>
+<p>Organizing the information this way means that it is easy to find, for both people and the plugins that need to work with them. </p>
+</div>
+<div class="section"><h4><a name="A_single_Native_project_produces_a_single_output">A single Native project produces a single output</a></h4>
+<p>Maven produces one primary output (jar) per project. For the NAR Plugin the produced nar files are secondary outputs or attached artifact to the primary output. There are several reasons why the native artifacts are not primary outputs:</p>
+<ul><li>When building a Native library, the object files and the include headers make a complete set. There is not much use of one without the other. Object files for one architecture combined in a nar file are no different than object files for another achitecture, their functionality is the same, its just for different machines. Neither the nar file with the include headers nor the nar files with the machine specific object files is a good primary output, so both attach to a jar file.</li>
+<li>When one builds a JNI library one needs both the java code in a jar file and native code in a shared library. The expected dependency is that the jar file needs the JNI library. However, javah generates the necessary header file from java, which would make the JNI library dependent on the jar file. Since this is impossible it would be better to attach the JNI library (in its nar file) as a secondary artifact to the primary jar file.</li>
+<li>When depending on a native library the user should just specify the artifactId, groupId and version, and <b>not</b> the architecture, os and linker it was build with. The latter is a derived value of the executable or library one is building at this time. Not specifying architecture, os and linker also means that the POM is generic. Since nar files are by default (except for the -noarch nar) architecture-os-linker specific they need to be secondary artifacts.</li>
+</ul>
+</div>
+<div class="section"><h4><a name="Standard_naming_conventions">Standard naming conventions</a></h4>
+<p>When maven produces a jar file its normally named <tt>artifactId-version.jar</tt>. The NAR Plugin follows this convention for its attached artifacts:</p>
+<dl><dt><tt>artifactId-version-noarch.nar</tt></dt>
+<dd>contains the non architecture specific parts of the native library, such as include headers.</dd>
+<dt><tt>artifactId-version-aol-type.nar</tt></dt>
+<dd>contains the architecture specific parts of the native library, such as the library and object files. The <i>aol</i> is an Architecture-OS-Linker qualifier, for example: ppc-MacOSX-g++. The <i>type</i> specifies what binding the library is, for example: shared, static or jni.</dd>
+</dl>
+<p>Since the java compiler has a unified interface there is no need for any naming conventions here. Native compilers and linkers on different platforms tend to have radically different interfaces (command line options) so these were unified, allowing the user to switch on exception handling and debugging with the same tag in the configuration no matter which platform the NAR Plugin is running on. An example is below:</p>
+<div class="source"><pre>...
+&lt;plugin&gt;
+  &lt;artifactId&gt;maven-nar-plugin&lt;/artifactId&gt;
+  &lt;configuration&gt;
+    &lt;cpp&gt;
+      &lt;exceptions&gt;false&lt;/exceptions&gt;
+      &lt;debug&gt;true&lt;/debug&gt;
+    &lt;/cpp&gt;
+  &lt;/configuration&gt;
+&lt;/plugin&gt;
+...</pre>
+</div>
+</div>
+</div>
+<div class="section"><h3><a name="Reuse_of_build_logic">Reuse of build logic</a></h3>
+<p>The NAR Plugin provides multiple goals organized in the &quot;nar&quot; lifecycle. The &quot;nar&quot; lifecycle integrates nicely with the default &quot;jar&quot; lifecycle to build both jar and nar artifacts in parallel. Each of the NAR Plugin goals can of course also be configured separately if needed.</p>
+<p>Most NAR goals are executed using the NarManager, which provides an API that can also be used by other plugins when they need to deal with NAR artifacts.</p>
+</div>
+<div class="section"><h3><a name="Declarative_execution">Declarative execution</a></h3>
+<p>All logic in Maven is setup in a declarative fashion using the Project Object Model (POM). The NAR Plugin can be configured inside this model. Moreover the &quot;nar&quot; lifecycle can be used to automatically integrate all the NAR Plugin goals with the goals of the default &quot;jar&quot; lifecycle.</p>
+<div class="section"><h4>NAR's project object model (POM)</h4>
+<p>The POM below is an example of how to compile, link and test a native shared library, which depends on a native math library (nmath).</p>
+<div class="source"><pre>&lt;project&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;com.mycompany.app&lt;/groupId&gt;
+  &lt;artifactId&gt;my-app&lt;/artifactId&gt;
+  &lt;packaging&gt;nar&lt;/packaging&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;artifactId&gt;maven-nar-plugin&lt;/artifactId&gt;
+        &lt;version&gt;nar-version-number&lt;/version&gt;
+        &lt;extensions&gt;true&lt;/extensions&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.freehep&lt;/groupId&gt;
+      &lt;artifactId&gt;nmath&lt;/artifactId&gt;
+      &lt;version&gt;4.5.1&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/project&gt;</pre>
+</div>
+<p>This POM will allow you to compile, link and test the java and native code in the project. The crucial part of the POM is the inclusion of the NAR plugin as an extension and the declaration of the &quot;nar&quot; packaging. The two will call the NAR Plugin goals as specified in the lifecycle.</p>
+<p>For this POM the NAR Plugin will download and unpack the noarch and aol parts of the org.freehep nmath library version 4.5.1, for the platform you are running on.</p>
+<p>Maven's Super POM is used for most of the default behaviour and the NAR Plugin's <a href="aol.html">AOL Properties</a> are used for native defaults.</p>
+</div>
+<div class="section"><h4>NAR's build lifecycle</h4>
+<p>Maven's default build lifecycle, &quot;jar&quot;, allows one to execute plugin goals as part of it, but this necessitates declaration of separate goals in each POM. To simplify the building of native artifacts we chose to define a &quot;nar&quot; lifecycle which calls all the goals the &quot;jar&quot; lifecycle has, interleaved with the goals of the NAR Plugin.</p>
+</div>
+</div>
+<div class="section"><h3><a name="Coherent_organization_of_dependencies">Coherent organization of dependencies</a></h3>
+<p>Maven uses a local repository to resolve its dependencies. If not found one or more remote repositories are consulted to find a dependency. If found the dependency is downloaded to the local repository and used from there by any of the plugins.</p>
+<p>The NAR Plugin uses the same organization of dependencies and repositories. Note that the dependency declared in the example above is a standard &quot;jar&quot; dependency. It becomes a NAR depenency only because it contains the nar.properties file and the NAR Plugin is configured for this project. When a user executes install or deploy on a NAR project the jar file with its attached nar artifacts will be installed in the local repository or deployed in the remote repository.</p>
+<p>A remote repository for the native math library would probably look like this (note the support for multiple platforms and multiple library bindings):</p>
+<div class="source"><pre>remoterepo/
+           org/
+               freehep/
+                       nmath/
+                             4.5.1/
+                                   nmath-4.5.1.pom
+                                   nmath-4.5.1.pom.sha1
+                                   nmath-4.5.1.jar
+                                   nmath-4.5.1.jar.sha1
+                                   nmath-4.5.1-noarch.nar
+                                   nmath-4.5.1-noarch.nar.sha1
+                                   nmath-4.5.1-MacOSX-g++-static.nar
+                                   nmath-4.5.1-MacOSX-g++-static.nar.sha1
+                                   nmath-4.5.1-MacOSX-g++-shared.nar
+                                   nmath-4.5.1-MacOSX-g++-shared.nar.sha1
+                                   nmath-4.5.1-Linux-g++-shared.nar
+                                   nmath-4.5.1-Linux-g++-shared.nar.sha1
+                                   nmath-4.5.1-Windows-msvc-shared.nar
+                                   nmath-4.5.1-Windows-msvc-shared.nar.sha1
+                                   ...</pre>
+</div>
+<p>When a NAR dependency is encountered the jar file is already downloaded into the local repository by maven itself. The nar-download goal will download any attached NAR artifacts into the local repository and store them alongside the jar file and the POM. Note that for these jar and nar files there is just one POM, since it is just one artifact. If the nar files are already in the local repository, due to someone calling nar-install on them, no extra download occurs.</p>
+<p>Now that the POM, jar and nar files are all in the local repository, the nar-unpack goal unpacks the nar files. This is necessary because none of the native compiler/linker tools understands nar files, so an unpacked directory structure should be created. Unpacking only happens in the local repository. A remote repository <b>never</b> contains an unpacked nar file. If unpacking was already done, then no action is taken by the nar-unpack goal, unless the artifact is a SNAPSHOT.</p>
+<p>The local repository for the native math library may look similar to this if we were running on a MacOS X PowerPC system (Note the unpacked nar directory and nar only for one platform):</p>
+<div class="source"><pre>repository/
+           org/
+               freehep/
+                       nmath/
+                             4.5.1/
+                                   nmath-4.5.1.pom
+                                   nmath-4.5.1.pom.sha1
+                                   nmath-4.5.1.jar
+                                   nmath-4.5.1.jar.sha1
+                                   nmath-4.5.1-noarch.nar
+                                   nmath-4.5.1-noarch.nar.sha1
+                                   nmath-4.5.1-MacOSX-g++-shared.nar
+                                   nmath-4.5.1-MacOSX-g++-shared.nar.sha1
+                                   ...
+                                   nar/
+                                       bin/
+                                           ppc-MacOSX-g++/
+                                                          NMath
+                                       include/
+                                               nmath/
+                                                     NMath.hh
+                                       data/
+                                            NMath.data
+                                       lib/
+                                           ppc-MacOSX-g++/
+                                                          shared/
+                                                                 libNMath.so
+                                                                 libNMathExtra.so</pre>
+</div>
+<p>The usage of local repository by the NAR Plugin works seamlessly with the usage of it by other Maven plugins. The SWIG Plugin for instance downloads the native swig executable (wrapped in a NAR artifact), installs and unpacks it in the local repository and then uses the executable in the bin directory location.</p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2002-2009
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+   - <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a></div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

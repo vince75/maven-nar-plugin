@@ -1,0 +1,787 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>maven-nar-plugin - Maven NAR Plugin</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                                                    
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+                                                        
+<script type="text/javascript">_uacct = "UA-140879-1";
+        urchinTracker();</script>
+                    </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="" id="bannerLeft">
+    
+                                    <img src="http://maven.apache.org/images/apache-maven-project.png" alt="" />
+    
+            </a>
+                        <a href="http://maven.apache.org/" id="bannerRight">
+    
+                                    <img src="http://maven.apache.org/images/maven-logo-2.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+          
+                <a href="http://www.apache.org/" class="externalLink">Apache</a>
+                &gt;
+      
+                <a href="http://maven.apache.org/index.html" class="externalLink">Maven</a>
+                &gt;
+      
+                <a href="http://maven.apache.org/plugins/index.html" class="externalLink">Plugins</a>
+                &gt;
+      
+                <a href="http://duns.github.com/maven-nar-plugin/" class="externalLink">Maven NAR Plugin</a>
+                  </div>
+            <div class="xright">            <a href="http://java.freehep.org/maven1.x/freehep-nar-plugin" class="externalLink">NAR Plugin for Maven1</a>
+            |
+                <a href="http://maven.apache.org/maven2/" class="externalLink">Maven 2</a>
+            
+  
+
+  
+    
+            
+  
+    
+            &nbsp;| Last Published: 2009-10-13
+              &nbsp;| Version: 2.1-SNAPSHOT
+            </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="philosophy.html">Philosophy</a>
+          </li>
+              
+    <li class="none">
+                    <a href="NARPlugin.ppt">Presentation (ppt)</a>
+          </li>
+          </ul>
+              <h5>User Info</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="plugin-info.html">Goals</a>
+          </li>
+              
+    <li class="none">
+                    <a href="usage.html">Usage</a>
+          </li>
+              
+    <li class="none">
+                    <a href="lifecycle.html">Lifecycle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="configuration.html">Configuration</a>
+          </li>
+              
+    <li class="none">
+                    <a href="faq.html">FAQ</a>
+          </li>
+              
+    <li class="none">
+              <strong>AOL Properties</strong>
+        </li>
+          </ul>
+              <h5>Developer Info</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="narDependencies.html">NAR Dependencies</a>
+          </li>
+              
+    <li class="none">
+                    <a href="https://issues.sonatype.org/browse/NAR" class="externalLink">Bug Reports</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://forum.freehep.org/index.php?t=threadt&frm_id=14&rid=4" class="externalLink">Forum</a>
+          </li>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">APIDocs</a>
+          </li>
+              
+    <li class="none">
+                    <a href="narLibrary.html">NAR Library</a>
+          </li>
+              
+    <li class="none">
+                    <a href="cpptasks.html">CPPTasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://github.com/duns/maven-nar-plugin" class="externalLink">Git Browse nar-plugin</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://github.com/duns/cpptasks-parallel" class="externalLink">Git Browse cpptasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="source-repository.html">Git Repository</a>
+          </li>
+          </ul>
+              <h5>Examples</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="HelloWorld.html">HelloWorld</a>
+          </li>
+          </ul>
+              <h5>Other Information</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://docs.codehaus.org/display/MAVEN/Support+for+other+languages" class="externalLink">Maven and other languages</a>
+          </li>
+          </ul>
+                        <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+              <h5>Maven Projects</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/ant-tasks/index.html" class="externalLink">Ant Tasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/doxia/index.html" class="externalLink">Doxia</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/jxr/index.html" class="externalLink">JXR</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/maven-1.x/index.html" class="externalLink">Maven 1.x</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/index.html" class="externalLink">Maven 2</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/mercury/index.html" class="externalLink">Mercury</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/plugins/index.html" class="externalLink">Plugins</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/scm/index.html" class="externalLink">SCM</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/shared/index.html" class="externalLink">Shared Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/surefire/index.html" class="externalLink">Surefire</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/wagon/index.html" class="externalLink">Wagon</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>AOL Properties</h2>
+<p>Below a copy of the AOL Properties file which is used by the NAR plugin for AOL dependent default settings:</p>
+<div class="source"><pre>#
+# AOL (Architecture-OperatingSystem-Linker) Default Values
+#
+# @author Mark Donszelmann
+# @version $Id$
+#
+
+#
+# Windows (&quot;Windows *&quot; =&gt; Windows)
+#
+x86.Windows.linker=msvc
+
+x86.Windows.msvc.cpp.compiler=msvc
+x86.Windows.msvc.cpp.defines=Windows WIN32
+x86.Windows.msvc.cpp.options=
+x86.Windows.msvc.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+x86.Windows.msvc.cpp.excludes=
+
+x86.Windows.msvc.c.compiler=msvc
+x86.Windows.msvc.c.defines=Windows WIN32
+x86.Windows.msvc.c.options=
+x86.Windows.msvc.c.includes=**/*.c
+x86.Windows.msvc.c.excludes=
+
+x86.Windows.msvc.fortran.compiler=df
+x86.Windows.msvc.fortran.defines=Windows WIN32
+x86.Windows.msvc.fortran.options=
+x86.Windows.msvc.fortran.includes=**/*.f **/*.for
+x86.Windows.msvc.fortran.excludes=
+
+x86.Windows.msvc.java.include=include;include/win32
+x86.Windows.msvc.java.runtimeDirectory=lib
+
+x86.Windows.msvc.lib.prefix=
+x86.Windows.msvc.shared.prefix=
+x86.Windows.msvc.shared.extension=dll
+x86.Windows.msvc.static.extension=lib
+x86.Windows.msvc.plugin.extension=dll
+x86.Windows.msvc.jni.extension=dll
+x86.Windows.msvc.executable.extension=exe
+
+#x86.Windows.msvc.arch.includes=lib/**/*.lib lib/**/*.dll
+
+#
+# Windows g++
+#
+x86.Windows.g++.cpp.compiler=g++
+x86.Windows.g++.cpp.defines=Windows
+x86.Windows.g++.cpp.options=-Wall
+x86.Windows.g++.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+x86.Windows.g++.cpp.excludes=
+
+x86.Windows.g++.c.compiler=gcc
+x86.Windows.g++.c.defines=Windows
+x86.Windows.g++.c.options=-Wall
+x86.Windows.g++.c.includes=**/*.c
+x86.Windows.g++.c.excludes=
+
+x86.Windows.g++.fortran.compiler=g77
+x86.Windows.g++.fortran.defines=Windows
+x86.Windows.g++.fortran.options=-Wall
+x86.Windows.g++.fortran.includes=**/*.f **/*.for
+x86.Windows.g++.fortran.excludes=
+
+x86.Windows.g++.java.include=include;include/win32
+x86.Windows.g++.java.runtimeDirectory=lib
+
+x86.Windows.g++.lib.prefix=lib
+x86.Windows.g++.shared.prefix=
+x86.Windows.g++.static.extension=a
+x86.Windows.g++.shared.extension=dll
+x86.Windows.g++.plugin.extension=dll
+x86.Windows.g++.jni.extension=dll
+x86.Windows.g++.executable.extension=
+
+# FIXME to be removed when NARPLUGIN-137
+x86.Windows.gcc.static.extension=a
+x86.Windows.gcc.shared.extension=dll
+x86.Windows.gcc.plugin.extension=dll
+x86.Windows.gcc.jni.extension=dll
+
+#
+# Linux
+#
+i386.Linux.linker=g++
+
+i386.Linux.g++.cpp.compiler=g++
+i386.Linux.g++.cpp.defines=Linux GNU_GCC f2cFortran
+i386.Linux.g++.cpp.options=-Wall -Wno-long-long -Wpointer-arith -Wconversion
+i386.Linux.g++.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+i386.Linux.g++.cpp.excludes=
+
+i386.Linux.g++.c.compiler=gcc
+i386.Linux.g++.c.defines=Linux GNU_GCC f2cFortran
+i386.Linux.g++.c.options=-Wall -Wno-long-long -Wpointer-arith -Wconversion
+i386.Linux.g++.c.includes=**/*.c
+i386.Linux.g++.c.excludes=
+
+i386.Linux.g++.fortran.compiler=g77
+i386.Linux.g++.fortran.defines=Linux GNU_GCC f2cFortran
+i386.Linux.g++.fortran.options=-Wall 
+i386.Linux.g++.fortran.includes=**/*.f **/*.for
+i386.Linux.g++.fortran.excludes=
+
+i386.Linux.g++.java.include=include;include/linux
+i386.Linux.g++.java.runtimeDirectory=jre/lib/i386/client
+
+i386.Linux.g++.lib.prefix=lib
+i386.Linux.g++.shared.prefix=lib
+i386.Linux.g++.static.extension=a
+i386.Linux.g++.shared.extension=so
+i386.Linux.g++.plugin.extension=so
+i386.Linux.g++.jni.extension=so
+i386.Linux.g++.executable.extension=
+
+# FIXME to be removed when NARPLUGIN-137
+i386.Linux.gcc.static.extension=a
+i386.Linux.gcc.shared.extension=so
+i386.Linux.gcc.plugin.extension=so
+i386.Linux.gcc.jni.extension=so
+
+#i386.Linux.g++.arch.includes=lib/**/*.a lib/**/*.so
+
+#
+# Linux icc (C linker)
+#
+i386.Linux.icc.cpp.compiler=NONE
+i386.Linux.icc.cpp.defines=Linux
+i386.Linux.icc.cpp.options=-ansi -mp -no-gcc -w1
+i386.Linux.icc.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+i386.Linux.icc.cpp.excludes=
+
+i386.Linux.icc.c.compiler=icc
+i386.Linux.icc.c.defines=Linux
+i386.Linux.icc.c.options=-ansi -mp -no-gcc -w1
+i386.Linux.icc.c.includes=**/*.c
+i386.Linux.icc.c.excludes=
+
+i386.Linux.icc.fortran.compiler=ifort
+i386.Linux.icc.fortran.defines=Linux
+i386.Linux.icc.fortran.options=
+i386.Linux.icc.fortran.includes=**/*.f **/*.for
+i386.Linux.icc.fortran.excludes=
+
+i386.Linux.icc.java.include=include;include/linux
+i386.Linux.icc.java.runtimeDirectory=jre/lib/i386/client
+
+i386.Linux.icc.lib.prefix=lib
+i386.Linux.icc.shared.prefix=lib
+i386.Linux.icc.static.extension=a
+i386.Linux.icc.shared.extension=so
+i386.Linux.icc.plugin.extension=so
+i386.Linux.icc.jni.extension=so
+i386.Linux.icc.executable.extension=
+
+
+#
+# Linux icpc (C++ linker)
+#
+i386.Linux.icpc.cpp.compiler=icpc
+i386.Linux.icpc.cpp.defines=Linux
+i386.Linux.icpc.cpp.options=-ansi -mp -no-gcc -w1
+i386.Linux.icpc.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+i386.Linux.icpc.cpp.excludes=
+
+i386.Linux.icpc.c.compiler=icc
+i386.Linux.icpc.c.defines=Linux
+i386.Linux.icpc.c.options=-ansi -mp -no-gcc -w1
+i386.Linux.icpc.c.includes=**/*.c
+i386.Linux.icpc.c.excludes=
+
+i386.Linux.icpc.fortran.compiler=ifort
+i386.Linux.icpc.fortran.defines=Linux
+i386.Linux.icpc.fortran.options=
+i386.Linux.icpc.fortran.includes=**/*.f **/*.for
+i386.Linux.icpc.fortran.excludes=
+
+i386.Linux.icpc.java.include=include;include/linux
+i386.Linux.icpc.java.runtimeDirectory=jre/lib/i386/client
+
+i386.Linux.icpc.lib.prefix=lib
+i386.Linux.icpc.shared.prefix=lib
+i386.Linux.icpc.static.extension=a
+i386.Linux.icpc.shared.extension=so
+i386.Linux.icpc.plugin.extension=so
+i386.Linux.icpc.jni.extension=so
+i386.Linux.icpc.executable.extension=
+
+#
+# Linux ecc (C linker)
+#
+i386.Linux.ecc.cpp.compiler=NONE
+i386.Linux.ecc.cpp.defines=Linux
+i386.Linux.ecc.cpp.options=-ansi -mp -no-gcc -w1
+i386.Linux.ecc.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+i386.Linux.ecc.cpp.excludes=
+
+i386.Linux.ecc.c.compiler=ecc
+i386.Linux.ecc.c.defines=Linux
+i386.Linux.ecc.c.options=-ansi -mp -no-gcc -w1
+i386.Linux.ecc.c.includes=**/*.c
+i386.Linux.ecc.c.excludes=
+
+# Should this be efc ?
+i386.Linux.ecc.fortran.compiler=ifort
+i386.Linux.ecc.fortran.defines=Linux
+i386.Linux.ecc.fortran.options=
+i386.Linux.ecc.fortran.includes=**/*.f **/*.for
+i386.Linux.ecc.fortran.excludes=
+
+i386.Linux.ecc.java.include=include;include/linux
+i386.Linux.ecc.java.runtimeDirectory=jre/lib/i386/client
+
+i386.Linux.ecc.lib.prefix=lib
+i386.Linux.ecc.shared.prefix=lib
+i386.Linux.ecc.static.extension=a
+i386.Linux.ecc.shared.extension=so
+i386.Linux.ecc.plugin.extension=so
+i386.Linux.ecc.jni.extension=so
+i386.Linux.ecc.executable.extension=
+
+#
+# Linux ecpc (C++ linker)
+#
+i386.Linux.ecpc.cpp.compiler=ecpc
+i386.Linux.icpc.cpp.defines=Linux
+i386.Linux.ecpc.cpp.options=-ansi -mp -no-gcc -w1
+i386.Linux.ecpc.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+i386.Linux.ecpc.cpp.excludes=
+
+i386.Linux.ecpc.c.compiler=ecc
+i386.Linux.ecpc.c.defines=Linux
+i386.Linux.ecpc.c.options=-ansi -mp -no-gcc -w1
+i386.Linux.ecpc.c.includes=**/*.c
+i386.Linux.ecpc.c.excludes=
+
+# Should this be efc ?
+i386.Linux.ecpc.fortran.compiler=ifort
+i386.Linux.ecpc.fortran.defines=Linux
+i386.Linux.ecpc.fortran.options=
+i386.Linux.ecpc.fortran.includes=**/*.f **/*.for
+i386.Linux.ecpc.fortran.excludes=
+
+i386.Linux.ecpc.java.include=include;include/linux
+i386.Linux.ecpc.java.runtimeDirectory=jre/lib/i386/client
+
+i386.Linux.ecpc.lib.prefix=lib
+i386.Linux.ecpc.shared.prefix=lib
+i386.Linux.ecpc.static.extension=a
+i386.Linux.ecpc.shared.extension=so
+i386.Linux.ecpc.plugin.extension=so
+i386.Linux.ecpc.jni.extension=so
+i386.Linux.ecpc.executable.extension=
+
+#
+# Linux
+#
+amd64.Linux.linker=g++
+
+amd64.Linux.g++.cpp.compiler=g++
+amd64.Linux.g++.cpp.defines=Linux GNU_GCC f2cFortran 
+amd64.Linux.g++.cpp.options=-Wall -Wno-long-long -Wpointer-arith -Wconversion
+amd64.Linux.g++.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+amd64.Linux.g++.cpp.excludes=
+
+amd64.Linux.g++.c.compiler=gcc
+amd64.Linux.g++.c.defines=Linux GNU_GCC f2cFortran 
+amd64.Linux.g++.c.options=-Wall -Wno-long-long -Wpointer-arith -Wconversion
+amd64.Linux.g++.c.includes=**/*.c
+amd64.Linux.g++.c.excludes=
+
+amd64.Linux.g++.fortran.compiler=g77
+amd64.Linux.g++.fortran.defines=Linux GNU_GCC f2cFortran 
+amd64.Linux.g++.fortran.options=-Wall 
+amd64.Linux.g++.fortran.includes=**/*.f **/*.for
+amd64.Linux.g++.fortran.excludes=
+
+amd64.Linux.g++.java.include=include;include/linux
+amd64.Linux.g++.java.runtimeDirectory=jre/lib/amd64/server
+
+amd64.Linux.g++.lib.prefix=lib
+amd64.Linux.g++.shared.prefix=lib
+amd64.Linux.g++.static.extension=a
+amd64.Linux.g++.shared.extension=so
+amd64.Linux.g++.plugin.extension=so
+amd64.Linux.g++.jni.extension=so
+amd64.Linux.g++.executable.extension=
+
+# FIXME to be removed when NARPLUGIN-137
+amd64.Linux.gcc.static.extension=a
+amd64.Linux.gcc.shared.extension=so
+amd64.Linux.gcc.plugin.extension=so
+amd64.Linux.gcc.jni.extension=so
+
+#amd64.Linux.g++.arch.includes=lib/**/*.a lib/**/*.so
+
+#
+# MacOSX (&quot;Mac OS X&quot; =&gt; MacOSX) PowerPC
+#
+ppc.MacOSX.linker=g++
+
+ppc.MacOSX.g++.cpp.compiler=g++
+ppc.MacOSX.g++.cpp.defines=Darwin GNU_GCC f2cFortran 
+ppc.MacOSX.g++.cpp.options=-Wall -Wno-long-long -Wpointer-arith -Wconversion
+ppc.MacOSX.g++.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+ppc.MacOSX.g++.cpp.excludes=
+
+ppc.MacOSX.g++.c.compiler=gcc
+ppc.MacOSX.g++.c.defines=Darwin GNU_GCC f2cFortran 
+ppc.MacOSX.g++.c.options=-Wall -Wno-long-long -Wpointer-arith -Wconversion
+ppc.MacOSX.g++.c.includes=**/*.c
+ppc.MacOSX.g++.c.excludes=
+
+ppc.MacOSX.g++.fortran.compiler=g77
+ppc.MacOSX.g++.fortran.defines=Darwin GNU_GCC 
+ppc.MacOSX.g++.fortran.options=-Wall -fno-automatic -fno-second-underscore
+ppc.MacOSX.g++.fortran.includes=**/*.f **/*.for
+ppc.MacOSX.g++.fortran.excludes=
+
+ppc.MacOSX.g++.java.include=include
+ppc.MacOSX.g++.java.runtimeDirectory=IGNORED
+
+ppc.MacOSX.g++.lib.prefix=lib
+ppc.MacOSX.g++.shared.prefix=lib
+ppc.MacOSX.g++.static.extension=a
+ppc.MacOSX.g++.shared.extension=dylib
+ppc.MacOSX.g++.plugin.extension=bundle
+ppc.MacOSX.g++.jni.extension=jnilib
+ppc.MacOSX.g++.executable.extension=
+
+# FIXME to be removed when NARPLUGIN-137
+ppc.MacOSX.gcc.static.extension=a
+ppc.MacOSX.gcc.shared.extension=dylib
+ppc.MacOSX.gcc.plugin.extension=bundle
+ppc.MacOSX.gcc.jni.extension=jnilib
+
+#ppc.MacOSX.g++.arch.includes=lib/**/*.a lib/**/*.so lib/**/*.dylib lib/**/*.jnilib
+
+#
+# MacOSX (&quot;Mac OS X&quot; =&gt; MacOSX) Intel (32 bits)
+#
+i386.MacOSX.linker=g++
+
+i386.MacOSX.g++.cpp.compiler=g++
+i386.MacOSX.g++.cpp.defines=Darwin GNU_GCC 
+i386.MacOSX.g++.cpp.options=-Wall -Wno-long-long -Wpointer-arith -Wconversion
+i386.MacOSX.g++.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+i386.MacOSX.g++.cpp.excludes=
+
+i386.MacOSX.g++.c.compiler=gcc
+i386.MacOSX.g++.c.defines=Darwin GNU_GCC 
+i386.MacOSX.g++.c.options=-Wall -Wno-long-long -Wpointer-arith -Wconversion
+i386.MacOSX.g++.c.includes=**/*.c
+i386.MacOSX.g++.c.excludes=
+
+i386.MacOSX.g++.fortran.compiler=gfortran
+i386.MacOSX.g++.fortran.defines=Darwin GNU_GCC 
+i386.MacOSX.g++.fortran.options=-Wall -fno-automatic -fno-second-underscore
+i386.MacOSX.g++.fortran.includes=**/*.f **/*.for
+i386.MacOSX.g++.fortran.excludes=
+
+i386.MacOSX.g++.java.include=include
+i386.MacOSX.g++.java.runtimeDirectory=IGNORED
+
+i386.MacOSX.g++.lib.prefix=lib
+i386.MacOSX.g++.shared.prefix=lib
+i386.MacOSX.g++.static.extension=a
+i386.MacOSX.g++.shared.extension=dylib
+i386.MacOSX.g++.plugin.extension=bundle
+i386.MacOSX.g++.jni.extension=jnilib
+i386.MacOSX.g++.executable.extension=
+
+# FIXME to be removed when NARPLUGIN-137
+i386.MacOSX.gcc.static.extension=a
+i386.MacOSX.gcc.shared.extension=dylib
+i386.MacOSX.gcc.plugin.extension=bundle
+i386.MacOSX.gcc.jni.extension=jnilib
+
+#i386.MacOSX.g++.arch.includes=lib/**/*.a lib/**/*.so lib/**/*.dylib lib/**/*.jnilib
+
+#
+# MacOSX (&quot;Mac OS X&quot; =&gt; MacOSX) Intel (64 bits)
+#
+x86_64.MacOSX.linker=g++
+
+x86_64.MacOSX.g++.cpp.compiler=g++
+x86_64.MacOSX.g++.cpp.defines=Darwin GNU_GCC 
+x86_64.MacOSX.g++.cpp.options=-Wall -Wno-long-long -Wpointer-arith -Wconversion
+x86_64.MacOSX.g++.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+x86_64.MacOSX.g++.cpp.excludes=
+
+x86_64.MacOSX.g++.c.compiler=gcc
+x86_64.MacOSX.g++.c.defines=Darwin GNU_GCC 
+x86_64.MacOSX.g++.c.options=-Wall -Wno-long-long -Wpointer-arith -Wconversion
+x86_64.MacOSX.g++.c.includes=**/*.c
+x86_64.MacOSX.g++.c.excludes=
+
+x86_64.MacOSX.g++.fortran.compiler=gfortran
+x86_64.MacOSX.g++.fortran.defines=Darwin GNU_GCC 
+x86_64.MacOSX.g++.fortran.options=-Wall -fno-automatic -fno-second-underscore
+x86_64.MacOSX.g++.fortran.includes=**/*.f **/*.for
+x86_64.MacOSX.g++.fortran.excludes=
+
+x86_64.MacOSX.g++.java.include=include
+x86_64.MacOSX.g++.java.runtimeDirectory=IGNORED
+
+x86_64.MacOSX.g++.lib.prefix=lib
+x86_64.MacOSX.g++.shared.prefix=lib
+x86_64.MacOSX.g++.static.extension=a
+x86_64.MacOSX.g++.shared.extension=dylib
+x86_64.MacOSX.g++.plugin.extension=bundle
+x86_64.MacOSX.g++.jni.extension=jnilib
+x86_64.MacOSX.g++.executable.extension=
+
+# FIXME to be removed when NARPLUGIN-137
+x86_64.MacOSX.gcc.static.extension=a
+x86_64.MacOSX.gcc.shared.extension=dylib
+x86_64.MacOSX.gcc.plugin.extension=bundle
+x86_64.MacOSX.gcc.jni.extension=jnilib
+
+#x86_64.MacOSX.g++.arch.includes=lib/**/*.a lib/**/*.so lib/**/*.dylib lib/**/*.jnilib
+
+#
+# Solaris
+#
+sparc.SunOS.linker=CC
+
+sparc.SunOS.CC.cpp.compiler=CC
+sparc.SunOS.CC.cpp.defines=SOLARIS2
+sparc.SunOS.CC.cpp.options=
+sparc.SunOS.CC.cpp.includes=**/*.cc **/*.cpp **/*.cxx
+sparc.SunOS.CC.cpp.excludes=
+
+sparc.SunOS.CC.c.compiler=suncc
+sparc.SunOS.CC.c.defines=SOLARIS2
+sparc.SunOS.CC.c.options=
+sparc.SunOS.CC.c.includes=**/*.c
+sparc.SunOS.CC.c.excludes=
+
+sparc.SunOS.CC.fortran.compiler=sunf77
+sparc.SunOS.CC.fortran.defines=SOLARIS2
+sparc.SunOS.CC.fortran.options=
+sparc.SunOS.CC.fortran.includes=**/*.f **/*.for
+sparc.SunOS.CC.fortran.excludes=
+
+sparc.SunOS.CC.java.include=include;include/solaris
+sparc.SunOS.CC.java.runtimeDirectory=jre/lib/sparc/server
+
+sparc.SunOS.CC.linker.systemLibs=pthread:shared
+
+sparc.SunOS.CC.lib.prefix=lib
+sparc.SunOS.CC.shared.prefix=lib
+sparc.SunOS.CC.static.extension=a
+sparc.SunOS.CC.shared.extension=so
+sparc.SunOS.CC.plugin.extension=so
+sparc.SunOS.CC.jni.extension=so
+sparc.SunOS.CC.executable.extension=
+
+# FIXME to be removed when NARPLUGIN-137
+sparc.SunOS.cc.static.extension=a
+sparc.SunOS.cc.shared.extension=so
+sparc.SunOS.cc.plugin.extension=so
+sparc.SunOS.cc.jni.extension=so
+
+#sparc.SunOS.CC.arch.includes=lib/**/*.a lib/**/*.so</pre>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2002-2009
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+   - <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a></div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>
