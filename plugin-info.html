@@ -30,7 +30,7 @@
     <div id="banner">
                   <a href="" id="bannerLeft">
     
-                                    <img src="http://maven.apache.org/images/apache-maven-project.png" alt="" />
+                                    <img src="http://maven.apache.org/images/apache-maven-project-2.png" alt="" />
     
             </a>
                         <a href="http://maven.apache.org/" id="bannerRight">
@@ -66,7 +66,7 @@
                   </div>
             <div class="xright">            <a href="http://java.freehep.org/maven1.x/freehep-nar-plugin" class="externalLink">NAR Plugin for Maven1</a>
             |
-                <a href="http://maven.apache.org/maven2/" class="externalLink">Maven 2</a>
+                <a href="http://maven.apache.org/" class="externalLink">Maven</a>
             
   
 
@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-10-13
+            &nbsp;| Last Published: 2009-10-16
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -325,58 +325,74 @@ to display parameter details.</td>
 <td>Downloads any dependent NAR files. This includes the noarch and aol
 type NAR files.</td>
 </tr>
-<tr class="b"><td><a href="nar-integration-test-mojo.html">nar:nar-integration-test</a></td>
+<tr class="b"><td><a href="nar-gnu-configure-mojo.html">nar:nar-gnu-configure</a></td>
+<td>Copies the GNU style source files to a target area, autogens and
+configures them.</td>
+</tr>
+<tr class="a"><td><a href="nar-gnu-make-mojo.html">nar:nar-gnu-make</a></td>
+<td>Runs make on the GNU style generated Makefile</td>
+</tr>
+<tr class="b"><td><a href="nar-gnu-process-mojo.html">nar:nar-gnu-process</a></td>
+<td>Move the GNU style output in the correct directories for
+nar-package</td>
+</tr>
+<tr class="a"><td><a href="nar-integration-test-mojo.html">nar:nar-integration-test</a></td>
 <td>Run integration tests using Surefire. This goal was copied from
 Maven's surefire plugin to accomodate a few things for the NAR
-plugin: 1. To test a jar file with its native module we can only
-run after the package phase, so we use the integration-test phase.
-2. We need to set java.library.path to an AOL
+plugin: 
+
+<p>1. To test a jar file with its native module we can only run
+after the package phase, so we use the integration-test phase.</p>
+
+<p>2. We need to set java.library.path to an AOL
 (architecture-os-linker) specific value, but AOL is only known in
-the NAR plugin and thus cannot be set from the pom. 3. To have the
-java.library.path definition picked up by java we need the
-"pertest" forkmode. To use this goal you need to put the test
-sources in the regular test directories but disable the running of
-the tests by the maven-surefire-plugin.</td>
+the NAR plugin and thus cannot be set from the pom.</p>
+
+<p>3. To have the java.library.path definition picked up by java we
+need the "pertest" forkmode. To use this goal you need to put the
+test sources in the regular test directories but disable the
+running of the tests by the maven-surefire-plugin by setting
+maven.test.skip.exec to false in your pom.</p></td>
 </tr>
-<tr class="a"><td><a href="nar-javah-mojo.html">nar:nar-javah</a></td>
+<tr class="b"><td><a href="nar-javah-mojo.html">nar:nar-javah</a></td>
 <td>Compiles class files into c/c++ headers using "javah". Any class
 file that contains methods that were declared "native" will be run
 through javah.</td>
 </tr>
-<tr class="b"><td><a href="nar-package-mojo.html">nar:nar-package</a></td>
+<tr class="a"><td><a href="nar-package-mojo.html">nar:nar-package</a></td>
 <td>Jars up the NAR files.</td>
 </tr>
-<tr class="a"><td><a href="nar-resources-mojo.html">nar:nar-resources</a></td>
+<tr class="b"><td><a href="nar-resources-mojo.html">nar:nar-resources</a></td>
 <td>Copies any resources, including AOL specific distributions, to the
 target area for packaging</td>
 </tr>
-<tr class="b"><td><a href="nar-system-generate-mojo.html">nar:nar-system-generate</a></td>
+<tr class="a"><td><a href="nar-system-generate-mojo.html">nar:nar-system-generate</a></td>
 <td>Generates a NarSystem class with static methods to use inside the
 java part of the library.</td>
 </tr>
-<tr class="a"><td><a href="nar-test-mojo.html">nar:nar-test</a></td>
+<tr class="b"><td><a href="nar-test-mojo.html">nar:nar-test</a></td>
 <td>Tests NAR files. Runs Native Tests and executables if produced.</td>
 </tr>
-<tr class="b"><td><a href="nar-testCompile-mojo.html">nar:nar-testCompile</a></td>
+<tr class="a"><td><a href="nar-testCompile-mojo.html">nar:nar-testCompile</a></td>
 <td>Compiles native test source files.</td>
 </tr>
-<tr class="a"><td><a href="nar-unpack-mojo.html">nar:nar-unpack</a></td>
+<tr class="b"><td><a href="nar-unpack-mojo.html">nar:nar-unpack</a></td>
 <td>Unpacks NAR files. Unpacking happens in the local repository, and
 also sets flags on binaries and corrects static libraries.</td>
 </tr>
 </table>
 <div class="section"><h3>System Requirements</h3>
 <p>The following specifies the minimum requirements to run this Maven plugin:</p>
-<table class="bodyTable"><tr class="b"><td>Maven</td>
+<table class="bodyTable"><tr class="a"><td>Maven</td>
 <td>2.0.6</td>
 </tr>
-<tr class="a"><td>JDK</td>
+<tr class="b"><td>JDK</td>
 <td>1.4</td>
 </tr>
-<tr class="b"><td>Memory</td>
+<tr class="a"><td>Memory</td>
 <td>No minimum requirement.</td>
 </tr>
-<tr class="a"><td>Disk Space</td>
+<tr class="b"><td>Disk Space</td>
 <td>No minimum requirement.</td>
 </tr>
 </table>
@@ -411,7 +427,7 @@ also sets flags on binaries and corrects static libraries.</td>
 &lt;/project&gt;
 </pre>
 </div>
-<p>For more information, see <a href="http://maven.apache.org/guides/mini/guide-configuring-plugins.html" class="externalLink">&quot;Guide to Configuring Plug-ins&quot;</a></p>
+<p>For more information, see <a class="externalLink" href="http://maven.apache.org/guides/mini/guide-configuring-plugins.html">&quot;Guide to Configuring Plug-ins&quot;</a></p>
 </div>
 </div>
 

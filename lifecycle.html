@@ -30,7 +30,7 @@
     <div id="banner">
                   <a href="" id="bannerLeft">
     
-                                    <img src="http://maven.apache.org/images/apache-maven-project.png" alt="" />
+                                    <img src="http://maven.apache.org/images/apache-maven-project-2.png" alt="" />
     
             </a>
                         <a href="http://maven.apache.org/" id="bannerRight">
@@ -66,7 +66,7 @@
                   </div>
             <div class="xright">            <a href="http://java.freehep.org/maven1.x/freehep-nar-plugin" class="externalLink">NAR Plugin for Maven1</a>
             |
-                <a href="http://maven.apache.org/maven2/" class="externalLink">Maven 2</a>
+                <a href="http://maven.apache.org/" class="externalLink">Maven</a>
             
   
 
@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-10-13
+            &nbsp;| Last Published: 2009-10-16
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -299,36 +299,39 @@
 <td align="left"><b>nar-download</b>, <b>nar-system-generate</b></td>
 </tr>
 <tr class="a"><td align="left">process-sources</td>
-<td align="left"><b>nar-unpack</b></td>
+<td align="left"><b>nar-unpack</b>, <b>nar-gnu-configure</b></td>
 </tr>
 <tr class="b"><td align="left">process-resources</td>
 <td align="left">resources, <b>nar-resources</b></td>
 </tr>
 <tr class="a"><td align="left">compile</td>
-<td align="left">compile, <b>nar-javah</b></td>
+<td align="left">compile, <b>nar-javah</b>, <b>nar-gnu-make</b></td>
 </tr>
 <tr class="b"><td align="left">process-classes</td>
-<td align="left"><b>nar-compile</b></td>
+<td align="left"><b>nar-compile</b>, <b>nar-gnu-process</b></td>
 </tr>
 <tr class="a"><td align="left">process-test-resources</td>
 <td align="left">testResources</td>
 </tr>
 <tr class="b"><td align="left">test-compile</td>
-<td align="left">testCompile, <b>nar-testCompile</b></td>
+<td align="left">testCompile</td>
 </tr>
-<tr class="a"><td align="left">test</td>
+<tr class="a"><td align="left">process-test-classes</td>
+<td align="left"><b>nar-testCompile</b></td>
+</tr>
+<tr class="b"><td align="left">test</td>
 <td align="left">test, <b>nar-test</b></td>
 </tr>
-<tr class="b"><td align="left">package</td>
+<tr class="a"><td align="left">package</td>
 <td align="left"><b>nar-package</b>, jar</td>
 </tr>
-<tr class="a"><td align="left">integration-test</td>
+<tr class="b"><td align="left">integration-test</td>
 <td align="left"><b>nar-integration-test</b></td>
 </tr>
-<tr class="b"><td align="left">install</td>
+<tr class="a"><td align="left">install</td>
 <td align="left">install</td>
 </tr>
-<tr class="a"><td align="left">deploy</td>
+<tr class="b"><td align="left">deploy</td>
 <td align="left">deploy</td>
 </tr>
 </tbody>

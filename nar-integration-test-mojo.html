@@ -30,7 +30,7 @@
     <div id="banner">
                   <a href="" id="bannerLeft">
     
-                                    <img src="http://maven.apache.org/images/apache-maven-project.png" alt="" />
+                                    <img src="http://maven.apache.org/images/apache-maven-project-2.png" alt="" />
     
             </a>
                         <a href="http://maven.apache.org/" id="bannerRight">
@@ -66,7 +66,7 @@
                   </div>
             <div class="xright">            <a href="http://java.freehep.org/maven1.x/freehep-nar-plugin" class="externalLink">NAR Plugin for Maven1</a>
             |
-                <a href="http://maven.apache.org/maven2/" class="externalLink">Maven 2</a>
+                <a href="http://maven.apache.org/" class="externalLink">Maven</a>
             
   
 
@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-10-13
+            &nbsp;| Last Published: 2009-10-16
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -296,15 +296,19 @@
 <p><strong>Description</strong>:</p>
 <div>Run integration tests using Surefire. This goal was copied from
 Maven's surefire plugin to accomodate a few things for the NAR
-plugin: 1. To test a jar file with its native module we can only
-run after the package phase, so we use the integration-test phase.
-2. We need to set java.library.path to an AOL
+plugin: 
+
+<p>1. To test a jar file with its native module we can only run
+after the package phase, so we use the integration-test phase.</p>
+<p>2. We need to set java.library.path to an AOL
 (architecture-os-linker) specific value, but AOL is only known in
-the NAR plugin and thus cannot be set from the pom. 3. To have the
-java.library.path definition picked up by java we need the
-&quot;pertest&quot; forkmode. To use this goal you need to put the test
-sources in the regular test directories but disable the running of
-the tests by the maven-surefire-plugin.</div><p><strong>Attributes</strong>:</p>
+the NAR plugin and thus cannot be set from the pom.</p>
+<p>3. To have the java.library.path definition picked up by java we
+need the &quot;pertest&quot; forkmode. To use this goal you need to put the
+test sources in the regular test directories but disable the
+running of the tests by the maven-surefire-plugin by setting
+maven.test.skip.exec to false in your pom.</p>
+</div><p><strong>Attributes</strong>:</p>
 <ul><li>Requires a Maven 2.0 project to be executed.</li>
 <li>Requires dependency resolution of artifacts in scope: <code>test</code>.</li>
 <li>Binds by default to the lifecycle phase: <code>integration-test</code>.</li>
@@ -330,46 +334,59 @@ ${os.arch}<br />
 obtained in your unit test by System.getProperty(&quot;basedir&quot;).<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#failOnError">failOnError</a></strong></td>
+<tr class="b"><td><strong><a href="#classesDirectory">classesDirectory</a></strong></td>
+<td><code>File</code></td>
+<td><code>-</code></td>
+<td>The directory containing generated classes of the project being
+tested.<br />
+</td>
+</tr>
+<tr class="a"><td><strong><a href="#failOnError">failOnError</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Fail on compilation/linking error.<br />
 <strong>Default value is</strong>: <code>true</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#libtool">libtool</a></strong></td>
+<tr class="b"><td><strong><a href="#libtool">libtool</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Set use of libtool. If set to true, the &quot;libtool &quot; will be
 prepended to the command line for compatible processors.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
-<tr class="b"><td><strong><a href="#runtime">runtime</a></strong></td>
+<tr class="a"><td><strong><a href="#runtime">runtime</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Sets the type of runtime library, possible values &quot;dynamic&quot;,
 &quot;static&quot;.<br />
 <strong>Default value is</strong>: <code>dynamic</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#testClassesDirectory">testClassesDirectory</a></strong></td>
+<tr class="b"><td><strong><a href="#testClassesDirectory">testClassesDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>-</code></td>
 <td>The directory containing generated test classes of the project
 being tested.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#testSourceDirectory">testSourceDirectory</a></strong></td>
+<tr class="a"><td><strong><a href="#testSourceDirectory">testSourceDirectory</a></strong></td>
 <td><code>File</code></td>
-<td><code>-</code></td>
+<td><code>2.2</code></td>
 <td>The test source directory containing test class sources.<br />
 </td>
 </tr>
 </table>
 </div>
 <div class="section"><h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
-<table class="bodyTable"><tr class="a"><th>Name</th>
+<table class="bodyTable"><tr class="b"><th>Name</th>
 <th>Type</th>
 <th>Since</th>
 <th>Description</th>
+</tr>
+<tr class="a"><td><strong><a href="#additionalClasspathElements">additionalClasspathElements</a></strong></td>
+<td><code>List</code></td>
+<td><code>2.4</code></td>
+<td>Additional elements to be appended to the classpath.<br />
+</td>
 </tr>
 <tr class="b"><td><strong><a href="#aol">aol</a></strong></td>
 <td><code>String</code></td>
@@ -379,8 +396,8 @@ being tested.<br />
 </tr>
 <tr class="a"><td><strong><a href="#argLine">argLine</a></strong></td>
 <td><code>String</code></td>
-<td><code>-</code></td>
-<td>Arbitrary options to set on the command line.<br />
+<td><code>2.1</code></td>
+<td>Arbitrary JVM options to set on the command line.<br />
 </td>
 </tr>
 <tr class="b"><td><strong><a href="#c">c</a></strong></td>
@@ -391,12 +408,12 @@ being tested.<br />
 </tr>
 <tr class="a"><td><strong><a href="#childDelegation">childDelegation</a></strong></td>
 <td><code>boolean</code></td>
-<td><code>-</code></td>
+<td><code>2.1</code></td>
 <td>When false it makes tests run using the standard classloader
 delegation instead of the default Maven isolated classloader. Only
 used when forking (forkMode is not &quot;none&quot;).<br />
 
-Setting it to false helps with some problems caused by conflicts
+ Setting it to false helps with some problems caused by conflicts
 between xml parsers in the classpath and the Java 5 provider
 parser.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
@@ -407,23 +424,42 @@ parser.<br />
 <td>C++ Compiler<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#disableXmlReport">disableXmlReport</a></strong></td>
+<tr class="a"><td><strong><a href="#debugForkedProcess">debugForkedProcess</a></strong></td>
+<td><code>String</code></td>
+<td><code>2.4</code></td>
+<td>Attach a debugger to the forked JVM. If set to &quot;true&quot;, the process
+will suspend and wait for a debugger to attach on port 5005. If set
+to some other string, that string will be appended to the argLine,
+allowing you to configure arbitrary debuggability options (without
+overwriting the other options specified in the argLine).<br />
+</td>
+</tr>
+<tr class="b"><td><strong><a href="#disableXmlReport">disableXmlReport</a></strong></td>
 <td><code>boolean</code></td>
-<td><code>-</code></td>
+<td><code>2.2</code></td>
 <td>Flag to disable the generation of report files in xml format.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
+<tr class="a"><td><strong><a href="#enableAssertions">enableAssertions</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>2.3.1</code></td>
+<td>By default, Surefire enables JVM assertions for the execution of
+your test cases. To disable the assertions, set this flag to
+<code>false</code>.<br />
+<strong>Default value is</strong>: <code>true</code>.</td>
+</tr>
 <tr class="b"><td><strong><a href="#environmentVariables">environmentVariables</a></strong></td>
 <td><code>Map</code></td>
-<td><code>-</code></td>
+<td><code>2.1.3</code></td>
 <td>Additional environments to set on the command line.<br />
 </td>
 </tr>
 <tr class="a"><td><strong><a href="#excludedGroups">excludedGroups</a></strong></td>
 <td><code>String</code></td>
-<td><code>-</code></td>
-<td>Excluded groups. Any methods/classes/etc with one of the groups
-specified in this list will specifically not be run.<br />
+<td><code>2.2</code></td>
+<td>(TestNG only) Excluded groups. Any methods/classes/etc with one of
+the groups specified in this list will specifically not be run.
+This parameter is overridden if suiteXmlFiles are specified.<br />
 </td>
 </tr>
 <tr class="b"><td><strong><a href="#excludes">excludes</a></strong></td>
@@ -432,17 +468,31 @@ specified in this list will specifically not be run.<br />
 <td>List of patterns (separated by commas) used to specify the tests
 that should be excluded in testing. When not specified and when the
 <code>test</code> parameter is not specified, the default excludes
-will be <code>**/Abstract*Test.java **/Abstract*TestCase.java
-**/*$*</code><br />
+will be <code>**/*$*</code> (which excludes all inner classes).
+This parameter is ignored if TestNG suiteXmlFiles are specified.<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#forkMode">forkMode</a></strong></td>
+<tr class="a"><td><strong><a href="#failIfNoTests">failIfNoTests</a></strong></td>
+<td><code>Boolean</code></td>
+<td><code>2.4</code></td>
+<td>Set this to &quot;true&quot; to cause a failure if there are no tests to run.
+Defaults to false.<br />
+</td>
+</tr>
+<tr class="b"><td><strong><a href="#forkMode">forkMode</a></strong></td>
 <td><code>String</code></td>
-<td><code>-</code></td>
+<td><code>2.1</code></td>
 <td>Option to specify the forking mode. Can be &quot;never&quot;, &quot;once&quot; or
 &quot;always&quot;. &quot;none&quot; and &quot;pertest&quot; are also accepted for backwards
 compatibility.<br />
 <strong>Default value is</strong>: <code>once</code>.</td>
+</tr>
+<tr class="a"><td><strong><a href="#forkedProcessTimeoutInSeconds">forkedProcessTimeoutInSeconds</a></strong></td>
+<td><code>int</code></td>
+<td><code>2.4</code></td>
+<td>Kill the forked test process after a certain number of seconds. If
+set to 0, wait forever for the process, never timing out.<br />
+</td>
 </tr>
 <tr class="b"><td><strong><a href="#fortran">fortran</a></strong></td>
 <td><code>Fortran</code></td>
@@ -452,10 +502,11 @@ compatibility.<br />
 </tr>
 <tr class="a"><td><strong><a href="#groups">groups</a></strong></td>
 <td><code>String</code></td>
-<td><code>-</code></td>
-<td>Groups for this test. Only classes/methods/etc decorated with one
-of the groups specified here will be included in test run, if
-specified.<br />
+<td><code>2.2</code></td>
+<td>(TestNG only) Groups for this test. Only classes/methods/etc
+decorated with one of the groups specified here will be included in
+test run, if specified. This parameter is overridden if
+suiteXmlFiles are specified.<br />
 </td>
 </tr>
 <tr class="b"><td><strong><a href="#includes">includes</a></strong></td>
@@ -464,7 +515,8 @@ specified.<br />
 <td>List of patterns (separated by commas) used to specify the tests
 that should be included in testing. When not specified and when the
 <code>test</code> parameter is not specified, the default includes
-will be <code>**/Test*.java **/*Test.java **/*TestCase.java</code><br />
+will be <code>**/Test*.java **/*Test.java **/*TestCase.java</code>.
+This parameter is ignored if TestNG suiteXmlFiles are specified.<br />
 </td>
 </tr>
 <tr class="a"><td><strong><a href="#java">java</a></strong></td>
@@ -479,33 +531,40 @@ will be <code>**/Test*.java **/*Test.java **/*TestCase.java</code><br />
 <td>Javah info<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#jvm">jvm</a></strong></td>
+<tr class="a"><td><strong><a href="#junitArtifactName">junitArtifactName</a></strong></td>
 <td><code>String</code></td>
-<td><code>-</code></td>
+<td><code>2.3.1</code></td>
+<td>Allows you to specify the name of the JUnit artifact. If not set,
+<code>junit:junit</code> will be used.<br />
+<strong>Default value is</strong>: <code>junit:junit</code>.</td>
+</tr>
+<tr class="b"><td><strong><a href="#jvm">jvm</a></strong></td>
+<td><code>String</code></td>
+<td><code>2.1</code></td>
 <td>Option to specify the jvm (or path to the java executable) to use
 with the forking options. For the default, the jvm will be the same
 as the one used to run Maven.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#libraries">libraries</a></strong></td>
+<tr class="a"><td><strong><a href="#libraries">libraries</a></strong></td>
 <td><code>List</code></td>
 <td><code>-</code></td>
 <td>List of libraries to create<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#linker">linker</a></strong></td>
+<tr class="b"><td><strong><a href="#linker">linker</a></strong></td>
 <td><code>Linker</code></td>
 <td><code>-</code></td>
 <td>Linker<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#maxCores">maxCores</a></strong></td>
+<tr class="a"><td><strong><a href="#maxCores">maxCores</a></strong></td>
 <td><code>int</code></td>
 <td><code>-</code></td>
 <td>Maximum number of Cores/CPU's to use. 0 means unlimited.<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#os">os</a></strong></td>
+<tr class="b"><td><strong><a href="#os">os</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>The Operating System for the nar. Some choices are: &quot;Windows&quot;,
@@ -513,38 +572,46 @@ as the one used to run Maven.<br />
 ${os.name} FIXME table missing<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#output">output</a></strong></td>
+<tr class="a"><td><strong><a href="#output">output</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Name of the output<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#parallel">parallel</a></strong></td>
-<td><code>boolean</code></td>
-<td><code>-</code></td>
-<td>When you use the parallel attribute, TestNG will try to run all
-your test methods in separate threads, except for methods that
-depend on each other, which will be run in the same thread in order
-to respect their order of execution.<br />
-<strong>Default value is</strong>: <code>false</code>.</td>
+<tr class="b"><td><strong><a href="#parallel">parallel</a></strong></td>
+<td><code>String</code></td>
+<td><code>2.2</code></td>
+<td>(TestNG only) When you use the parallel attribute, TestNG will try
+to run all your test methods in separate threads, except for
+methods that depend on each other, which will be run in the same
+thread in order to respect their order of execution.<br />
+</td>
 </tr>
-<tr class="b"><td><strong><a href="#printSummary">printSummary</a></strong></td>
+<tr class="a"><td><strong><a href="#printSummary">printSummary</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Option to print summary of test suites or just print the test cases
 that has errors.<br />
 <strong>Default value is</strong>: <code>true</code>.</td>
 </tr>
+<tr class="b"><td><strong><a href="#properties">properties</a></strong></td>
+<td><code>Properties</code></td>
+<td><code>2.4</code></td>
+<td>List of properties for configuring all TestNG related
+configurations. This is the new preferred method of configuring
+TestNG.<br />
+</td>
+</tr>
 <tr class="a"><td><strong><a href="#redirectTestOutputToFile">redirectTestOutputToFile</a></strong></td>
 <td><code>boolean</code></td>
-<td><code>-</code></td>
+<td><code>2.3</code></td>
 <td>When forking, set this to true to redirect the unit test standard
 output to a file (found in reportsDirectory/testName-output.txt).<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
 <tr class="b"><td><strong><a href="#remoteRepositories">remoteRepositories</a></strong></td>
 <td><code>List</code></td>
-<td><code>-</code></td>
+<td><code>2.2</code></td>
 <td>The plugin remote repositories declared in the pom.<br />
 </td>
 </tr>
@@ -565,15 +632,18 @@ set as brief or plain.<br />
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Set this to 'true' to bypass unit tests entirely. Its use is NOT
-RECOMMENDED, but quite convenient on occasion.<br />
+RECOMMENDED, especially if you enable it using the
+&quot;maven.test.skip&quot; property, because maven.test.skip disables both
+running the tests and compiling the tests. Consider using the
+skipTests parameter instead.<br />
 </td>
 </tr>
 <tr class="b"><td><strong><a href="#skipExec">skipExec</a></strong></td>
 <td><code>boolean</code></td>
-<td><code>-</code></td>
-<td>Set this to 'true' to bypass unit tests execution, but still
-compile them. Its use is NOT RECOMMENDED, but quite convenient on
-occasion.<br />
+<td><code>2.3</code></td>
+<td>DEPRECATED This old parameter is just like skipTests, but bound to
+the old property maven.test.skip.exec. Use -DskipTests instead;
+it's shorter.<br />
 </td>
 </tr>
 <tr class="a"><td><strong><a href="#skipNAR">skipNAR</a></strong></td>
@@ -582,22 +652,30 @@ occasion.<br />
 <td>Skip running of NAR plugins (any) altogether.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
-<tr class="b"><td><strong><a href="#suiteXmlFiles">suiteXmlFiles</a></strong></td>
-<td><code>File[]</code></td>
-<td><code>-</code></td>
-<td>List of TestNG suite xml file locations, seperated by commas. It
-should be noted that if suiteXmlFiles is specified, <b>no</b> other
-tests will be run, ignoring other parameters, like includes and
-excludes.<br />
+<tr class="b"><td><strong><a href="#skipTests">skipTests</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>2.4</code></td>
+<td>Set this to 'true' to skip running tests, but still compile them.
+Its use is NOT RECOMMENDED, but quite convenient on occasion.<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#systemProperties">systemProperties</a></strong></td>
+<tr class="a"><td><strong><a href="#suiteXmlFiles">suiteXmlFiles</a></strong></td>
+<td><code>File[]</code></td>
+<td><code>2.2</code></td>
+<td>(TestNG only) List of TestNG suite xml file locations, seperated by
+commas. Note that suiteXmlFiles is incompatible with several other
+parameters on this plugin, like includes/excludes. This parameter
+is ignored if the &quot;test&quot; parameter is specified (allowing you to
+run a single test instead of an entire suite).<br />
+</td>
+</tr>
+<tr class="b"><td><strong><a href="#systemProperties">systemProperties</a></strong></td>
 <td><code>Properties</code></td>
 <td><code>-</code></td>
 <td>List of System properties to pass to the JUnit tests.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
+<tr class="a"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>-</code></td>
 <td>Target directory for Nar file construction Defaults to
@@ -605,23 +683,30 @@ excludes.<br />
 &quot;${project.build.directory}/test-nar&quot; for &quot;nar-testCompile&quot; goal<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#test">test</a></strong></td>
+<tr class="b"><td><strong><a href="#test">test</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
-<td>Specify this parameter(can be a comma separated list) if you want
-to use the test pattern matching notation, Ant pattern matching, to
-select tests to run. The Ant pattern will be used to create an
-include pattern formatted like <code>**/${test}.java</code> When
-used, the <code>includes</code> and <code>excludes</code> patterns
-parameters are ignored.<br />
+<td>Specify this parameter to run individual tests by file name,
+overriding the <code>includes/excludes</code> parameters. Each
+pattern you specify here will be used to create an include pattern
+formatted like <code>**/${test}.java</code>, so you can just type
+&quot;-Dtest=MyTest&quot; to run a single test called &quot;foo/MyTest.java&quot;. This
+parameter will override the TestNG suiteXmlFiles parameter.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#testFailureIgnore">testFailureIgnore</a></strong></td>
+<tr class="a"><td><strong><a href="#testFailureIgnore">testFailureIgnore</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Set this to true to ignore a failure during testing. Its use is NOT
 RECOMMENDED, but quite convenient on occasion.<br />
 </td>
+</tr>
+<tr class="b"><td><strong><a href="#testNGArtifactName">testNGArtifactName</a></strong></td>
+<td><code>String</code></td>
+<td><code>2.3.1</code></td>
+<td>Allows you to specify the name of the TestNG artifact. If not set,
+<code>org.testng:testng</code> will be used.<br />
+<strong>Default value is</strong>: <code>org.testng:testng</code>.</td>
 </tr>
 <tr class="a"><td><strong><a href="#tests">tests</a></strong></td>
 <td><code>List</code></td>
@@ -631,15 +716,15 @@ RECOMMENDED, but quite convenient on occasion.<br />
 </tr>
 <tr class="b"><td><strong><a href="#threadCount">threadCount</a></strong></td>
 <td><code>int</code></td>
-<td><code>-</code></td>
-<td>The attribute thread-count allows you to specify how many threads
-should be allocated for this execution. Only makes sense to use in
-conjunction with parallel.<br />
-<strong>Default value is</strong>: <code>5</code>.</td>
+<td><code>2.2</code></td>
+<td>(TestNG only) The attribute thread-count allows you to specify how
+many threads should be allocated for this execution. Only makes
+sense to use in conjunction with parallel.<br />
+</td>
 </tr>
 <tr class="a"><td><strong><a href="#trimStackTrace">trimStackTrace</a></strong></td>
 <td><code>boolean</code></td>
-<td><code>-</code></td>
+<td><code>2.2</code></td>
 <td>Whether to trim the stack trace in the reports to just the lines
 within the test, or show the full trace.<br />
 <strong>Default value is</strong>: <code>true</code>.</td>
@@ -651,24 +736,43 @@ within the test, or show the full trace.<br />
 report to the console.<br />
 <strong>Default value is</strong>: <code>true</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#useSystemClassLoader">useSystemClassLoader</a></strong></td>
+<tr class="a"><td><strong><a href="#useManifestOnlyJar">useManifestOnlyJar</a></strong></td>
 <td><code>boolean</code></td>
-<td><code>-</code></td>
+<td><code>2.4.3</code></td>
+<td>By default, Surefire forks your tests using a manifest-only jar;
+set this parameter to &quot;false&quot; to force it to launch your tests with
+a plain old Java classpath. (See
+http://maven.apache.org/plugins/maven-surefire-plugin/examples/class-loading.html
+for a more detailed explanation of manifest-only jars and their
+benefits.) Default value is &quot;true&quot;. Beware, setting this to &quot;false&quot;
+may cause your tests to fail on Windows if your classpath is too
+long.<br />
+<strong>Default value is</strong>: <code>true</code>.</td>
+</tr>
+<tr class="b"><td><strong><a href="#useSystemClassLoader">useSystemClassLoader</a></strong></td>
+<td><code>Boolean</code></td>
+<td><code>2.3</code></td>
 <td>Option to pass dependencies to the system's classloader instead of
 using an isolated class loader when forking. Prevents problems with
 JDKs which implement the service provider lookup mechanism by using
-the system's classloader.<br />
-<strong>Default value is</strong>: <code>false</code>.</td>
+the system's classloader. Default value is &quot;true&quot;.<br />
+</td>
 </tr>
-<tr class="b"><td><strong><a href="#workingDirectory">workingDirectory</a></strong></td>
+<tr class="a"><td><strong><a href="#workingDirectory">workingDirectory</a></strong></td>
 <td><code>File</code></td>
-<td><code>-</code></td>
+<td><code>2.1.3</code></td>
 <td>Command line working directory.<br />
 </td>
 </tr>
 </table>
 </div>
 <div class="section"><h3><a name="Parameter_Details"></a>Parameter Details</h3>
+<p><strong><a name="additionalClasspathElements">additionalClasspathElements</a>:</strong></p>
+<div>Additional elements to be appended to the classpath.</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
+<li><strong>Since</strong>: <code>2.4</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
 <p><strong><a name="aol">aol</a>:</strong></p>
 <div>Architecture-OS-Linker name. Defaults to: arch-os-linker.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
@@ -683,7 +787,8 @@ ${os.arch}</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li
 </ul>
 <hr />
 <p><strong><a name="argLine">argLine</a>:</strong></p>
-<div>Arbitrary options to set on the command line.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<div>Arbitrary JVM options to set on the command line.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Since</strong>: <code>2.1</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${argLine}</code></li>
 </ul>
@@ -705,12 +810,20 @@ obtained in your unit test by System.getProperty(&quot;basedir&quot;).</div><ul>
 delegation instead of the default Maven isolated classloader. Only
 used when forking (forkMode is not &quot;none&quot;).<br />
 
-Setting it to false helps with some problems caused by conflicts
+ Setting it to false helps with some problems caused by conflicts
 between xml parsers in the classpath and the Java 5 provider
 parser.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Since</strong>: <code>2.1</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${childDelegation}</code></li>
 <li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
+<p><strong><a name="classesDirectory">classesDirectory</a>:</strong></p>
+<div>The directory containing generated classes of the project being
+tested.</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
+<li><strong>Required</strong>: <code>Yes</code></li>
+<li><strong>Expression</strong>: <code>${project.build.outputDirectory}</code></li>
 </ul>
 <hr />
 <p><strong><a name="cpp">cpp</a>:</strong></p>
@@ -718,21 +831,46 @@ parser.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 </ul>
 <hr />
+<p><strong><a name="debugForkedProcess">debugForkedProcess</a>:</strong></p>
+<div>Attach a debugger to the forked JVM. If set to &quot;true&quot;, the process
+will suspend and wait for a debugger to attach on port 5005. If set
+to some other string, that string will be appended to the argLine,
+allowing you to configure arbitrary debuggability options (without
+overwriting the other options specified in the argLine).</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Since</strong>: <code>2.4</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${maven.surefire.debug}</code></li>
+</ul>
+<hr />
 <p><strong><a name="disableXmlReport">disableXmlReport</a>:</strong></p>
 <div>Flag to disable the generation of report files in xml format.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Since</strong>: <code>2.2</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${disableXmlReport}</code></li>
 <li><strong>Default</strong>: <code>false</code></li>
 </ul>
 <hr />
+<p><strong><a name="enableAssertions">enableAssertions</a>:</strong></p>
+<div>By default, Surefire enables JVM assertions for the execution of
+your test cases. To disable the assertions, set this flag to
+<code>false</code>.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Since</strong>: <code>2.3.1</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${enableAssertions}</code></li>
+<li><strong>Default</strong>: <code>true</code></li>
+</ul>
+<hr />
 <p><strong><a name="environmentVariables">environmentVariables</a>:</strong></p>
 <div>Additional environments to set on the command line.</div><ul><li><strong>Type</strong>: <code>java.util.Map</code></li>
+<li><strong>Since</strong>: <code>2.1.3</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 </ul>
 <hr />
 <p><strong><a name="excludedGroups">excludedGroups</a>:</strong></p>
-<div>Excluded groups. Any methods/classes/etc with one of the groups
-specified in this list will specifically not be run.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<div>(TestNG only) Excluded groups. Any methods/classes/etc with one of
+the groups specified in this list will specifically not be run.
+This parameter is overridden if suiteXmlFiles are specified.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Since</strong>: <code>2.2</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${excludedGroups}</code></li>
 </ul>
@@ -741,9 +879,17 @@ specified in this list will specifically not be run.</div><ul><li><strong>Type</
 <div>List of patterns (separated by commas) used to specify the tests
 that should be excluded in testing. When not specified and when the
 <code>test</code> parameter is not specified, the default excludes
-will be <code>**/Abstract*Test.java **/Abstract*TestCase.java
-**/*$*</code></div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
+will be <code>**/*$*</code> (which excludes all inner classes).
+This parameter is ignored if TestNG suiteXmlFiles are specified.</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="failIfNoTests">failIfNoTests</a>:</strong></p>
+<div>Set this to &quot;true&quot; to cause a failure if there are no tests to run.
+Defaults to false.</div><ul><li><strong>Type</strong>: <code>java.lang.Boolean</code></li>
+<li><strong>Since</strong>: <code>2.4</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${failIfNoTests}</code></li>
 </ul>
 <hr />
 <p><strong><a name="failOnError">failOnError</a>:</strong></p>
@@ -756,9 +902,18 @@ will be <code>**/Abstract*Test.java **/Abstract*TestCase.java
 <div>Option to specify the forking mode. Can be &quot;never&quot;, &quot;once&quot; or
 &quot;always&quot;. &quot;none&quot; and &quot;pertest&quot; are also accepted for backwards
 compatibility.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Since</strong>: <code>2.1</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${forkMode}</code></li>
 <li><strong>Default</strong>: <code>once</code></li>
+</ul>
+<hr />
+<p><strong><a name="forkedProcessTimeoutInSeconds">forkedProcessTimeoutInSeconds</a>:</strong></p>
+<div>Kill the forked test process after a certain number of seconds. If
+set to 0, wait forever for the process, never timing out.</div><ul><li><strong>Type</strong>: <code>int</code></li>
+<li><strong>Since</strong>: <code>2.4</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${surefire.timeout}</code></li>
 </ul>
 <hr />
 <p><strong><a name="fortran">fortran</a>:</strong></p>
@@ -767,9 +922,11 @@ compatibility.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code>
 </ul>
 <hr />
 <p><strong><a name="groups">groups</a>:</strong></p>
-<div>Groups for this test. Only classes/methods/etc decorated with one
-of the groups specified here will be included in test run, if
-specified.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<div>(TestNG only) Groups for this test. Only classes/methods/etc
+decorated with one of the groups specified here will be included in
+test run, if specified. This parameter is overridden if
+suiteXmlFiles are specified.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Since</strong>: <code>2.2</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${groups}</code></li>
 </ul>
@@ -778,7 +935,8 @@ specified.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li
 <div>List of patterns (separated by commas) used to specify the tests
 that should be included in testing. When not specified and when the
 <code>test</code> parameter is not specified, the default includes
-will be <code>**/Test*.java **/*Test.java **/*TestCase.java</code></div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
+will be <code>**/Test*.java **/*Test.java **/*TestCase.java</code>.
+This parameter is ignored if TestNG suiteXmlFiles are specified.</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 </ul>
 <hr />
@@ -792,10 +950,20 @@ will be <code>**/Test*.java **/*Test.java **/*TestCase.java</code></div><ul><li>
 <li><strong>Required</strong>: <code>No</code></li>
 </ul>
 <hr />
+<p><strong><a name="junitArtifactName">junitArtifactName</a>:</strong></p>
+<div>Allows you to specify the name of the JUnit artifact. If not set,
+<code>junit:junit</code> will be used.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Since</strong>: <code>2.3.1</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${junitArtifactName}</code></li>
+<li><strong>Default</strong>: <code>junit:junit</code></li>
+</ul>
+<hr />
 <p><strong><a name="jvm">jvm</a>:</strong></p>
 <div>Option to specify the jvm (or path to the java executable) to use
 with the forking options. For the default, the jvm will be the same
 as the one used to run Maven.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Since</strong>: <code>2.1</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${jvm}</code></li>
 </ul>
@@ -836,13 +1004,13 @@ ${os.name} FIXME table missing</div><ul><li><strong>Type</strong>: <code>java.la
 </ul>
 <hr />
 <p><strong><a name="parallel">parallel</a>:</strong></p>
-<div>When you use the parallel attribute, TestNG will try to run all
-your test methods in separate threads, except for methods that
-depend on each other, which will be run in the same thread in order
-to respect their order of execution.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<div>(TestNG only) When you use the parallel attribute, TestNG will try
+to run all your test methods in separate threads, except for
+methods that depend on each other, which will be run in the same
+thread in order to respect their order of execution.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Since</strong>: <code>2.2</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${parallel}</code></li>
-<li><strong>Default</strong>: <code>false</code></li>
 </ul>
 <hr />
 <p><strong><a name="printSummary">printSummary</a>:</strong></p>
@@ -853,16 +1021,26 @@ that has errors.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Default</strong>: <code>true</code></li>
 </ul>
 <hr />
+<p><strong><a name="properties">properties</a>:</strong></p>
+<div>List of properties for configuring all TestNG related
+configurations. This is the new preferred method of configuring
+TestNG.</div><ul><li><strong>Type</strong>: <code>java.util.Properties</code></li>
+<li><strong>Since</strong>: <code>2.4</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
 <p><strong><a name="redirectTestOutputToFile">redirectTestOutputToFile</a>:</strong></p>
 <div>When forking, set this to true to redirect the unit test standard
 output to a file (found in reportsDirectory/testName-output.txt).</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Since</strong>: <code>2.3</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
-<li><strong>Expression</strong>: <code>${maven.test.redirectTestOutputToFile}</code></li>
+<li><strong>Expression</strong>: <code>${nar.test.redirectTestOutputToFile}</code></li>
 <li><strong>Default</strong>: <code>false</code></li>
 </ul>
 <hr />
 <p><strong><a name="remoteRepositories">remoteRepositories</a>:</strong></p>
 <div>The plugin remote repositories declared in the pom.</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
+<li><strong>Since</strong>: <code>2.2</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${project.pluginArtifactRepositories}</code></li>
 </ul>
@@ -890,17 +1068,21 @@ set as brief or plain.</div><ul><li><strong>Type</strong>: <code>java.lang.Strin
 <hr />
 <p><strong><a name="skip">skip</a>:</strong></p>
 <div>Set this to 'true' to bypass unit tests entirely. Its use is NOT
-RECOMMENDED, but quite convenient on occasion.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+RECOMMENDED, especially if you enable it using the
+&quot;maven.test.skip&quot; property, because maven.test.skip disables both
+running the tests and compiling the tests. Consider using the
+skipTests parameter instead.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
-<li><strong>Expression</strong>: <code>${maven.test.skip}</code></li>
+<li><strong>Expression</strong>: <code>${nar.test.skip}</code></li>
 </ul>
 <hr />
 <p><strong><a name="skipExec">skipExec</a>:</strong></p>
-<div>Set this to 'true' to bypass unit tests execution, but still
-compile them. Its use is NOT RECOMMENDED, but quite convenient on
-occasion.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<div>DEPRECATED This old parameter is just like skipTests, but bound to
+the old property maven.test.skip.exec. Use -DskipTests instead;
+it's shorter.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Since</strong>: <code>2.3</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
-<li><strong>Expression</strong>: <code>${maven.test.skip.exec}</code></li>
+<li><strong>Expression</strong>: <code>${nar.test.skip.exec}</code></li>
 </ul>
 <hr />
 <p><strong><a name="skipNAR">skipNAR</a>:</strong></p>
@@ -910,11 +1092,21 @@ occasion.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Default</strong>: <code>false</code></li>
 </ul>
 <hr />
+<p><strong><a name="skipTests">skipTests</a>:</strong></p>
+<div>Set this to 'true' to skip running tests, but still compile them.
+Its use is NOT RECOMMENDED, but quite convenient on occasion.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Since</strong>: <code>2.4</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${nar.skipTests}</code></li>
+</ul>
+<hr />
 <p><strong><a name="suiteXmlFiles">suiteXmlFiles</a>:</strong></p>
-<div>List of TestNG suite xml file locations, seperated by commas. It
-should be noted that if suiteXmlFiles is specified, <b>no</b> other
-tests will be run, ignoring other parameters, like includes and
-excludes.</div><ul><li><strong>Type</strong>: <code>java.io.File[]</code></li>
+<div>(TestNG only) List of TestNG suite xml file locations, seperated by
+commas. Note that suiteXmlFiles is incompatible with several other
+parameters on this plugin, like includes/excludes. This parameter
+is ignored if the &quot;test&quot; parameter is specified (allowing you to
+run a single test instead of an entire suite).</div><ul><li><strong>Type</strong>: <code>java.io.File[]</code></li>
+<li><strong>Since</strong>: <code>2.2</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 </ul>
 <hr />
@@ -931,12 +1123,12 @@ excludes.</div><ul><li><strong>Type</strong>: <code>java.io.File[]</code></li>
 </ul>
 <hr />
 <p><strong><a name="test">test</a>:</strong></p>
-<div>Specify this parameter(can be a comma separated list) if you want
-to use the test pattern matching notation, Ant pattern matching, to
-select tests to run. The Ant pattern will be used to create an
-include pattern formatted like <code>**/${test}.java</code> When
-used, the <code>includes</code> and <code>excludes</code> patterns
-parameters are ignored.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<div>Specify this parameter to run individual tests by file name,
+overriding the <code>includes/excludes</code> parameters. Each
+pattern you specify here will be used to create an include pattern
+formatted like <code>**/${test}.java</code>, so you can just type
+&quot;-Dtest=MyTest&quot; to run a single test called &quot;foo/MyTest.java&quot;. This
+parameter will override the TestNG suiteXmlFiles parameter.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${test}</code></li>
 </ul>
@@ -952,11 +1144,21 @@ being tested.</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
 <div>Set this to true to ignore a failure during testing. Its use is NOT
 RECOMMENDED, but quite convenient on occasion.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
-<li><strong>Expression</strong>: <code>${maven.test.failure.ignore}</code></li>
+<li><strong>Expression</strong>: <code>${nar.test.failure.ignore}</code></li>
+</ul>
+<hr />
+<p><strong><a name="testNGArtifactName">testNGArtifactName</a>:</strong></p>
+<div>Allows you to specify the name of the TestNG artifact. If not set,
+<code>org.testng:testng</code> will be used.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Since</strong>: <code>2.3.1</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${testNGArtifactName}</code></li>
+<li><strong>Default</strong>: <code>org.testng:testng</code></li>
 </ul>
 <hr />
 <p><strong><a name="testSourceDirectory">testSourceDirectory</a>:</strong></p>
 <div>The test source directory containing test class sources.</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
+<li><strong>Since</strong>: <code>2.2</code></li>
 <li><strong>Required</strong>: <code>Yes</code></li>
 <li><strong>Expression</strong>: <code>${project.build.testSourceDirectory}</code></li>
 </ul>
@@ -967,17 +1169,18 @@ RECOMMENDED, but quite convenient on occasion.</div><ul><li><strong>Type</strong
 </ul>
 <hr />
 <p><strong><a name="threadCount">threadCount</a>:</strong></p>
-<div>The attribute thread-count allows you to specify how many threads
-should be allocated for this execution. Only makes sense to use in
-conjunction with parallel.</div><ul><li><strong>Type</strong>: <code>int</code></li>
+<div>(TestNG only) The attribute thread-count allows you to specify how
+many threads should be allocated for this execution. Only makes
+sense to use in conjunction with parallel.</div><ul><li><strong>Type</strong>: <code>int</code></li>
+<li><strong>Since</strong>: <code>2.2</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${threadCount}</code></li>
-<li><strong>Default</strong>: <code>5</code></li>
 </ul>
 <hr />
 <p><strong><a name="trimStackTrace">trimStackTrace</a>:</strong></p>
 <div>Whether to trim the stack trace in the reports to just the lines
 within the test, or show the full trace.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Since</strong>: <code>2.2</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${trimStackTrace}</code></li>
 <li><strong>Default</strong>: <code>true</code></li>
@@ -991,19 +1194,36 @@ report to the console.</div><ul><li><strong>Type</strong>: <code>boolean</code><
 <li><strong>Default</strong>: <code>true</code></li>
 </ul>
 <hr />
+<p><strong><a name="useManifestOnlyJar">useManifestOnlyJar</a>:</strong></p>
+<div>By default, Surefire forks your tests using a manifest-only jar;
+set this parameter to &quot;false&quot; to force it to launch your tests with
+a plain old Java classpath. (See
+http://maven.apache.org/plugins/maven-surefire-plugin/examples/class-loading.html
+for a more detailed explanation of manifest-only jars and their
+benefits.) Default value is &quot;true&quot;. Beware, setting this to &quot;false&quot;
+may cause your tests to fail on Windows if your classpath is too
+long.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Since</strong>: <code>2.4.3</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${surefire.useManifestOnlyJar}</code></li>
+<li><strong>Default</strong>: <code>true</code></li>
+</ul>
+<hr />
 <p><strong><a name="useSystemClassLoader">useSystemClassLoader</a>:</strong></p>
 <div>Option to pass dependencies to the system's classloader instead of
 using an isolated class loader when forking. Prevents problems with
 JDKs which implement the service provider lookup mechanism by using
-the system's classloader.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+the system's classloader. Default value is &quot;true&quot;.</div><ul><li><strong>Type</strong>: <code>java.lang.Boolean</code></li>
+<li><strong>Since</strong>: <code>2.3</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${surefire.useSystemClassLoader}</code></li>
-<li><strong>Default</strong>: <code>false</code></li>
 </ul>
 <hr />
 <p><strong><a name="workingDirectory">workingDirectory</a>:</strong></p>
 <div>Command line working directory.</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
+<li><strong>Since</strong>: <code>2.1.3</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${basedir}</code></li>
 </ul>
 </div>
 </div>
