@@ -1,4 +1,5 @@
 <project>
+  <!-- fake pom to make hudson-git-plugin build this branch when needed -->
   <modelVersion>4.0.0</modelVersion>
   <groupId>dummy</groupId>
   <artifactId>dummy</artifactId>
