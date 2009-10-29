@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-10-16
+            &nbsp;| Last Published: 2009-10-29
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -133,6 +133,10 @@
     <li class="none">
                     <a href="aol.html">AOL Properties</a>
           </li>
+              
+    <li class="none">
+                    <a href="examples.html">Examples</a>
+          </li>
           </ul>
               <h5>Developer Info</h5>
             <ul>
@@ -171,13 +175,6 @@
               
     <li class="none">
                     <a href="source-repository.html">Git Repository</a>
-          </li>
-          </ul>
-              <h5>Examples</h5>
-            <ul>
-              
-    <li class="none">
-                    <a href="HelloWorld.html">HelloWorld</a>
           </li>
           </ul>
               <h5>Other Information</h5>
@@ -220,6 +217,8 @@
               
                 
               
+      
+            
       
             
       
@@ -350,7 +349,13 @@ prepended to the command line for compatible processors.<br />
 <td>Library directory<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#runtime">runtime</a></strong></td>
+<tr class="a"><td><strong><a href="#resourcesCopyAOL">resourcesCopyAOL</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Use given AOL only. If false, copy for all available AOLs.<br />
+<strong>Default value is</strong>: <code>true</code>.</td>
+</tr>
+<tr class="b"><td><strong><a href="#runtime">runtime</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Sets the type of runtime library, possible values &quot;dynamic&quot;,
@@ -360,66 +365,66 @@ prepended to the command line for compatible processors.<br />
 </table>
 </div>
 <div class="section"><h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
-<table class="bodyTable"><tr class="b"><th>Name</th>
+<table class="bodyTable"><tr class="a"><th>Name</th>
 <th>Type</th>
 <th>Since</th>
 <th>Description</th>
 </tr>
-<tr class="a"><td><strong><a href="#aol">aol</a></strong></td>
+<tr class="b"><td><strong><a href="#aol">aol</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Architecture-OS-Linker name. Defaults to: arch-os-linker.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#c">c</a></strong></td>
+<tr class="a"><td><strong><a href="#c">c</a></strong></td>
 <td><code>C</code></td>
 <td><code>-</code></td>
 <td>C Compiler<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#cpp">cpp</a></strong></td>
+<tr class="b"><td><strong><a href="#cpp">cpp</a></strong></td>
 <td><code>Cpp</code></td>
 <td><code>-</code></td>
 <td>C++ Compiler<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#fortran">fortran</a></strong></td>
+<tr class="a"><td><strong><a href="#fortran">fortran</a></strong></td>
 <td><code>Fortran</code></td>
 <td><code>-</code></td>
 <td>Fortran Compiler<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#java">java</a></strong></td>
+<tr class="b"><td><strong><a href="#java">java</a></strong></td>
 <td><code>Java</code></td>
 <td><code>-</code></td>
 <td>Java info for includes and linking<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#javah">javah</a></strong></td>
+<tr class="a"><td><strong><a href="#javah">javah</a></strong></td>
 <td><code>Javah</code></td>
 <td><code>-</code></td>
 <td>Javah info<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#libraries">libraries</a></strong></td>
+<tr class="b"><td><strong><a href="#libraries">libraries</a></strong></td>
 <td><code>List</code></td>
 <td><code>-</code></td>
 <td>List of libraries to create<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#linker">linker</a></strong></td>
+<tr class="a"><td><strong><a href="#linker">linker</a></strong></td>
 <td><code>Linker</code></td>
 <td><code>-</code></td>
 <td>Linker<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#maxCores">maxCores</a></strong></td>
+<tr class="b"><td><strong><a href="#maxCores">maxCores</a></strong></td>
 <td><code>int</code></td>
 <td><code>-</code></td>
 <td>Maximum number of Cores/CPU's to use. 0 means unlimited.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#os">os</a></strong></td>
+<tr class="a"><td><strong><a href="#os">os</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>The Operating System for the nar. Some choices are: &quot;Windows&quot;,
@@ -427,19 +432,19 @@ prepended to the command line for compatible processors.<br />
 ${os.name} FIXME table missing<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#output">output</a></strong></td>
+<tr class="b"><td><strong><a href="#output">output</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Name of the output<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#skip">skip</a></strong></td>
+<tr class="a"><td><strong><a href="#skip">skip</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Skip running of NAR plugins (any) altogether.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
+<tr class="b"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>-</code></td>
 <td>Target directory for Nar file construction Defaults to
@@ -447,7 +452,7 @@ ${os.name} FIXME table missing<br />
 &quot;${project.build.directory}/test-nar&quot; for &quot;nar-testCompile&quot; goal<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#tests">tests</a></strong></td>
+<tr class="a"><td><strong><a href="#tests">tests</a></strong></td>
 <td><code>List</code></td>
 <td><code>-</code></td>
 <td>List of tests to create<br />
@@ -557,6 +562,13 @@ ${os.name} FIXME table missing</div><ul><li><strong>Type</strong>: <code>java.la
 <div>Library directory</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
 <li><strong>Required</strong>: <code>Yes</code></li>
 <li><strong>Expression</strong>: <code>lib</code></li>
+</ul>
+<hr />
+<p><strong><a name="resourcesCopyAOL">resourcesCopyAOL</a>:</strong></p>
+<div>Use given AOL only. If false, copy for all available AOLs.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>Yes</code></li>
+<li><strong>Expression</strong>: <code>${nar.resources.copy.aol}</code></li>
+<li><strong>Default</strong>: <code>true</code></li>
 </ul>
 <hr />
 <p><strong><a name="runtime">runtime</a>:</strong></p>

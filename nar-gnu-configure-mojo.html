@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-10-16
+            &nbsp;| Last Published: 2009-10-29
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -133,6 +133,10 @@
     <li class="none">
                     <a href="aol.html">AOL Properties</a>
           </li>
+              
+    <li class="none">
+                    <a href="examples.html">Examples</a>
+          </li>
           </ul>
               <h5>Developer Info</h5>
             <ul>
@@ -171,13 +175,6 @@
               
     <li class="none">
                     <a href="source-repository.html">Git Repository</a>
-          </li>
-          </ul>
-              <h5>Examples</h5>
-            <ul>
-              
-    <li class="none">
-                    <a href="HelloWorld.html">HelloWorld</a>
           </li>
           </ul>
               <h5>Other Information</h5>
@@ -220,6 +217,8 @@
               
                 
               
+      
+            
       
             
       
@@ -328,35 +327,41 @@ ${os.arch}<br />
 <tr class="a"><td><strong><a href="#gnuTargetDirectory">gnuTargetDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>-</code></td>
-<td>(no description)<br />
+<td>Directory in which gnu sources are copied and &quot;configured&quot;<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#libtool">libtool</a></strong></td>
+<tr class="b"><td><strong><a href="#gnuUseOnWindows">gnuUseOnWindows</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Use GNU goals on Windows<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="a"><td><strong><a href="#libtool">libtool</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Set use of libtool. If set to true, the &quot;libtool &quot; will be
 prepended to the command line for compatible processors.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#resourceBinDir">resourceBinDir</a></strong></td>
+<tr class="b"><td><strong><a href="#resourceBinDir">resourceBinDir</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Binary directory<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#resourceIncludeDir">resourceIncludeDir</a></strong></td>
+<tr class="a"><td><strong><a href="#resourceIncludeDir">resourceIncludeDir</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Include directory<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#resourceLibDir">resourceLibDir</a></strong></td>
+<tr class="b"><td><strong><a href="#resourceLibDir">resourceLibDir</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Library directory<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#runtime">runtime</a></strong></td>
+<tr class="a"><td><strong><a href="#runtime">runtime</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Sets the type of runtime library, possible values &quot;dynamic&quot;,
@@ -366,39 +371,45 @@ prepended to the command line for compatible processors.<br />
 </table>
 </div>
 <div class="section"><h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
-<table class="bodyTable"><tr class="a"><th>Name</th>
+<table class="bodyTable"><tr class="b"><th>Name</th>
 <th>Type</th>
 <th>Since</th>
 <th>Description</th>
 </tr>
-<tr class="b"><td><strong><a href="#aol">aol</a></strong></td>
+<tr class="a"><td><strong><a href="#aol">aol</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Architecture-OS-Linker name. Defaults to: arch-os-linker.<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#c">c</a></strong></td>
+<tr class="b"><td><strong><a href="#c">c</a></strong></td>
 <td><code>C</code></td>
 <td><code>-</code></td>
 <td>C Compiler<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#cpp">cpp</a></strong></td>
+<tr class="a"><td><strong><a href="#cpp">cpp</a></strong></td>
 <td><code>Cpp</code></td>
 <td><code>-</code></td>
 <td>C++ Compiler<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#fortran">fortran</a></strong></td>
+<tr class="b"><td><strong><a href="#fortran">fortran</a></strong></td>
 <td><code>Fortran</code></td>
 <td><code>-</code></td>
 <td>Fortran Compiler<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#gnuAutogenSkip">gnuAutogenSkip</a></strong></td>
+<tr class="a"><td><strong><a href="#gnuAutogenSkip">gnuAutogenSkip</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Skip running of autogen.sh.<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="b"><td><strong><a href="#gnuConfigureSkip">gnuConfigureSkip</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Skip running of configure and therefore also autogen.sh<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
 <tr class="a"><td><strong><a href="#java">java</a></strong></td>
@@ -509,6 +520,13 @@ ${os.arch}</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li
 <li><strong>Default</strong>: <code>false</code></li>
 </ul>
 <hr />
+<p><strong><a name="gnuConfigureSkip">gnuConfigureSkip</a>:</strong></p>
+<div>Skip running of configure and therefore also autogen.sh</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${nar.gnu.configure.skip}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
 <p><strong><a name="gnuSourceDirectory">gnuSourceDirectory</a>:</strong></p>
 <div>Source directory for GNU style project</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
 <li><strong>Required</strong>: <code>Yes</code></li>
@@ -516,9 +534,15 @@ ${os.arch}</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li
 </ul>
 <hr />
 <p><strong><a name="gnuTargetDirectory">gnuTargetDirectory</a>:</strong></p>
-<div>(no description)</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
+<div>Directory in which gnu sources are copied and &quot;configured&quot;</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
 <li><strong>Required</strong>: <code>Yes</code></li>
-<li><strong>Expression</strong>: <code>${project.build.directory}/gnu</code></li>
+<li><strong>Expression</strong>: <code>${project.build.directory}/nar/gnu</code></li>
+</ul>
+<hr />
+<p><strong><a name="gnuUseOnWindows">gnuUseOnWindows</a>:</strong></p>
+<div>Use GNU goals on Windows</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>Yes</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
 </ul>
 <hr />
 <p><strong><a name="java">java</a>:</strong></p>
