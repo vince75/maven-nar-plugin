@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-10-29
+            &nbsp;| Last Published: 2009-12-01
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -222,6 +222,10 @@
       
             
       
+            
+      
+            
+      
               
         <li class="collapsed">
                     <a href="project-reports.html">Project Reports</a>
@@ -346,28 +350,34 @@ tested.<br />
 <td>Fail on compilation/linking error.<br />
 <strong>Default value is</strong>: <code>true</code>.</td>
 </tr>
-<tr class="b"><td><strong><a href="#libtool">libtool</a></strong></td>
+<tr class="b"><td><strong><a href="#layout">layout</a></strong></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>Layout to be used for building and upacking artifacts<br />
+<strong>Default value is</strong>: <code>org.apache.maven.plugin.nar.NarLayout21</code>.</td>
+</tr>
+<tr class="a"><td><strong><a href="#libtool">libtool</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Set use of libtool. If set to true, the &quot;libtool &quot; will be
 prepended to the command line for compatible processors.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#runtime">runtime</a></strong></td>
+<tr class="b"><td><strong><a href="#runtime">runtime</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Sets the type of runtime library, possible values &quot;dynamic&quot;,
 &quot;static&quot;.<br />
 <strong>Default value is</strong>: <code>dynamic</code>.</td>
 </tr>
-<tr class="b"><td><strong><a href="#testClassesDirectory">testClassesDirectory</a></strong></td>
+<tr class="a"><td><strong><a href="#testClassesDirectory">testClassesDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>-</code></td>
 <td>The directory containing generated test classes of the project
 being tested.<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#testSourceDirectory">testSourceDirectory</a></strong></td>
+<tr class="b"><td><strong><a href="#testSourceDirectory">testSourceDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>2.2</code></td>
 <td>The test source directory containing test class sources.<br />
@@ -376,36 +386,36 @@ being tested.<br />
 </table>
 </div>
 <div class="section"><h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
-<table class="bodyTable"><tr class="b"><th>Name</th>
+<table class="bodyTable"><tr class="a"><th>Name</th>
 <th>Type</th>
 <th>Since</th>
 <th>Description</th>
 </tr>
-<tr class="a"><td><strong><a href="#additionalClasspathElements">additionalClasspathElements</a></strong></td>
+<tr class="b"><td><strong><a href="#additionalClasspathElements">additionalClasspathElements</a></strong></td>
 <td><code>List</code></td>
 <td><code>2.4</code></td>
 <td>Additional elements to be appended to the classpath.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#aol">aol</a></strong></td>
+<tr class="a"><td><strong><a href="#aol">aol</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Architecture-OS-Linker name. Defaults to: arch-os-linker.<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#argLine">argLine</a></strong></td>
+<tr class="b"><td><strong><a href="#argLine">argLine</a></strong></td>
 <td><code>String</code></td>
 <td><code>2.1</code></td>
 <td>Arbitrary JVM options to set on the command line.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#c">c</a></strong></td>
+<tr class="a"><td><strong><a href="#c">c</a></strong></td>
 <td><code>C</code></td>
 <td><code>-</code></td>
 <td>C Compiler<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#childDelegation">childDelegation</a></strong></td>
+<tr class="b"><td><strong><a href="#childDelegation">childDelegation</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>2.1</code></td>
 <td>When false it makes tests run using the standard classloader
@@ -417,13 +427,13 @@ between xml parsers in the classpath and the Java 5 provider
 parser.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
-<tr class="b"><td><strong><a href="#cpp">cpp</a></strong></td>
+<tr class="a"><td><strong><a href="#cpp">cpp</a></strong></td>
 <td><code>Cpp</code></td>
 <td><code>-</code></td>
 <td>C++ Compiler<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#debugForkedProcess">debugForkedProcess</a></strong></td>
+<tr class="b"><td><strong><a href="#debugForkedProcess">debugForkedProcess</a></strong></td>
 <td><code>String</code></td>
 <td><code>2.4</code></td>
 <td>Attach a debugger to the forked JVM. If set to &quot;true&quot;, the process
@@ -433,13 +443,13 @@ allowing you to configure arbitrary debuggability options (without
 overwriting the other options specified in the argLine).<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#disableXmlReport">disableXmlReport</a></strong></td>
+<tr class="a"><td><strong><a href="#disableXmlReport">disableXmlReport</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>2.2</code></td>
 <td>Flag to disable the generation of report files in xml format.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#enableAssertions">enableAssertions</a></strong></td>
+<tr class="b"><td><strong><a href="#enableAssertions">enableAssertions</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>2.3.1</code></td>
 <td>By default, Surefire enables JVM assertions for the execution of
@@ -447,13 +457,13 @@ your test cases. To disable the assertions, set this flag to
 <code>false</code>.<br />
 <strong>Default value is</strong>: <code>true</code>.</td>
 </tr>
-<tr class="b"><td><strong><a href="#environmentVariables">environmentVariables</a></strong></td>
+<tr class="a"><td><strong><a href="#environmentVariables">environmentVariables</a></strong></td>
 <td><code>Map</code></td>
 <td><code>2.1.3</code></td>
 <td>Additional environments to set on the command line.<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#excludedGroups">excludedGroups</a></strong></td>
+<tr class="b"><td><strong><a href="#excludedGroups">excludedGroups</a></strong></td>
 <td><code>String</code></td>
 <td><code>2.2</code></td>
 <td>(TestNG only) Excluded groups. Any methods/classes/etc with one of
@@ -461,7 +471,7 @@ the groups specified in this list will specifically not be run.
 This parameter is overridden if suiteXmlFiles are specified.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#excludes">excludes</a></strong></td>
+<tr class="a"><td><strong><a href="#excludes">excludes</a></strong></td>
 <td><code>List</code></td>
 <td><code>-</code></td>
 <td>List of patterns (separated by commas) used to specify the tests
@@ -471,14 +481,14 @@ will be <code>**/*$*</code> (which excludes all inner classes).
 This parameter is ignored if TestNG suiteXmlFiles are specified.<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#failIfNoTests">failIfNoTests</a></strong></td>
+<tr class="b"><td><strong><a href="#failIfNoTests">failIfNoTests</a></strong></td>
 <td><code>Boolean</code></td>
 <td><code>2.4</code></td>
 <td>Set this to &quot;true&quot; to cause a failure if there are no tests to run.
 Defaults to false.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#forkMode">forkMode</a></strong></td>
+<tr class="a"><td><strong><a href="#forkMode">forkMode</a></strong></td>
 <td><code>String</code></td>
 <td><code>2.1</code></td>
 <td>Option to specify the forking mode. Can be &quot;never&quot;, &quot;once&quot; or
@@ -486,20 +496,20 @@ Defaults to false.<br />
 compatibility.<br />
 <strong>Default value is</strong>: <code>once</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#forkedProcessTimeoutInSeconds">forkedProcessTimeoutInSeconds</a></strong></td>
+<tr class="b"><td><strong><a href="#forkedProcessTimeoutInSeconds">forkedProcessTimeoutInSeconds</a></strong></td>
 <td><code>int</code></td>
 <td><code>2.4</code></td>
 <td>Kill the forked test process after a certain number of seconds. If
 set to 0, wait forever for the process, never timing out.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#fortran">fortran</a></strong></td>
+<tr class="a"><td><strong><a href="#fortran">fortran</a></strong></td>
 <td><code>Fortran</code></td>
 <td><code>-</code></td>
 <td>Fortran Compiler<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#groups">groups</a></strong></td>
+<tr class="b"><td><strong><a href="#groups">groups</a></strong></td>
 <td><code>String</code></td>
 <td><code>2.2</code></td>
 <td>(TestNG only) Groups for this test. Only classes/methods/etc
@@ -507,6 +517,12 @@ decorated with one of the groups specified here will be included in
 test run, if specified. This parameter is overridden if
 suiteXmlFiles are specified.<br />
 </td>
+</tr>
+<tr class="a"><td><strong><a href="#ignore">ignore</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Ignore errors and failures.<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
 <tr class="b"><td><strong><a href="#includes">includes</a></strong></td>
 <td><code>List</code></td>
@@ -630,14 +646,16 @@ set as brief or plain.<br />
 <tr class="a"><td><strong><a href="#skip">skip</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
-<td>Set this to 'true' to bypass unit tests entirely. Its use is NOT
-RECOMMENDED, especially if you enable it using the
-&quot;maven.test.skip&quot; property, because maven.test.skip disables both
-running the tests and compiling the tests. Consider using the
-skipTests parameter instead.<br />
-</td>
+<td>Skip running of NAR plugins (any) altogether.<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
-<tr class="b"><td><strong><a href="#skipExec">skipExec</a></strong></td>
+<tr class="b"><td><strong><a href="#skipNar">skipNar</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Skip running of NAR integration test plugin<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="a"><td><strong><a href="#skipNarExec">skipNarExec</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>2.3</code></td>
 <td>DEPRECATED This old parameter is just like skipTests, but bound to
@@ -645,13 +663,7 @@ the old property maven.test.skip.exec. Use -DskipTests instead;
 it's shorter.<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#skipNAR">skipNAR</a></strong></td>
-<td><code>boolean</code></td>
-<td><code>-</code></td>
-<td>Skip running of NAR plugins (any) altogether.<br />
-<strong>Default value is</strong>: <code>false</code>.</td>
-</tr>
-<tr class="b"><td><strong><a href="#skipTests">skipTests</a></strong></td>
+<tr class="b"><td><strong><a href="#skipNarTests">skipNarTests</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>2.4</code></td>
 <td>Set this to 'true' to skip running tests, but still compile them.
@@ -930,6 +942,13 @@ suiteXmlFiles are specified.</div><ul><li><strong>Type</strong>: <code>java.lang
 <li><strong>Expression</strong>: <code>${groups}</code></li>
 </ul>
 <hr />
+<p><strong><a name="ignore">ignore</a>:</strong></p>
+<div>Ignore errors and failures.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${nar.ignore}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
 <p><strong><a name="includes">includes</a>:</strong></p>
 <div>List of patterns (separated by commas) used to specify the tests
 that should be included in testing. When not specified and when the
@@ -965,6 +984,13 @@ as the one used to run Maven.</div><ul><li><strong>Type</strong>: <code>java.lan
 <li><strong>Since</strong>: <code>2.1</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${jvm}</code></li>
+</ul>
+<hr />
+<p><strong><a name="layout">layout</a>:</strong></p>
+<div>Layout to be used for building and upacking artifacts</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>Yes</code></li>
+<li><strong>Expression</strong>: <code>${nar.layout}</code></li>
+<li><strong>Default</strong>: <code>org.apache.maven.plugin.nar.NarLayout21</code></li>
 </ul>
 <hr />
 <p><strong><a name="libraries">libraries</a>:</strong></p>
@@ -1066,16 +1092,20 @@ set as brief or plain.</div><ul><li><strong>Type</strong>: <code>java.lang.Strin
 </ul>
 <hr />
 <p><strong><a name="skip">skip</a>:</strong></p>
-<div>Set this to 'true' to bypass unit tests entirely. Its use is NOT
-RECOMMENDED, especially if you enable it using the
-&quot;maven.test.skip&quot; property, because maven.test.skip disables both
-running the tests and compiling the tests. Consider using the
-skipTests parameter instead.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<div>Skip running of NAR plugins (any) altogether.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
-<li><strong>Expression</strong>: <code>${nar.test.skip}</code></li>
+<li><strong>Expression</strong>: <code>${nar.skip}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
 </ul>
 <hr />
-<p><strong><a name="skipExec">skipExec</a>:</strong></p>
+<p><strong><a name="skipNar">skipNar</a>:</strong></p>
+<div>Skip running of NAR integration test plugin</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${skipNar}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
+<p><strong><a name="skipNarExec">skipNarExec</a>:</strong></p>
 <div>DEPRECATED This old parameter is just like skipTests, but bound to
 the old property maven.test.skip.exec. Use -DskipTests instead;
 it's shorter.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
@@ -1084,19 +1114,12 @@ it's shorter.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Expression</strong>: <code>${nar.test.skip.exec}</code></li>
 </ul>
 <hr />
-<p><strong><a name="skipNAR">skipNAR</a>:</strong></p>
-<div>Skip running of NAR plugins (any) altogether.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
-<li><strong>Required</strong>: <code>No</code></li>
-<li><strong>Expression</strong>: <code>${nar.skip}</code></li>
-<li><strong>Default</strong>: <code>false</code></li>
-</ul>
-<hr />
-<p><strong><a name="skipTests">skipTests</a>:</strong></p>
+<p><strong><a name="skipNarTests">skipNarTests</a>:</strong></p>
 <div>Set this to 'true' to skip running tests, but still compile them.
 Its use is NOT RECOMMENDED, but quite convenient on occasion.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Since</strong>: <code>2.4</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
-<li><strong>Expression</strong>: <code>${nar.skipTests}</code></li>
+<li><strong>Expression</strong>: <code>${skipNarTests}</code></li>
 </ul>
 <hr />
 <p><strong><a name="suiteXmlFiles">suiteXmlFiles</a>:</strong></p>

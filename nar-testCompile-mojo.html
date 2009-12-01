@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-10-29
+            &nbsp;| Last Published: 2009-12-01
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -222,6 +222,10 @@
       
             
       
+            
+      
+            
+      
               
         <li class="collapsed">
                     <a href="project-reports.html">Project Reports</a>
@@ -318,14 +322,20 @@ ${os.arch}<br />
 <td>Fail on compilation/linking error.<br />
 <strong>Default value is</strong>: <code>true</code>.</td>
 </tr>
-<tr class="b"><td><strong><a href="#libtool">libtool</a></strong></td>
+<tr class="b"><td><strong><a href="#layout">layout</a></strong></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>Layout to be used for building and upacking artifacts<br />
+<strong>Default value is</strong>: <code>org.apache.maven.plugin.nar.NarLayout21</code>.</td>
+</tr>
+<tr class="a"><td><strong><a href="#libtool">libtool</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Set use of libtool. If set to true, the &quot;libtool &quot; will be
 prepended to the command line for compatible processors.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#runtime">runtime</a></strong></td>
+<tr class="b"><td><strong><a href="#runtime">runtime</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Sets the type of runtime library, possible values &quot;dynamic&quot;,
@@ -335,34 +345,40 @@ prepended to the command line for compatible processors.<br />
 </table>
 </div>
 <div class="section"><h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
-<table class="bodyTable"><tr class="b"><th>Name</th>
+<table class="bodyTable"><tr class="a"><th>Name</th>
 <th>Type</th>
 <th>Since</th>
 <th>Description</th>
 </tr>
-<tr class="a"><td><strong><a href="#aol">aol</a></strong></td>
+<tr class="b"><td><strong><a href="#aol">aol</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Architecture-OS-Linker name. Defaults to: arch-os-linker.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#c">c</a></strong></td>
+<tr class="a"><td><strong><a href="#c">c</a></strong></td>
 <td><code>C</code></td>
 <td><code>-</code></td>
 <td>C Compiler<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#cpp">cpp</a></strong></td>
+<tr class="b"><td><strong><a href="#cpp">cpp</a></strong></td>
 <td><code>Cpp</code></td>
 <td><code>-</code></td>
 <td>C++ Compiler<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#fortran">fortran</a></strong></td>
+<tr class="a"><td><strong><a href="#fortran">fortran</a></strong></td>
 <td><code>Fortran</code></td>
 <td><code>-</code></td>
 <td>Fortran Compiler<br />
 </td>
+</tr>
+<tr class="b"><td><strong><a href="#ignore">ignore</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Ignore errors and failures.<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
 <tr class="a"><td><strong><a href="#java">java</a></strong></td>
 <td><code>Java</code></td>
@@ -414,7 +430,13 @@ ${os.name} FIXME table missing<br />
 <td>Skip running of NAR plugins (any) altogether.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
+<tr class="a"><td><strong><a href="#skipNar">skipNar</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Skip running of NAR integration test plugins.<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="b"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>-</code></td>
 <td>Target directory for Nar file construction Defaults to
@@ -422,7 +444,7 @@ ${os.name} FIXME table missing<br />
 &quot;${project.build.directory}/test-nar&quot; for &quot;nar-testCompile&quot; goal<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#tests">tests</a></strong></td>
+<tr class="a"><td><strong><a href="#tests">tests</a></strong></td>
 <td><code>List</code></td>
 <td><code>-</code></td>
 <td>List of tests to create<br />
@@ -465,6 +487,13 @@ ${os.arch}</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li
 <li><strong>Required</strong>: <code>No</code></li>
 </ul>
 <hr />
+<p><strong><a name="ignore">ignore</a>:</strong></p>
+<div>Ignore errors and failures.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${nar.ignore}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
 <p><strong><a name="java">java</a>:</strong></p>
 <div>Java info for includes and linking</div><ul><li><strong>Type</strong>: <code>org.apache.maven.plugin.nar.Java</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
@@ -473,6 +502,13 @@ ${os.arch}</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li
 <p><strong><a name="javah">javah</a>:</strong></p>
 <div>Javah info</div><ul><li><strong>Type</strong>: <code>org.apache.maven.plugin.nar.Javah</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="layout">layout</a>:</strong></p>
+<div>Layout to be used for building and upacking artifacts</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>Yes</code></li>
+<li><strong>Expression</strong>: <code>${nar.layout}</code></li>
+<li><strong>Default</strong>: <code>org.apache.maven.plugin.nar.NarLayout21</code></li>
 </ul>
 <hr />
 <p><strong><a name="libraries">libraries</a>:</strong></p>
@@ -521,6 +557,13 @@ ${os.name} FIXME table missing</div><ul><li><strong>Type</strong>: <code>java.la
 <div>Skip running of NAR plugins (any) altogether.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${nar.skip}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
+<p><strong><a name="skipNar">skipNar</a>:</strong></p>
+<div>Skip running of NAR integration test plugins.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${skipNar}</code></li>
 <li><strong>Default</strong>: <code>false</code></li>
 </ul>
 <hr />

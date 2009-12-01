@@ -82,8 +82,8 @@
 <a name="72" href="#72">72</a>  <em class="jxr_javadoccomment">     */</em>
 <a name="73" href="#73">73</a>      <strong class="jxr_keyword">private</strong> ArchiverManager archiverManager;
 <a name="74" href="#74">74</a>  
-<a name="75" href="#75">75</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">int</strong> copyIncludes( File srcDir )
-<a name="76" href="#76">76</a>          <strong class="jxr_keyword">throws</strong> IOException
+<a name="75" href="#75">75</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> copyIncludes( File srcDir )
+<a name="76" href="#76">76</a>          <strong class="jxr_keyword">throws</strong> IOException, MojoExecutionException, MojoFailureException
 <a name="77" href="#77">77</a>      {
 <a name="78" href="#78">78</a>          <strong class="jxr_keyword">int</strong> copied = 0;
 <a name="79" href="#79">79</a>  
@@ -91,7 +91,7 @@
 <a name="81" href="#81">81</a>          File includeDir = <strong class="jxr_keyword">new</strong> File( srcDir, resourceIncludeDir );
 <a name="82" href="#82">82</a>          <strong class="jxr_keyword">if</strong> ( includeDir.exists() )
 <a name="83" href="#83">83</a>          {
-<a name="84" href="#84">84</a>              File includeDstDir = <strong class="jxr_keyword">new</strong> File( getTargetDirectory(), <span class="jxr_string">"include"</span> );
+<a name="84" href="#84">84</a>              File includeDstDir = getLayout().getIncludeDirectory( getTargetDirectory() );
 <a name="85" href="#85">85</a>              getLog().debug( <span class="jxr_string">"Copying includes from "</span> + includeDir + <span class="jxr_string">" to "</span> + includeDstDir );
 <a name="86" href="#86">86</a>              copied += NarUtil.copyDirectoryStructure( includeDir, includeDstDir, <strong class="jxr_keyword">null</strong>, NarUtil.DEFAULT_EXCLUDES );
 <a name="87" href="#87">87</a>          }
@@ -99,8 +99,8 @@
 <a name="89" href="#89">89</a>          <strong class="jxr_keyword">return</strong> copied;
 <a name="90" href="#90">90</a>      }
 <a name="91" href="#91">91</a>  
-<a name="92" href="#92">92</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">int</strong> copyBinaries( File srcDir, String aol )
-<a name="93" href="#93">93</a>          <strong class="jxr_keyword">throws</strong> IOException
+<a name="92" href="#92">92</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> copyBinaries( File srcDir, String aol )
+<a name="93" href="#93">93</a>          <strong class="jxr_keyword">throws</strong> IOException, MojoExecutionException, MojoFailureException
 <a name="94" href="#94">94</a>      {
 <a name="95" href="#95">95</a>          <strong class="jxr_keyword">int</strong> copied = 0;
 <a name="96" href="#96">96</a>  
@@ -108,95 +108,90 @@
 <a name="98" href="#98">98</a>          File binDir = <strong class="jxr_keyword">new</strong> File( srcDir, resourceBinDir );
 <a name="99" href="#99">99</a>          <strong class="jxr_keyword">if</strong> ( binDir.exists() )
 <a name="100" href="#100">100</a>         {
-<a name="101" href="#101">101</a>             File binDstDir = <strong class="jxr_keyword">new</strong> File( getTargetDirectory(), <span class="jxr_string">"bin"</span> );
-<a name="102" href="#102">102</a>             binDstDir = <strong class="jxr_keyword">new</strong> File( binDstDir, aol );
-<a name="103" href="#103">103</a>             getLog().debug( <span class="jxr_string">"Copying binaries from "</span> + binDir + <span class="jxr_string">" to "</span> + binDstDir );
-<a name="104" href="#104">104</a> 
-<a name="105" href="#105">105</a>             copied += NarUtil.copyDirectoryStructure( binDir, binDstDir, <strong class="jxr_keyword">null</strong>, NarUtil.DEFAULT_EXCLUDES );
-<a name="106" href="#106">106</a>         }
-<a name="107" href="#107">107</a> 
-<a name="108" href="#108">108</a>         <strong class="jxr_keyword">return</strong> copied;
-<a name="109" href="#109">109</a>     }
-<a name="110" href="#110">110</a> 
-<a name="111" href="#111">111</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">int</strong> copyLibraries( File srcDir, String aol )
-<a name="112" href="#112">112</a>         <strong class="jxr_keyword">throws</strong> MojoFailureException, IOException
-<a name="113" href="#113">113</a>     {
-<a name="114" href="#114">114</a>         <strong class="jxr_keyword">int</strong> copied = 0;
-<a name="115" href="#115">115</a> 
-<a name="116" href="#116">116</a>         <em class="jxr_comment">// copy libraries</em>
-<a name="117" href="#117">117</a>         File libDir = <strong class="jxr_keyword">new</strong> File( srcDir, resourceLibDir );
-<a name="118" href="#118">118</a>         <strong class="jxr_keyword">if</strong> ( libDir.exists() )
-<a name="119" href="#119">119</a>         {
-<a name="120" href="#120">120</a>             <em class="jxr_comment">// create all types of libs</em>
-<a name="121" href="#121">121</a>             <strong class="jxr_keyword">for</strong> ( Iterator i = getLibraries().iterator(); i.hasNext(); )
-<a name="122" href="#122">122</a>             {
-<a name="123" href="#123">123</a>                 <a href="../../../../../org/apache/maven/plugin/nar/Library.html">Library</a> library = (Library) i.next();
-<a name="124" href="#124">124</a>                 String type = library.getType();
-<a name="125" href="#125">125</a>                 File libDstDir = <strong class="jxr_keyword">new</strong> File( getTargetDirectory(), <span class="jxr_string">"lib"</span> );
-<a name="126" href="#126">126</a>                 libDstDir = <strong class="jxr_keyword">new</strong> File( libDstDir, aol );
-<a name="127" href="#127">127</a>                 libDstDir = <strong class="jxr_keyword">new</strong> File( libDstDir, type );
-<a name="128" href="#128">128</a> 
-<a name="129" href="#129">129</a>                 getLog().debug( <span class="jxr_string">"Copying libraries from "</span> + libDir + <span class="jxr_string">" to "</span> + libDstDir );
-<a name="130" href="#130">130</a> 
-<a name="131" href="#131">131</a>                 <em class="jxr_comment">// filter files for lib</em>
-<a name="132" href="#132">132</a>                 String includes =
-<a name="133" href="#133">133</a>                     <span class="jxr_string">"**/*."</span> + NarUtil.getDefaults().getProperty( NarUtil.getAOLKey( aol ) + <span class="jxr_string">"."</span> + type + <span class="jxr_string">".extension"</span> );
-<a name="134" href="#134">134</a> 
-<a name="135" href="#135">135</a>                 <em class="jxr_comment">// add import lib for Windows shared libraries</em>
-<a name="136" href="#136">136</a>                 <strong class="jxr_keyword">if</strong> ( <strong class="jxr_keyword">new</strong> AOL( aol ).getOS().equals( OS.WINDOWS ) &amp;&amp; type.equals( Library.SHARED ) )
-<a name="137" href="#137">137</a>                 {
-<a name="138" href="#138">138</a>                     includes += <span class="jxr_string">",**/*.lib"</span>;
-<a name="139" href="#139">139</a>                 }
-<a name="140" href="#140">140</a>                 copied += NarUtil.copyDirectoryStructure( libDir, libDstDir, includes, NarUtil.DEFAULT_EXCLUDES );
-<a name="141" href="#141">141</a>             }
-<a name="142" href="#142">142</a>         }
-<a name="143" href="#143">143</a> 
-<a name="144" href="#144">144</a>         <strong class="jxr_keyword">return</strong> copied;
-<a name="145" href="#145">145</a>     }
-<a name="146" href="#146">146</a> 
-<a name="147" href="#147">147</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> copyResources( File srcDir, String aol )
-<a name="148" href="#148">148</a>         <strong class="jxr_keyword">throws</strong> MojoExecutionException, MojoFailureException
-<a name="149" href="#149">149</a>     {
-<a name="150" href="#150">150</a>         <strong class="jxr_keyword">int</strong> copied = 0;
-<a name="151" href="#151">151</a>         <strong class="jxr_keyword">try</strong>
-<a name="152" href="#152">152</a>         {
-<a name="153" href="#153">153</a>             copied += copyIncludes( srcDir );
-<a name="154" href="#154">154</a> 
-<a name="155" href="#155">155</a>             copied += copyBinaries( srcDir, aol );
-<a name="156" href="#156">156</a> 
-<a name="157" href="#157">157</a>             copied += copyLibraries( srcDir, aol );
-<a name="158" href="#158">158</a> 
-<a name="159" href="#159">159</a>             <em class="jxr_comment">// unpack jar files</em>
-<a name="160" href="#160">160</a>             File classesDirectory = <strong class="jxr_keyword">new</strong> File( getOutputDirectory(), <span class="jxr_string">"classes"</span> );
-<a name="161" href="#161">161</a>             classesDirectory.mkdirs();
-<a name="162" href="#162">162</a>             List jars = FileUtils.getFiles( srcDir, <span class="jxr_string">"**/*.jar"</span>, <strong class="jxr_keyword">null</strong> );
-<a name="163" href="#163">163</a>             <strong class="jxr_keyword">for</strong> ( Iterator i = jars.iterator(); i.hasNext(); )
-<a name="164" href="#164">164</a>             {
-<a name="165" href="#165">165</a>                 File jar = (File) i.next();
-<a name="166" href="#166">166</a>                 getLog().debug( <span class="jxr_string">"Unpacking jar "</span> + jar );
-<a name="167" href="#167">167</a>                 UnArchiver unArchiver;
-<a name="168" href="#168">168</a>                 unArchiver = archiverManager.getUnArchiver( AbstractNarMojo.NAR_ROLE_HINT );
-<a name="169" href="#169">169</a>                 unArchiver.setSourceFile( jar );
-<a name="170" href="#170">170</a>                 unArchiver.setDestDirectory( classesDirectory );
-<a name="171" href="#171">171</a>                 unArchiver.extract();
-<a name="172" href="#172">172</a>             }
-<a name="173" href="#173">173</a>         }
-<a name="174" href="#174">174</a>         <strong class="jxr_keyword">catch</strong> ( IOException e )
-<a name="175" href="#175">175</a>         {
-<a name="176" href="#176">176</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"NAR: Could not copy resources"</span>, e );
-<a name="177" href="#177">177</a>         }
-<a name="178" href="#178">178</a>         <strong class="jxr_keyword">catch</strong> ( NoSuchArchiverException e )
-<a name="179" href="#179">179</a>         {
-<a name="180" href="#180">180</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"NAR: Could not find archiver"</span>, e );
-<a name="181" href="#181">181</a>         }
-<a name="182" href="#182">182</a>         <strong class="jxr_keyword">catch</strong> ( ArchiverException e )
-<a name="183" href="#183">183</a>         {
-<a name="184" href="#184">184</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"NAR: Could not unarchive jar file"</span>, e );
-<a name="185" href="#185">185</a>         }
-<a name="186" href="#186">186</a>         getLog().info( <span class="jxr_string">"Copied "</span> + copied + <span class="jxr_string">" resources for "</span> + aol );
-<a name="187" href="#187">187</a>     }
-<a name="188" href="#188">188</a> 
-<a name="189" href="#189">189</a> }
+<a name="101" href="#101">101</a>             File binDstDir = getLayout().getBinDirectory( getTargetDirectory(), aol );
+<a name="102" href="#102">102</a>             getLog().debug( <span class="jxr_string">"Copying binaries from "</span> + binDir + <span class="jxr_string">" to "</span> + binDstDir );
+<a name="103" href="#103">103</a>             copied += NarUtil.copyDirectoryStructure( binDir, binDstDir, <strong class="jxr_keyword">null</strong>, NarUtil.DEFAULT_EXCLUDES );
+<a name="104" href="#104">104</a>         }
+<a name="105" href="#105">105</a> 
+<a name="106" href="#106">106</a>         <strong class="jxr_keyword">return</strong> copied;
+<a name="107" href="#107">107</a>     }
+<a name="108" href="#108">108</a> 
+<a name="109" href="#109">109</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> copyLibraries( File srcDir, String aol )
+<a name="110" href="#110">110</a>         <strong class="jxr_keyword">throws</strong> MojoFailureException, IOException, MojoExecutionException
+<a name="111" href="#111">111</a>     {
+<a name="112" href="#112">112</a>         <strong class="jxr_keyword">int</strong> copied = 0;
+<a name="113" href="#113">113</a> 
+<a name="114" href="#114">114</a>         <em class="jxr_comment">// copy libraries</em>
+<a name="115" href="#115">115</a>         File libDir = <strong class="jxr_keyword">new</strong> File( srcDir, resourceLibDir );
+<a name="116" href="#116">116</a>         <strong class="jxr_keyword">if</strong> ( libDir.exists() )
+<a name="117" href="#117">117</a>         {
+<a name="118" href="#118">118</a>             <em class="jxr_comment">// create all types of libs</em>
+<a name="119" href="#119">119</a>             <strong class="jxr_keyword">for</strong> ( Iterator i = getLibraries().iterator(); i.hasNext(); )
+<a name="120" href="#120">120</a>             {
+<a name="121" href="#121">121</a>                 <a href="../../../../../org/apache/maven/plugin/nar/Library.html">Library</a> library = (Library) i.next();
+<a name="122" href="#122">122</a>                 String type = library.getType();
+<a name="123" href="#123">123</a>                 File libDstDir = getLayout().getLibDirectory( getTargetDirectory(), aol, type );
+<a name="124" href="#124">124</a>                 getLog().debug( <span class="jxr_string">"Copying libraries from "</span> + libDir + <span class="jxr_string">" to "</span> + libDstDir );
+<a name="125" href="#125">125</a> 
+<a name="126" href="#126">126</a>                 <em class="jxr_comment">// filter files for lib</em>
+<a name="127" href="#127">127</a>                 String includes =
+<a name="128" href="#128">128</a>                     <span class="jxr_string">"**/*."</span> + NarUtil.getDefaults().getProperty( NarUtil.getAOLKey( aol ) + <span class="jxr_string">"."</span> + type + <span class="jxr_string">".extension"</span> );
+<a name="129" href="#129">129</a> 
+<a name="130" href="#130">130</a>                 <em class="jxr_comment">// add import lib for Windows shared libraries</em>
+<a name="131" href="#131">131</a>                 <strong class="jxr_keyword">if</strong> ( <strong class="jxr_keyword">new</strong> AOL( aol ).getOS().equals( OS.WINDOWS ) &amp;&amp; type.equals( Library.SHARED ) )
+<a name="132" href="#132">132</a>                 {
+<a name="133" href="#133">133</a>                     includes += <span class="jxr_string">",**/*.lib"</span>;
+<a name="134" href="#134">134</a>                 }
+<a name="135" href="#135">135</a>                 copied += NarUtil.copyDirectoryStructure( libDir, libDstDir, includes, NarUtil.DEFAULT_EXCLUDES );
+<a name="136" href="#136">136</a>             }
+<a name="137" href="#137">137</a>         }
+<a name="138" href="#138">138</a> 
+<a name="139" href="#139">139</a>         <strong class="jxr_keyword">return</strong> copied;
+<a name="140" href="#140">140</a>     }
+<a name="141" href="#141">141</a> 
+<a name="142" href="#142">142</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> copyResources( File srcDir, String aol )
+<a name="143" href="#143">143</a>         <strong class="jxr_keyword">throws</strong> MojoExecutionException, MojoFailureException
+<a name="144" href="#144">144</a>     {
+<a name="145" href="#145">145</a>         <strong class="jxr_keyword">int</strong> copied = 0;
+<a name="146" href="#146">146</a>         <strong class="jxr_keyword">try</strong>
+<a name="147" href="#147">147</a>         {
+<a name="148" href="#148">148</a>             copied += copyIncludes( srcDir );
+<a name="149" href="#149">149</a> 
+<a name="150" href="#150">150</a>             copied += copyBinaries( srcDir, aol );
+<a name="151" href="#151">151</a> 
+<a name="152" href="#152">152</a>             copied += copyLibraries( srcDir, aol );
+<a name="153" href="#153">153</a> 
+<a name="154" href="#154">154</a>             <em class="jxr_comment">// unpack jar files</em>
+<a name="155" href="#155">155</a>             File classesDirectory = <strong class="jxr_keyword">new</strong> File( getOutputDirectory(), <span class="jxr_string">"classes"</span> );
+<a name="156" href="#156">156</a>             classesDirectory.mkdirs();
+<a name="157" href="#157">157</a>             List jars = FileUtils.getFiles( srcDir, <span class="jxr_string">"**/*.jar"</span>, <strong class="jxr_keyword">null</strong> );
+<a name="158" href="#158">158</a>             <strong class="jxr_keyword">for</strong> ( Iterator i = jars.iterator(); i.hasNext(); )
+<a name="159" href="#159">159</a>             {
+<a name="160" href="#160">160</a>                 File jar = (File) i.next();
+<a name="161" href="#161">161</a>                 getLog().debug( <span class="jxr_string">"Unpacking jar "</span> + jar );
+<a name="162" href="#162">162</a>                 UnArchiver unArchiver;
+<a name="163" href="#163">163</a>                 unArchiver = archiverManager.getUnArchiver( NarConstants.NAR_ROLE_HINT );
+<a name="164" href="#164">164</a>                 unArchiver.setSourceFile( jar );
+<a name="165" href="#165">165</a>                 unArchiver.setDestDirectory( classesDirectory );
+<a name="166" href="#166">166</a>                 unArchiver.extract();
+<a name="167" href="#167">167</a>             }
+<a name="168" href="#168">168</a>         }
+<a name="169" href="#169">169</a>         <strong class="jxr_keyword">catch</strong> ( IOException e )
+<a name="170" href="#170">170</a>         {
+<a name="171" href="#171">171</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"NAR: Could not copy resources"</span>, e );
+<a name="172" href="#172">172</a>         }
+<a name="173" href="#173">173</a>         <strong class="jxr_keyword">catch</strong> ( NoSuchArchiverException e )
+<a name="174" href="#174">174</a>         {
+<a name="175" href="#175">175</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"NAR: Could not find archiver"</span>, e );
+<a name="176" href="#176">176</a>         }
+<a name="177" href="#177">177</a>         <strong class="jxr_keyword">catch</strong> ( ArchiverException e )
+<a name="178" href="#178">178</a>         {
+<a name="179" href="#179">179</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"NAR: Could not unarchive jar file"</span>, e );
+<a name="180" href="#180">180</a>         }
+<a name="181" href="#181">181</a>         getLog().info( <span class="jxr_string">"Copied "</span> + copied + <span class="jxr_string">" resources for "</span> + aol );
+<a name="182" href="#182">182</a>     }
+<a name="183" href="#183">183</a> 
+<a name="184" href="#184">184</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

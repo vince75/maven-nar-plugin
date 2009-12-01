@@ -140,12 +140,12 @@
 <a name="130" href="#130">130</a>     {
 <a name="131" href="#131">131</a>     }
 <a name="132" href="#132">132</a> 
-<a name="133" href="#133">133</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setAbstractCompileMojo( AbstractCompileMojo mojo )
+<a name="133" href="#133">133</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> setAbstractCompileMojo( AbstractCompileMojo mojo )
 <a name="134" href="#134">134</a>     {
 <a name="135" href="#135">135</a>         <strong class="jxr_keyword">this</strong>.mojo = mojo;
 <a name="136" href="#136">136</a>     }
 <a name="137" href="#137">137</a> 
-<a name="138" href="#138">138</a>     <strong class="jxr_keyword">protected</strong> List getClassPaths()
+<a name="138" href="#138">138</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> List getClassPaths()
 <a name="139" href="#139">139</a>         <strong class="jxr_keyword">throws</strong> MojoExecutionException
 <a name="140" href="#140">140</a>     {
 <a name="141" href="#141">141</a>         <strong class="jxr_keyword">if</strong> ( classPaths.isEmpty() )
@@ -162,7 +162,7 @@
 <a name="152" href="#152">152</a>         <strong class="jxr_keyword">return</strong> classPaths;
 <a name="153" href="#153">153</a>     }
 <a name="154" href="#154">154</a> 
-<a name="155" href="#155">155</a>     <strong class="jxr_keyword">protected</strong> File getJniDirectory()
+<a name="155" href="#155">155</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> File getJniDirectory()
 <a name="156" href="#156">156</a>     {
 <a name="157" href="#157">157</a>         <strong class="jxr_keyword">if</strong> ( jniDirectory == <strong class="jxr_keyword">null</strong> )
 <a name="158" href="#158">158</a>         {
@@ -171,7 +171,7 @@
 <a name="161" href="#161">161</a>         <strong class="jxr_keyword">return</strong> jniDirectory;
 <a name="162" href="#162">162</a>     }
 <a name="163" href="#163">163</a> 
-<a name="164" href="#164">164</a>     <strong class="jxr_keyword">protected</strong> File getClassDirectory()
+<a name="164" href="#164">164</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> File getClassDirectory()
 <a name="165" href="#165">165</a>     {
 <a name="166" href="#166">166</a>         <strong class="jxr_keyword">if</strong> ( classDirectory == <strong class="jxr_keyword">null</strong> )
 <a name="167" href="#167">167</a>         {
@@ -180,7 +180,7 @@
 <a name="170" href="#170">170</a>         <strong class="jxr_keyword">return</strong> classDirectory;
 <a name="171" href="#171">171</a>     }
 <a name="172" href="#172">172</a> 
-<a name="173" href="#173">173</a>     <strong class="jxr_keyword">protected</strong> Set getIncludes()
+<a name="173" href="#173">173</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> Set getIncludes()
 <a name="174" href="#174">174</a>     {
 <a name="175" href="#175">175</a>         <strong class="jxr_keyword">if</strong> ( includes.isEmpty() )
 <a name="176" href="#176">176</a>         {
@@ -189,7 +189,7 @@
 <a name="179" href="#179">179</a>         <strong class="jxr_keyword">return</strong> includes;
 <a name="180" href="#180">180</a>     }
 <a name="181" href="#181">181</a> 
-<a name="182" href="#182">182</a>     <strong class="jxr_keyword">protected</strong> File getTimestampDirectory()
+<a name="182" href="#182">182</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> File getTimestampDirectory()
 <a name="183" href="#183">183</a>     {
 <a name="184" href="#184">184</a>         <strong class="jxr_keyword">if</strong> ( timestampDirectory == <strong class="jxr_keyword">null</strong> )
 <a name="185" href="#185">185</a>         {
@@ -198,7 +198,7 @@
 <a name="188" href="#188">188</a>         <strong class="jxr_keyword">return</strong> timestampDirectory;
 <a name="189" href="#189">189</a>     }
 <a name="190" href="#190">190</a> 
-<a name="191" href="#191">191</a>     <strong class="jxr_keyword">protected</strong> File getTimestampFile()
+<a name="191" href="#191">191</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> File getTimestampFile()
 <a name="192" href="#192">192</a>     {
 <a name="193" href="#193">193</a>         <strong class="jxr_keyword">if</strong> ( timestampFile == <strong class="jxr_keyword">null</strong> )
 <a name="194" href="#194">194</a>         {
@@ -207,7 +207,7 @@
 <a name="197" href="#197">197</a>         <strong class="jxr_keyword">return</strong> timestampFile;
 <a name="198" href="#198">198</a>     }
 <a name="199" href="#199">199</a> 
-<a name="200" href="#200">200</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> execute()
+<a name="200" href="#200">200</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> execute()
 <a name="201" href="#201">201</a>         <strong class="jxr_keyword">throws</strong> MojoExecutionException, MojoFailureException
 <a name="202" href="#202">202</a>     {
 <a name="203" href="#203">203</a>         getClassDirectory().mkdirs();
@@ -237,91 +237,115 @@
 <a name="227" href="#227">227</a>                     <strong class="jxr_keyword">for</strong> ( <strong class="jxr_keyword">int</strong> j = 0; j &lt; method.length; j++ )
 <a name="228" href="#228">228</a>                     {
 <a name="229" href="#229">229</a>                         <strong class="jxr_keyword">if</strong> ( method[j].isNative() )
-<a name="230" href="#230">230</a>                             files.add( clazz.getClassName() );
-<a name="231" href="#231">231</a>                     }
-<a name="232" href="#232">232</a>                 }
-<a name="233" href="#233">233</a> 
-<a name="234" href="#234">234</a>                 <strong class="jxr_keyword">if</strong> ( !files.isEmpty() )
-<a name="235" href="#235">235</a>                 {
-<a name="236" href="#236">236</a>                     getJniDirectory().mkdirs();
-<a name="237" href="#237">237</a>                     getTimestampDirectory().mkdirs();
-<a name="238" href="#238">238</a> 
-<a name="239" href="#239">239</a>                     File javahFile = <strong class="jxr_keyword">new</strong> File( mojo.getJavaHome( mojo.getAOL() ), <span class="jxr_string">"bin"</span> );
-<a name="240" href="#240">240</a>                     String javah = <strong class="jxr_keyword">new</strong> File( javahFile, name ).getAbsolutePath();
-<a name="241" href="#241">241</a> 
-<a name="242" href="#242">242</a>                     mojo.getLog().info( <span class="jxr_string">"Running "</span> + javah + <span class="jxr_string">" compiler on "</span> + files.size() + <span class="jxr_string">" classes..."</span> );
-<a name="243" href="#243">243</a>                     <strong class="jxr_keyword">int</strong> result = NarUtil.runCommand( javah, generateArgs( files ), <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>, mojo.getLog() );
-<a name="244" href="#244">244</a>                     <strong class="jxr_keyword">if</strong> ( result != 0 )
-<a name="245" href="#245">245</a>                     {
-<a name="246" href="#246">246</a>                         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoFailureException( javah + <span class="jxr_string">" failed with exit code "</span> + result + <span class="jxr_string">" 0x"</span>
-<a name="247" href="#247">247</a>                             + Integer.toHexString( result ) );
-<a name="248" href="#248">248</a>                     }
-<a name="249" href="#249">249</a>                     FileUtils.fileWrite( getTimestampDirectory() + <span class="jxr_string">"/"</span> + getTimestampFile(), <span class="jxr_string">""</span> );
-<a name="250" href="#250">250</a>                 }
-<a name="251" href="#251">251</a>             }
-<a name="252" href="#252">252</a>         }
-<a name="253" href="#253">253</a>         <strong class="jxr_keyword">catch</strong> ( InclusionScanException e )
-<a name="254" href="#254">254</a>         {
-<a name="255" href="#255">255</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"JAVAH: Class scanning failed"</span>, e );
-<a name="256" href="#256">256</a>         }
-<a name="257" href="#257">257</a>         <strong class="jxr_keyword">catch</strong> ( IOException e )
-<a name="258" href="#258">258</a>         {
-<a name="259" href="#259">259</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"JAVAH: IO Exception"</span>, e );
-<a name="260" href="#260">260</a>         }
-<a name="261" href="#261">261</a>         <strong class="jxr_keyword">catch</strong> ( ClassFormatException e )
-<a name="262" href="#262">262</a>         {
-<a name="263" href="#263">263</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"JAVAH: Class could not be inspected"</span>, e );
-<a name="264" href="#264">264</a>         }
-<a name="265" href="#265">265</a>     }
-<a name="266" href="#266">266</a> 
-<a name="267" href="#267">267</a>     <strong class="jxr_keyword">private</strong> String[] generateArgs( Set<em class="jxr_comment">/*<em class="jxr_comment"> &lt;String&gt; */</em>classes )</em>
-<a name="268" href="#268">268</a>         <strong class="jxr_keyword">throws</strong> MojoExecutionException
-<a name="269" href="#269">269</a>     {
-<a name="270" href="#270">270</a> 
-<a name="271" href="#271">271</a>         List args = <strong class="jxr_keyword">new</strong> ArrayList();
-<a name="272" href="#272">272</a> 
-<a name="273" href="#273">273</a>         <strong class="jxr_keyword">if</strong> ( !bootClassPaths.isEmpty() )
-<a name="274" href="#274">274</a>         {
-<a name="275" href="#275">275</a>             args.add( <span class="jxr_string">"-bootclasspath"</span> );
-<a name="276" href="#276">276</a>             args.add( StringUtils.join( bootClassPaths.iterator(), File.pathSeparator ) );
-<a name="277" href="#277">277</a>         }
-<a name="278" href="#278">278</a> 
-<a name="279" href="#279">279</a>         args.add( <span class="jxr_string">"-classpath"</span> );
-<a name="280" href="#280">280</a>         args.add( StringUtils.join( getClassPaths().iterator(), File.pathSeparator ) );
-<a name="281" href="#281">281</a> 
-<a name="282" href="#282">282</a>         args.add( <span class="jxr_string">"-d"</span> );
-<a name="283" href="#283">283</a>         args.add( getJniDirectory().getPath() );
-<a name="284" href="#284">284</a> 
-<a name="285" href="#285">285</a>         <strong class="jxr_keyword">if</strong> ( mojo.getLog().isDebugEnabled() )
-<a name="286" href="#286">286</a>         {
-<a name="287" href="#287">287</a>             args.add( <span class="jxr_string">"-verbose"</span> );
-<a name="288" href="#288">288</a>         }
-<a name="289" href="#289">289</a> 
-<a name="290" href="#290">290</a>         <strong class="jxr_keyword">if</strong> ( classes != <strong class="jxr_keyword">null</strong> )
-<a name="291" href="#291">291</a>         {
-<a name="292" href="#292">292</a>             <strong class="jxr_keyword">for</strong> ( Iterator i = classes.iterator(); i.hasNext(); )
-<a name="293" href="#293">293</a>             {
-<a name="294" href="#294">294</a>                 args.add( (String) i.next() );
-<a name="295" href="#295">295</a>             }
-<a name="296" href="#296">296</a>         }
-<a name="297" href="#297">297</a> 
-<a name="298" href="#298">298</a>         <strong class="jxr_keyword">return</strong> (String[]) args.toArray( <strong class="jxr_keyword">new</strong> String[args.size()] );
-<a name="299" href="#299">299</a>     }
-<a name="300" href="#300">300</a>     
-<a name="301" href="#301">301</a>     <em class="jxr_comment">//TODO remove the part with ToolchainManager lookup once we depend on</em>
-<a name="302" href="#302">302</a>     <em class="jxr_comment">//2.0.9 (have it as prerequisite). Define as regular component field then.</em>
-<a name="303" href="#303">303</a>     <strong class="jxr_keyword">private</strong> Toolchain getToolchain()
-<a name="304" href="#304">304</a>     {
-<a name="305" href="#305">305</a>         Toolchain toolChain = <strong class="jxr_keyword">null</strong>;
-<a name="306" href="#306">306</a>         ToolchainManager toolchainManager = ((NarJavahMojo)mojo).toolchainManager;
-<a name="307" href="#307">307</a>         
-<a name="308" href="#308">308</a>         <strong class="jxr_keyword">if</strong> ( toolchainManager != <strong class="jxr_keyword">null</strong> )
-<a name="309" href="#309">309</a>         {
-<a name="310" href="#310">310</a>             toolChain = toolchainManager.getToolchainFromBuildContext( <span class="jxr_string">"jdk"</span>, ((NarJavahMojo)mojo).session );
-<a name="311" href="#311">311</a>         }
-<a name="312" href="#312">312</a>         <strong class="jxr_keyword">return</strong> toolChain;
-<a name="313" href="#313">313</a>     }
-<a name="314" href="#314">314</a> }
+<a name="230" href="#230">230</a>                         {
+<a name="231" href="#231">231</a>                             files.add( clazz.getClassName() );
+<a name="232" href="#232">232</a>                         }
+<a name="233" href="#233">233</a>                     }
+<a name="234" href="#234">234</a>                 }
+<a name="235" href="#235">235</a> 
+<a name="236" href="#236">236</a>                 <strong class="jxr_keyword">if</strong> ( !files.isEmpty() )
+<a name="237" href="#237">237</a>                 {
+<a name="238" href="#238">238</a>                     getJniDirectory().mkdirs();
+<a name="239" href="#239">239</a>                     getTimestampDirectory().mkdirs();
+<a name="240" href="#240">240</a> 
+<a name="241" href="#241">241</a>                     String javah = getJavah();
+<a name="242" href="#242">242</a>                     
+<a name="243" href="#243">243</a>                     mojo.getLog().info( <span class="jxr_string">"Running "</span> + javah + <span class="jxr_string">" compiler on "</span> + files.size() + <span class="jxr_string">" classes..."</span> );
+<a name="244" href="#244">244</a>                     <strong class="jxr_keyword">int</strong> result = NarUtil.runCommand( javah, generateArgs( files ), <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>, mojo.getLog() );
+<a name="245" href="#245">245</a>                     <strong class="jxr_keyword">if</strong> ( result != 0 )
+<a name="246" href="#246">246</a>                     {
+<a name="247" href="#247">247</a>                         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoFailureException( javah + <span class="jxr_string">" failed with exit code "</span> + result + <span class="jxr_string">" 0x"</span>
+<a name="248" href="#248">248</a>                             + Integer.toHexString( result ) );
+<a name="249" href="#249">249</a>                     }
+<a name="250" href="#250">250</a>                     FileUtils.fileWrite( getTimestampDirectory() + <span class="jxr_string">"/"</span> + getTimestampFile(), <span class="jxr_string">""</span> );
+<a name="251" href="#251">251</a>                 }
+<a name="252" href="#252">252</a>             }
+<a name="253" href="#253">253</a>         }
+<a name="254" href="#254">254</a>         <strong class="jxr_keyword">catch</strong> ( InclusionScanException e )
+<a name="255" href="#255">255</a>         {
+<a name="256" href="#256">256</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"JAVAH: Class scanning failed"</span>, e );
+<a name="257" href="#257">257</a>         }
+<a name="258" href="#258">258</a>         <strong class="jxr_keyword">catch</strong> ( IOException e )
+<a name="259" href="#259">259</a>         {
+<a name="260" href="#260">260</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"JAVAH: IO Exception"</span>, e );
+<a name="261" href="#261">261</a>         }
+<a name="262" href="#262">262</a>         <strong class="jxr_keyword">catch</strong> ( ClassFormatException e )
+<a name="263" href="#263">263</a>         {
+<a name="264" href="#264">264</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"JAVAH: Class could not be inspected"</span>, e );
+<a name="265" href="#265">265</a>         }
+<a name="266" href="#266">266</a>     }
+<a name="267" href="#267">267</a> 
+<a name="268" href="#268">268</a>     <strong class="jxr_keyword">private</strong> String[] generateArgs( Set<em class="jxr_comment">/*<em class="jxr_comment"> &lt;String&gt; */</em>classes )</em>
+<a name="269" href="#269">269</a>         <strong class="jxr_keyword">throws</strong> MojoExecutionException
+<a name="270" href="#270">270</a>     {
+<a name="271" href="#271">271</a> 
+<a name="272" href="#272">272</a>         List args = <strong class="jxr_keyword">new</strong> ArrayList();
+<a name="273" href="#273">273</a> 
+<a name="274" href="#274">274</a>         <strong class="jxr_keyword">if</strong> ( !bootClassPaths.isEmpty() )
+<a name="275" href="#275">275</a>         {
+<a name="276" href="#276">276</a>             args.add( <span class="jxr_string">"-bootclasspath"</span> );
+<a name="277" href="#277">277</a>             args.add( StringUtils.join( bootClassPaths.iterator(), File.pathSeparator ) );
+<a name="278" href="#278">278</a>         }
+<a name="279" href="#279">279</a> 
+<a name="280" href="#280">280</a>         args.add( <span class="jxr_string">"-classpath"</span> );
+<a name="281" href="#281">281</a>         args.add( StringUtils.join( getClassPaths().iterator(), File.pathSeparator ) );
+<a name="282" href="#282">282</a> 
+<a name="283" href="#283">283</a>         args.add( <span class="jxr_string">"-d"</span> );
+<a name="284" href="#284">284</a>         args.add( getJniDirectory().getPath() );
+<a name="285" href="#285">285</a> 
+<a name="286" href="#286">286</a>         <strong class="jxr_keyword">if</strong> ( mojo.getLog().isDebugEnabled() )
+<a name="287" href="#287">287</a>         {
+<a name="288" href="#288">288</a>             args.add( <span class="jxr_string">"-verbose"</span> );
+<a name="289" href="#289">289</a>         }
+<a name="290" href="#290">290</a> 
+<a name="291" href="#291">291</a>         <strong class="jxr_keyword">if</strong> ( classes != <strong class="jxr_keyword">null</strong> )
+<a name="292" href="#292">292</a>         {
+<a name="293" href="#293">293</a>             <strong class="jxr_keyword">for</strong> ( Iterator i = classes.iterator(); i.hasNext(); )
+<a name="294" href="#294">294</a>             {
+<a name="295" href="#295">295</a>                 args.add( i.next() );
+<a name="296" href="#296">296</a>             }
+<a name="297" href="#297">297</a>         }
+<a name="298" href="#298">298</a> 
+<a name="299" href="#299">299</a>         <strong class="jxr_keyword">return</strong> (String[]) args.toArray( <strong class="jxr_keyword">new</strong> String[args.size()] );
+<a name="300" href="#300">300</a>     }
+<a name="301" href="#301">301</a>     
+<a name="302" href="#302">302</a>     <strong class="jxr_keyword">private</strong> String getJavah() <strong class="jxr_keyword">throws</strong> MojoExecutionException, MojoFailureException {
+<a name="303" href="#303">303</a>         String javah = <strong class="jxr_keyword">null</strong>;
+<a name="304" href="#304">304</a> 
+<a name="305" href="#305">305</a>         <em class="jxr_comment">// try toolchain</em>
+<a name="306" href="#306">306</a>         Toolchain toolchain = getToolchain();
+<a name="307" href="#307">307</a>         <strong class="jxr_keyword">if</strong> (toolchain != <strong class="jxr_keyword">null</strong>) {
+<a name="308" href="#308">308</a>             javah = toolchain.findTool( <span class="jxr_string">"javah"</span> );
+<a name="309" href="#309">309</a>         }
+<a name="310" href="#310">310</a> 
+<a name="311" href="#311">311</a>         <em class="jxr_comment">// try java home</em>
+<a name="312" href="#312">312</a>         <strong class="jxr_keyword">if</strong> (javah == <strong class="jxr_keyword">null</strong>) {
+<a name="313" href="#313">313</a>             File javahFile = <strong class="jxr_keyword">new</strong> File( mojo.getJavaHome( mojo.getAOL() ), <span class="jxr_string">"bin"</span> );
+<a name="314" href="#314">314</a>             javah = <strong class="jxr_keyword">new</strong> File( javahFile, name ).getAbsolutePath();
+<a name="315" href="#315">315</a>         }
+<a name="316" href="#316">316</a>         
+<a name="317" href="#317">317</a>         <em class="jxr_comment">// forget it...</em>
+<a name="318" href="#318">318</a>         <strong class="jxr_keyword">if</strong> (javah == <strong class="jxr_keyword">null</strong>) {
+<a name="319" href="#319">319</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"NAR: Cannot find 'javah' in Toolchain or on JavaHome"</span> );
+<a name="320" href="#320">320</a>         }
+<a name="321" href="#321">321</a>         
+<a name="322" href="#322">322</a>         <strong class="jxr_keyword">return</strong> javah;
+<a name="323" href="#323">323</a>     }
+<a name="324" href="#324">324</a>     
+<a name="325" href="#325">325</a>     <em class="jxr_comment">//TODO remove the part with ToolchainManager lookup once we depend on</em>
+<a name="326" href="#326">326</a>     <em class="jxr_comment">//2.0.9 (have it as prerequisite). Define as regular component field then.</em>
+<a name="327" href="#327">327</a>     <strong class="jxr_keyword">private</strong> Toolchain getToolchain()
+<a name="328" href="#328">328</a>     {
+<a name="329" href="#329">329</a>         Toolchain toolChain = <strong class="jxr_keyword">null</strong>;
+<a name="330" href="#330">330</a>         ToolchainManager toolchainManager = ((NarJavahMojo)mojo).getToolchainManager();
+<a name="331" href="#331">331</a>         
+<a name="332" href="#332">332</a>         <strong class="jxr_keyword">if</strong> ( toolchainManager != <strong class="jxr_keyword">null</strong> )
+<a name="333" href="#333">333</a>         {
+<a name="334" href="#334">334</a>             toolChain = toolchainManager.getToolchainFromBuildContext( <span class="jxr_string">"jdk"</span>, ((NarJavahMojo)mojo).getSession() );
+<a name="335" href="#335">335</a>         }
+<a name="336" href="#336">336</a>         <strong class="jxr_keyword">return</strong> toolChain;
+<a name="337" href="#337">337</a>     }
+<a name="338" href="#338">338</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

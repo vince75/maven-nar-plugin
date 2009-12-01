@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-10-29
+            &nbsp;| Last Published: 2009-12-01
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -222,6 +222,10 @@
       
             
       
+            
+      
+            
+      
               
         <li class="collapsed">
                     <a href="project-reports.html">Project Reports</a>
@@ -334,13 +338,19 @@ ${os.arch}<br />
 x86-Windows-msvc, i386-Linux-g++.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#linker">linker</a></strong></td>
+<tr class="b"><td><strong><a href="#ignore">ignore</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Ignore errors and failures.<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="a"><td><strong><a href="#linker">linker</a></strong></td>
 <td><code>Linker</code></td>
 <td><code>-</code></td>
 <td>Linker<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#os">os</a></strong></td>
+<tr class="b"><td><strong><a href="#os">os</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>The Operating System for the nar. Some choices are: &quot;Windows&quot;,
@@ -348,13 +358,13 @@ x86-Windows-msvc, i386-Linux-g++.<br />
 ${os.name} FIXME table missing<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#skip">skip</a></strong></td>
+<tr class="a"><td><strong><a href="#skip">skip</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Skip running of NAR plugins (any) altogether.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
+<tr class="b"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>-</code></td>
 <td>Target directory for Nar file construction Defaults to
@@ -382,6 +392,13 @@ ${os.arch}</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li
 <div>List of classifiers which you want unpack. Example ppc-MacOSX-g++,
 x86-Windows-msvc, i386-Linux-g++.</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="ignore">ignore</a>:</strong></p>
+<div>Ignore errors and failures.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${nar.ignore}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
 </ul>
 <hr />
 <p><strong><a name="linker">linker</a>:</strong></p>
