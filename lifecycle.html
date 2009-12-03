@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-12-01
+            &nbsp;| Last Published: 2009-12-03
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -298,20 +298,38 @@
 <table class="bodyTable"><tbody><tr class="a"><td align="left"><i>Phase</i></td>
 <td align="left"><i>Goals (NAR Goals in bold)</i></td>
 </tr>
+<tr class="b"><td align="left">validate</td>
+<td align="left"><b>nar-validate</b></td>
+</tr>
+<tr class="a"><td align="left">initialize</td>
+<td align="left"></td>
+</tr>
 <tr class="b"><td align="left">generate-sources</td>
 <td align="left"><b>nar-download</b>, <b>nar-system-generate</b></td>
 </tr>
-<tr class="a"><td align="left">process-sources</td>
+<tr class="a"><td align="left">generate-resources</td>
+<td align="left"></td>
+</tr>
+<tr class="b"><td align="left">process-sources</td>
 <td align="left"><b>nar-unpack</b>, <b>nar-gnu-configure</b></td>
 </tr>
-<tr class="b"><td align="left">process-resources</td>
+<tr class="a"><td align="left">process-resources</td>
 <td align="left">resources, <b>nar-resources</b>, <b>nar-gnu-resources</b></td>
 </tr>
-<tr class="a"><td align="left">compile</td>
+<tr class="b"><td align="left">compile</td>
 <td align="left">compile, <b>nar-javah</b>, <b>nar-gnu-make</b>, <b>nar-compile</b></td>
 </tr>
-<tr class="b"><td align="left">process-classes</td>
+<tr class="a"><td align="left">process-classes</td>
 <td align="left"><b>nar-gnu-process</b></td>
+</tr>
+<tr class="b"><td align="left">generate-test-sources</td>
+<td align="left"></td>
+</tr>
+<tr class="a"><td align="left">process-test-sources</td>
+<td align="left"></td>
+</tr>
+<tr class="b"><td align="left">generate-test-resources</td>
+<td align="left"></td>
 </tr>
 <tr class="a"><td align="left">process-test-resources</td>
 <td align="left">testResources</td>
@@ -328,13 +346,22 @@
 <tr class="a"><td align="left">package</td>
 <td align="left"><b>nar-package</b>, jar</td>
 </tr>
-<tr class="b"><td align="left">integration-test</td>
+<tr class="b"><td align="left">pre-integration-test</td>
+<td align="left"></td>
+</tr>
+<tr class="a"><td align="left">integration-test</td>
 <td align="left"><b>nar-integration-test</b></td>
 </tr>
-<tr class="a"><td align="left">install</td>
+<tr class="b"><td align="left">post-integration-test</td>
+<td align="left"></td>
+</tr>
+<tr class="a"><td align="left">verify</td>
+<td align="left"></td>
+</tr>
+<tr class="b"><td align="left">install</td>
 <td align="left">install</td>
 </tr>
-<tr class="b"><td align="left">deploy</td>
+<tr class="a"><td align="left">deploy</td>
 <td align="left">deploy</td>
 </tr>
 </tbody>

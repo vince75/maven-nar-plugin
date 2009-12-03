@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-12-01
+            &nbsp;| Last Published: 2009-12-03
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -344,12 +344,17 @@
 <p>This plugin for Maven 2 allows you to compile native code (c++, c and fortran) on a number of different architectures (Linux, Windows, MacOSX, Solaris, ...) and with a number of different compilers/linkers (g++, Microsoft Visual C++, CC, ...) The output produced is wrapped up in Native ARchive files (.nar) some of which are machine independent (-noarch), while others are machine specific and thus depend on a combination of machine architecture(A), operating-system(O) and linker(L) identified as AOL. These nar files can be installed in the local maven repository and deployed to a standard maven (web) server, using the standard maven-install-plugin and maven-deploy-plugin.</p>
 <p>Other maven projects may specify dependencies on these nar files using the standard maven dependency declaration. Nar files get downloaded, unpacked and installed in the local maven repository, just like jar files are (apart from the unpacking).</p>
 <p>The NAR plugin executes the following goals, in the order below, to create and deploy nar files. The goals are part of the <tt>nar</tt> packaging/<a href="lifecycle.html">lifecycle</a>, which inserts the nar goals into the standard lifecyle. Using nar packaging allows you to build a jar file as well as nar files. The list below shows the sequence of the NAR goals:</p>
-<ol type="1"><li><a href="#nar-download">nar-download</a></li>
+<ol type="1"><li><a href="#nar-validate">nar-validate</a></li>
+<li><a href="#nar-download">nar-download</a></li>
 <li><a href="#nar-system-generate">nar-system-generate</a></li>
 <li><a href="#nar-unpack">nar-unpack</a></li>
+<li><a href="#nar-gnu-configure">nar-gnu-configure</a></li>
 <li><a href="#nar-resources">nar-resources</a></li>
+<li><a href="#nar-gnu-resources">nar-gnu-resources</a></li>
 <li><a href="#nar-javah">nar-javah</a></li>
+<li><a href="#nar-gnu-make">nar-gnu-make</a></li>
 <li><a href="#nar-compile">nar-compile</a></li>
+<li><a href="#nar-gnu-process">nar-gnu-process</a></li>
 <li><a href="#nar-testCompile">nar-testCompile</a></li>
 <li><a href="#nar-test">nar-test</a></li>
 <li><a href="#nar-package">nar-package</a></li>
@@ -362,6 +367,9 @@
 <p>The NAR Plugin tries to deduce the &quot;Operating System&quot; and the &quot;Architecture&quot; of the machine. Both can be overridden by setting <tt>os</tt> and <tt>arch</tt> in the <a href="configuration.html">configuration</a>.</p>
 <p>The name of the linker is looked up in a architecture-os specific way, but can be overridden by setting <tt>linker.name</tt> (this means the subtag &lt;name&gt; of the &lt;linker&gt; tag in the configuration section). Now that the linker name is known all other properties are looked up with a prefix of <tt>[arch.[os.[linker.]]]</tt> from the AOL Properties file, but can be overridden in the configuration section (which can be made AOL specific by putting it inside a profile.</p>
 </div>
+<div class="section"><h3><a name="nar-validate">nar-validate</a></h3>
+<p>The NAR plugin makes sure the linker name can be found and that at least one compiler exists for this linker. It further check the version number of the linker to see if the linker is actually found on the path. </p>
+</div>
 <div class="section"><h3><a name="nar-download">nar-download</a></h3>
 <p>Your NAR artifact(s) may be dependent on other nar artifacts. The standard maven dependency declaration in the POM is used to describe such dependencies, see <a href="nar-dependencies.html"> nar-dependencies</a>. By the time this goal is running maven will have already downloaded all dependent jar files some of which may include a nar.properties file. This property file contains information on what other machine dependent and machine independent nar files to download. This goal will download any further necessary nar files into the local repository.</p>
 </div>
@@ -371,12 +379,21 @@
 <div class="section"><h3><a name="nar-unpack">nar-unpack</a></h3>
 <p>Since a nar file is of no use to any native compilation process the nar-unpack goal unpacks the nar into the &quot;nar&quot; subdirectory of the local repository. A flag is set not to download and unpack this nar file again, except if it is a SNAPSHOT artifact. <b>TBD The actual nar file is deleted to preserve diskspace.</b></p>
 </div>
+<div class="section"><h3><a name="nar-gnu-configure">nar-gnu-configure</a> </h3>
+<p>If you store files in the gnuSourceDirectory (src/gnu) the NAR plugin will try to run autogen and configure over them with a target set to gnuTargetDirectory. This process can be inhibited by setting gnuAutogenSkip and or gnuConfigureSkip and normally does not take place on Windows, unless gnuUseOnWindows is set. The generated and configured files are all stored in gnuTargetDirectory and will be handled in subsequent NAR goals. </p>
+</div>
 <div class="section"><h3><a name="nar-resources">nar-resources</a></h3>
 <p>This is an optional goal. It will take any resources in src/nar/resources and copy them into specific areas under target/nar. Resources may include pre-compiled/linked libraries and other shareable items. This goal can be used to create a nar library from a distribution that comes with compiled shareable libraries.</p>
+</div>
+<div class="section"><h3><a name="nar-gnu-resources">nar-gnu-resources</a></h3>
+<p>Copies the resourceIncludeDir (include) from the gunSourceDirectory (src/gnu) into the noarch area inside target.</p>
 </div>
 <div class="section"><h3><a name="nar-javah">nar-javah</a></h3>
 <p>This goal will run the javah tool on any class file in the <tt>javah.classDirectory</tt> directory that has native methods in it. The actual class files are inspected (rather than their sources). The javah tool is picked up from the java installation and is run with a classpath of the <tt>javah.classDirectory</tt> and all depencies' classpaths, unless you specify a list in <tt>javah.classPaths</tt>. You can also set a boot classpath using <tt>javah.bootClassPaths</tt>.</p>
 <p>This goal has no effect if there are no java sources, or if none of the java classes contain a native method.</p>
+</div>
+<div class="section"><h3><a name="nar-gnu-make">nar-gnu-make</a> </h3>
+<p>runs &quot;make&quot; followed by &quot;make install&quot; to put the final files in position for copying to the NAR target areas by the nar-gnu-process goal.</p>
 </div>
 <div class="section"><h3><a name="nar-compile">nar-compile</a></h3>
 <p>This goal will compile the native source code (c, c++ or fortran) and archive it into a shared library. You can also produce a jni or a static library by setting <tt>library.type</tt>. To handle the variety of compilers and linkers, the NAR plugin uses the cpptasks from the ant-contrib project, with some minor improvements and additions of compilers, see <a href="cpptasks.html">cpptasks</a>. Most of the settings for cpptasks, such as compiler, linker, options and include dirs are available through the NAR plugin, see <a href="configuration.html">configuration</a>.</p>
@@ -399,6 +416,9 @@
 </ul>
 <p>All include files from <tt>COMPILER.includePaths</tt> are copied to be included in the noarch nar file.</p>
 <p><b> TBD If you set maven.nar.includefilesonly to true the compilation step will be skipped. This flag can be used if you want to distribute a library that only contains pure abstract classes in include files.</b></p>
+</div>
+<div class="section"><h3><a name="nar-gnu-process">nar-gnu-process</a> </h3>
+<p>Copies the gnu &quot;install&quot;-ed area into the NAR target area for testing and packing. </p>
 </div>
 <div class="section"><h3><a name="nar-testCompile">nar-testCompile</a></h3>
 <p>This goal will compile the native test source code (c, c++ or fortran) and create executables from it. To handle the variety of compilers and linkers, the NAR plugin uses the cpptasks from the ant-contrib project, with some minor improvements and additions of compilers, see <a href="cpptasks.html">cpptasks</a>. Most of the settings for cpptasks, such as compiler, linker, options and include dirs are available through the NAR plugin, see <a href="configuration.html">configuration</a>.</p>
