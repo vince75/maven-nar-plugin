@@ -346,9 +346,9 @@
 <p>The NAR plugin executes the following goals, in the order below, to create and deploy nar files. The goals are part of the <tt>nar</tt> packaging/<a href="lifecycle.html">lifecycle</a>, which inserts the nar goals into the standard lifecyle. Using nar packaging allows you to build a jar file as well as nar files. The list below shows the sequence of the NAR goals:</p>
 <ol type="1"><li><a href="#nar-validate">nar-validate</a></li>
 <li><a href="#nar-download">nar-download</a></li>
-<li><a href="#nar-system-generate">nar-system-generate</a></li>
 <li><a href="#nar-unpack">nar-unpack</a></li>
 <li><a href="#nar-gnu-configure">nar-gnu-configure</a></li>
+<li><a href="#nar-system-generate">nar-system-generate</a></li>
 <li><a href="#nar-resources">nar-resources</a></li>
 <li><a href="#nar-gnu-resources">nar-gnu-resources</a></li>
 <li><a href="#nar-javah">nar-javah</a></li>
@@ -373,14 +373,14 @@
 <div class="section"><h3><a name="nar-download">nar-download</a></h3>
 <p>Your NAR artifact(s) may be dependent on other nar artifacts. The standard maven dependency declaration in the POM is used to describe such dependencies, see <a href="nar-dependencies.html"> nar-dependencies</a>. By the time this goal is running maven will have already downloaded all dependent jar files some of which may include a nar.properties file. This property file contains information on what other machine dependent and machine independent nar files to download. This goal will download any further necessary nar files into the local repository.</p>
 </div>
-<div class="section"><h3><a name="nar-system-generate">nar-system-generate</a></h3>
-<p>This goal generates a NarSystem class if necessary. This class contains helper methods for your code to handle things at run-time. The static method &quot;loadLibrary()&quot; is currently the only method generated and will load your JNI library with name &quot;artifactId-version&quot;. This goals only executed if you produce a JNI library and you specify a <i>packageName</i> as subtag of <i>library</i>. The NarSystem class will then end up in this package.</p>
-</div>
 <div class="section"><h3><a name="nar-unpack">nar-unpack</a></h3>
 <p>Since a nar file is of no use to any native compilation process the nar-unpack goal unpacks the nar into the &quot;nar&quot; subdirectory of the local repository. A flag is set not to download and unpack this nar file again, except if it is a SNAPSHOT artifact. <b>TBD The actual nar file is deleted to preserve diskspace.</b></p>
 </div>
 <div class="section"><h3><a name="nar-gnu-configure">nar-gnu-configure</a> </h3>
 <p>If you store files in the gnuSourceDirectory (src/gnu) the NAR plugin will try to run autogen and configure over them with a target set to gnuTargetDirectory. This process can be inhibited by setting gnuAutogenSkip and or gnuConfigureSkip and normally does not take place on Windows, unless gnuUseOnWindows is set. The generated and configured files are all stored in gnuTargetDirectory and will be handled in subsequent NAR goals. </p>
+</div>
+<div class="section"><h3><a name="nar-system-generate">nar-system-generate</a></h3>
+<p>This goal generates a NarSystem class if necessary. This class contains helper methods for your code to handle things at run-time. The static method &quot;loadLibrary()&quot; is currently the only method generated and will load your JNI library with name &quot;artifactId-version&quot;. This goals only executed if you produce a JNI library and you specify a <i>packageName</i> as subtag of <i>library</i>. The NarSystem class will then end up in this package.</p>
 </div>
 <div class="section"><h3><a name="nar-resources">nar-resources</a></h3>
 <p>This is an optional goal. It will take any resources in src/nar/resources and copy them into specific areas under target/nar. Resources may include pre-compiled/linked libraries and other shareable items. This goal can be used to create a nar library from a distribution that comes with compiled shareable libraries.</p>
