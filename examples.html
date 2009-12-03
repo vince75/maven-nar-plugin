@@ -326,6 +326,26 @@
 <dt>it0012-jni-dep-lib-static</dt>
 <dd>A C routine called from Java, which depends on &quot;lib-static&quot; and links statically with it.</dd>
 </dl>
+<dl><dt>it0013-gnu-executable</dt>
+<dd>A gnu autogen and configurable package.</dd>
+<dt>it0014-multi-module</dt>
+<dd>A multi module package, consisting of a library and an executable dependent on that library. </dd>
+<dt>it0015-cpp-executable</dt>
+<dd>A C++ program.</dd>
+<dt>it0016-layout</dt>
+<dd>Tests for different repository layouts, currently NarLayout20 and NarLayout21.</dd>
+<dt>it0017-toolchain</dt>
+<dd>Tests which use the toolchain to find tools such as javah. </dd>
+<dt>it0018-fortran</dt>
+<dd>A Fortran 90 program, not enabled on Windows. </dd>
+<dt>it0019-compiler</dt>
+<dd>Test to run with the Intel compiler.</dd>
+</dl>
+<dl><dt>it0020-lib-3rdparty</dt>
+<dd>A 3rd party library, including header files. </dd>
+<dt>it0021-executable-dep-lib-3rdparty</dt>
+<dd>An executable dependent on the 3rd party library. </dd>
+</dl>
 <p>These examples are now all run as integration tests by running maven on the maven-nar-plugin from its top-level directory with the profile &quot;run-its&quot;.</p>
 </div>
 
