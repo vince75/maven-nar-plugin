@@ -75,7 +75,7 @@
 <a name="65" href="#65">65</a>              File noarchDir = <strong class="jxr_keyword">new</strong> File( resourceDirectory, NarConstants.NAR_NO_ARCH );
 <a name="66" href="#66">66</a>              <strong class="jxr_keyword">if</strong> ( noarchDir.exists() )
 <a name="67" href="#67">67</a>              {
-<a name="68" href="#68">68</a>                  File noarchDstDir = getLayout().getNoArchDirectory( getTargetDirectory() );
+<a name="68" href="#68">68</a>                  File noarchDstDir = getLayout().getNoArchDirectory( getTargetDirectory(), getMavenProject().getArtifactId(), getMavenProject().getVersion() );
 <a name="69" href="#69">69</a>                  getLog().debug( <span class="jxr_string">"Copying noarch from "</span> + noarchDir + <span class="jxr_string">" to "</span> + noarchDstDir );
 <a name="70" href="#70">70</a>                  copied += NarUtil.copyDirectoryStructure( noarchDir, noarchDstDir, <strong class="jxr_keyword">null</strong>, NarUtil.DEFAULT_EXCLUDES );
 <a name="71" href="#71">71</a>              }

@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-12-03
+            &nbsp;| Last Published: 2009-12-18
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -136,6 +136,14 @@
               
     <li class="none">
                     <a href="examples.html">Examples</a>
+          </li>
+              
+    <li class="none">
+                    <a href="archetypes.html">Archetypes</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compatibility.html">Compatibility</a>
           </li>
           </ul>
               <h5>Developer Info</h5>
@@ -317,6 +325,32 @@ also sets flags on binaries and corrects static libraries.</div><p><strong>Attri
 ${os.arch}<br />
 </td>
 </tr>
+<tr class="a"><td><strong><a href="#failOnError">failOnError</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Fail on compilation/linking error.<br />
+<strong>Default value is</strong>: <code>true</code>.</td>
+</tr>
+<tr class="b"><td><strong><a href="#layout">layout</a></strong></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>Layout to be used for building and unpacking artifacts<br />
+<strong>Default value is</strong>: <code>org.apache.maven.plugin.nar.NarLayout21</code>.</td>
+</tr>
+<tr class="a"><td><strong><a href="#libtool">libtool</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Set use of libtool. If set to true, the &quot;libtool &quot; will be
+prepended to the command line for compatible processors.<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="b"><td><strong><a href="#runtime">runtime</a></strong></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>Sets the type of runtime library, possible values &quot;dynamic&quot;,
+&quot;static&quot;.<br />
+<strong>Default value is</strong>: <code>dynamic</code>.</td>
+</tr>
 </table>
 </div>
 <div class="section"><h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
@@ -331,18 +365,54 @@ ${os.arch}<br />
 <td>Architecture-OS-Linker name. Defaults to: arch-os-linker.<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#classifiers">classifiers</a></strong></td>
+<tr class="a"><td><strong><a href="#c">c</a></strong></td>
+<td><code>C</code></td>
+<td><code>-</code></td>
+<td>C Compiler<br />
+</td>
+</tr>
+<tr class="b"><td><strong><a href="#classifiers">classifiers</a></strong></td>
 <td><code>List</code></td>
 <td><code>-</code></td>
 <td>List of classifiers which you want unpack. Example ppc-MacOSX-g++,
 x86-Windows-msvc, i386-Linux-g++.<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#ignore">ignore</a></strong></td>
+<tr class="a"><td><strong><a href="#cpp">cpp</a></strong></td>
+<td><code>Cpp</code></td>
+<td><code>-</code></td>
+<td>C++ Compiler<br />
+</td>
+</tr>
+<tr class="b"><td><strong><a href="#fortran">fortran</a></strong></td>
+<td><code>Fortran</code></td>
+<td><code>-</code></td>
+<td>Fortran Compiler<br />
+</td>
+</tr>
+<tr class="a"><td><strong><a href="#ignore">ignore</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Ignore errors and failures.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="b"><td><strong><a href="#java">java</a></strong></td>
+<td><code>Java</code></td>
+<td><code>-</code></td>
+<td>Java info for includes and linking<br />
+</td>
+</tr>
+<tr class="a"><td><strong><a href="#javah">javah</a></strong></td>
+<td><code>Javah</code></td>
+<td><code>-</code></td>
+<td>Javah info<br />
+</td>
+</tr>
+<tr class="b"><td><strong><a href="#libraries">libraries</a></strong></td>
+<td><code>List</code></td>
+<td><code>-</code></td>
+<td>List of libraries to create<br />
+</td>
 </tr>
 <tr class="a"><td><strong><a href="#linker">linker</a></strong></td>
 <td><code>Linker</code></td>
@@ -350,12 +420,24 @@ x86-Windows-msvc, i386-Linux-g++.<br />
 <td>Linker<br />
 </td>
 </tr>
-<tr class="b"><td><strong><a href="#os">os</a></strong></td>
+<tr class="b"><td><strong><a href="#maxCores">maxCores</a></strong></td>
+<td><code>int</code></td>
+<td><code>-</code></td>
+<td>Maximum number of Cores/CPU's to use. 0 means unlimited.<br />
+</td>
+</tr>
+<tr class="a"><td><strong><a href="#os">os</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>The Operating System for the nar. Some choices are: &quot;Windows&quot;,
 &quot;Linux&quot;, &quot;MacOSX&quot;, &quot;SunOS&quot;, ... Defaults to a derived value from
 ${os.name} FIXME table missing<br />
+</td>
+</tr>
+<tr class="b"><td><strong><a href="#output">output</a></strong></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>Name of the output<br />
 </td>
 </tr>
 <tr class="a"><td><strong><a href="#skip">skip</a></strong></td>
@@ -367,9 +449,22 @@ ${os.name} FIXME table missing<br />
 <tr class="b"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>-</code></td>
-<td>Target directory for Nar file construction Defaults to
+<td>Target directory for Nar file construction. Defaults to
 &quot;${project.build.directory}/nar&quot; for &quot;nar-compile&quot; goal Defaults to
 &quot;${project.build.directory}/test-nar&quot; for &quot;nar-testCompile&quot; goal<br />
+</td>
+</tr>
+<tr class="a"><td><strong><a href="#tests">tests</a></strong></td>
+<td><code>List</code></td>
+<td><code>-</code></td>
+<td>List of tests to create<br />
+</td>
+</tr>
+<tr class="b"><td><strong><a href="#unpackDirectory">unpackDirectory</a></strong></td>
+<td><code>File</code></td>
+<td><code>-</code></td>
+<td>Target directory for Nar file unpacking. Defaults to
+&quot;${targetDirectory}/depenencies&quot;<br />
 </td>
 </tr>
 </table>
@@ -388,9 +483,30 @@ ${os.arch}</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li
 <li><strong>Expression</strong>: <code>${os.arch}</code></li>
 </ul>
 <hr />
+<p><strong><a name="c">c</a>:</strong></p>
+<div>C Compiler</div><ul><li><strong>Type</strong>: <code>org.apache.maven.plugin.nar.C</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
 <p><strong><a name="classifiers">classifiers</a>:</strong></p>
 <div>List of classifiers which you want unpack. Example ppc-MacOSX-g++,
 x86-Windows-msvc, i386-Linux-g++.</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="cpp">cpp</a>:</strong></p>
+<div>C++ Compiler</div><ul><li><strong>Type</strong>: <code>org.apache.maven.plugin.nar.Cpp</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="failOnError">failOnError</a>:</strong></p>
+<div>Fail on compilation/linking error.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>Yes</code></li>
+<li><strong>Default</strong>: <code>true</code></li>
+</ul>
+<hr />
+<p><strong><a name="fortran">fortran</a>:</strong></p>
+<div>Fortran Compiler</div><ul><li><strong>Type</strong>: <code>org.apache.maven.plugin.nar.Fortran</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 </ul>
 <hr />
@@ -401,8 +517,42 @@ x86-Windows-msvc, i386-Linux-g++.</div><ul><li><strong>Type</strong>: <code>java
 <li><strong>Default</strong>: <code>false</code></li>
 </ul>
 <hr />
+<p><strong><a name="java">java</a>:</strong></p>
+<div>Java info for includes and linking</div><ul><li><strong>Type</strong>: <code>org.apache.maven.plugin.nar.Java</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="javah">javah</a>:</strong></p>
+<div>Javah info</div><ul><li><strong>Type</strong>: <code>org.apache.maven.plugin.nar.Javah</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="layout">layout</a>:</strong></p>
+<div>Layout to be used for building and unpacking artifacts</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>Yes</code></li>
+<li><strong>Expression</strong>: <code>${nar.layout}</code></li>
+<li><strong>Default</strong>: <code>org.apache.maven.plugin.nar.NarLayout21</code></li>
+</ul>
+<hr />
+<p><strong><a name="libraries">libraries</a>:</strong></p>
+<div>List of libraries to create</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="libtool">libtool</a>:</strong></p>
+<div>Set use of libtool. If set to true, the &quot;libtool &quot; will be
+prepended to the command line for compatible processors.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>Yes</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
 <p><strong><a name="linker">linker</a>:</strong></p>
 <div>Linker</div><ul><li><strong>Type</strong>: <code>org.apache.maven.plugin.nar.Linker</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="maxCores">maxCores</a>:</strong></p>
+<div>Maximum number of Cores/CPU's to use. 0 means unlimited.</div><ul><li><strong>Type</strong>: <code>int</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 </ul>
 <hr />
@@ -413,6 +563,19 @@ ${os.name} FIXME table missing</div><ul><li><strong>Type</strong>: <code>java.la
 <li><strong>Required</strong>: <code>No</code></li>
 </ul>
 <hr />
+<p><strong><a name="output">output</a>:</strong></p>
+<div>Name of the output</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${project.artifactId}-${project.version}</code></li>
+</ul>
+<hr />
+<p><strong><a name="runtime">runtime</a>:</strong></p>
+<div>Sets the type of runtime library, possible values &quot;dynamic&quot;,
+&quot;static&quot;.</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>Yes</code></li>
+<li><strong>Default</strong>: <code>dynamic</code></li>
+</ul>
+<hr />
 <p><strong><a name="skip">skip</a>:</strong></p>
 <div>Skip running of NAR plugins (any) altogether.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
@@ -421,9 +584,20 @@ ${os.name} FIXME table missing</div><ul><li><strong>Type</strong>: <code>java.la
 </ul>
 <hr />
 <p><strong><a name="targetDirectory">targetDirectory</a>:</strong></p>
-<div>Target directory for Nar file construction Defaults to
+<div>Target directory for Nar file construction. Defaults to
 &quot;${project.build.directory}/nar&quot; for &quot;nar-compile&quot; goal Defaults to
 &quot;${project.build.directory}/test-nar&quot; for &quot;nar-testCompile&quot; goal</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="tests">tests</a>:</strong></p>
+<div>List of tests to create</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="unpackDirectory">unpackDirectory</a>:</strong></p>
+<div>Target directory for Nar file unpacking. Defaults to
+&quot;${targetDirectory}/depenencies&quot;</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 </ul>
 </div>

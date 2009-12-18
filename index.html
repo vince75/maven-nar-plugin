@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-12-03
+            &nbsp;| Last Published: 2009-12-18
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -136,6 +136,14 @@
               
     <li class="none">
                     <a href="examples.html">Examples</a>
+          </li>
+              
+    <li class="none">
+                    <a href="archetypes.html">Archetypes</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compatibility.html">Compatibility</a>
           </li>
           </ul>
               <h5>Developer Info</h5>
@@ -371,10 +379,10 @@
 <p>The NAR plugin makes sure the linker name can be found and that at least one compiler exists for this linker. It further check the version number of the linker to see if the linker is actually found on the path. </p>
 </div>
 <div class="section"><h3><a name="nar-download">nar-download</a></h3>
-<p>Your NAR artifact(s) may be dependent on other nar artifacts. The standard maven dependency declaration in the POM is used to describe such dependencies, see <a href="nar-dependencies.html"> nar-dependencies</a>. By the time this goal is running maven will have already downloaded all dependent jar files some of which may include a nar.properties file. This property file contains information on what other machine dependent and machine independent nar files to download. This goal will download any further necessary nar files into the local repository.</p>
+<p>Your NAR artifact(s) may be dependent on other nar artifacts. The standard maven dependency declaration in the POM is used to describe such dependencies of type &quot;nar&quot;, see <a href="nar-dependencies.html"> nar-dependencies</a>. By the time this goal is running maven will have already downloaded all dependent jar and nar files some of which may include a nar.properties file. This property file contains information on what other machine dependent and machine independent nar files to download. This goal will download any further necessary nar files into the local repository.</p>
 </div>
 <div class="section"><h3><a name="nar-unpack">nar-unpack</a></h3>
-<p>Since a nar file is of no use to any native compilation process the nar-unpack goal unpacks the nar into the &quot;nar&quot; subdirectory of the local repository. A flag is set not to download and unpack this nar file again, except if it is a SNAPSHOT artifact. <b>TBD The actual nar file is deleted to preserve diskspace.</b></p>
+<p>Since a nar file is of no use to any native compilation process the nar-unpack goal unpacks the nar into the &quot;nar/dependencies&quot; subdirectory of the target directory.</p>
 </div>
 <div class="section"><h3><a name="nar-gnu-configure">nar-gnu-configure</a> </h3>
 <p>If you store files in the gnuSourceDirectory (src/gnu) the NAR plugin will try to run autogen and configure over them with a target set to gnuTargetDirectory. This process can be inhibited by setting gnuAutogenSkip and or gnuConfigureSkip and normally does not take place on Windows, unless gnuUseOnWindows is set. The generated and configured files are all stored in gnuTargetDirectory and will be handled in subsequent NAR goals. </p>
@@ -431,7 +439,7 @@
 </div>
 <div class="section"><h3><a name="nar-package">nar-package</a> </h3>
 <p>This goal creates the artifact jar/nar file(s). The jar file is created by the standard package goal. The following jar and nar files are created:</p>
-<ul><li>&lt;Artifact&gt;-&lt;version&gt;.jar, containing a property file describing the behaviour of the library and other nar files available. For a description see <a href="nar-dependencies.html"> nar-dependencies</a>.</li>
+<ul><li>&lt;Artifact&gt;-&lt;version&gt;.jar, containing a property file describing the behaviour of the library and other nar files available. For a description see <a href="nar-dependencies.html"> nar-dependencies</a>. This jar file is renamed to nar when installed or deployed.</li>
 <li>&lt;Artifact&gt;-&lt;version&gt;-noarch.nar, a compressed jar file containing non machine specific parts of the distribution, such as the include directories.</li>
 <li>&lt;Artifact&gt;-&lt;version&gt;-&lt;aol&gt;-&lt;type&gt;.nar, a compressed jar file containing machine specific parts of the distribution, such as the libraries. This file is specific to a particular Architecture-OS-Linker (AOL) combination <b>TBD and is not generated if maven.nar.includefilesonly is set</b>. Type specifies if this nar is either of type shared, static or jni.</li>
 </ul>

@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-12-03
+            &nbsp;| Last Published: 2009-12-18
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -136,6 +136,14 @@
               
     <li class="none">
                     <a href="examples.html">Examples</a>
+          </li>
+              
+    <li class="none">
+                    <a href="archetypes.html">Archetypes</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compatibility.html">Compatibility</a>
           </li>
           </ul>
               <h5>Developer Info</h5>
@@ -353,7 +361,7 @@ tested.<br />
 <tr class="b"><td><strong><a href="#layout">layout</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
-<td>Layout to be used for building and upacking artifacts<br />
+<td>Layout to be used for building and unpacking artifacts<br />
 <strong>Default value is</strong>: <code>org.apache.maven.plugin.nar.NarLayout21</code>.</td>
 </tr>
 <tr class="a"><td><strong><a href="#libtool">libtool</a></strong></td>
@@ -422,7 +430,7 @@ being tested.<br />
 delegation instead of the default Maven isolated classloader. Only
 used when forking (forkMode is not &quot;none&quot;).<br />
 
- Setting it to false helps with some problems caused by conflicts
+Setting it to false helps with some problems caused by conflicts
 between xml parsers in the classpath and the Java 5 provider
 parser.<br />
 <strong>Default value is</strong>: <code>false</code>.</td>
@@ -689,7 +697,7 @@ run a single test instead of an entire suite).<br />
 <tr class="a"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>-</code></td>
-<td>Target directory for Nar file construction Defaults to
+<td>Target directory for Nar file construction. Defaults to
 &quot;${project.build.directory}/nar&quot; for &quot;nar-compile&quot; goal Defaults to
 &quot;${project.build.directory}/test-nar&quot; for &quot;nar-testCompile&quot; goal<br />
 </td>
@@ -740,14 +748,21 @@ sense to use in conjunction with parallel.<br />
 within the test, or show the full trace.<br />
 <strong>Default value is</strong>: <code>true</code>.</td>
 </tr>
-<tr class="b"><td><strong><a href="#useFile">useFile</a></strong></td>
+<tr class="b"><td><strong><a href="#unpackDirectory">unpackDirectory</a></strong></td>
+<td><code>File</code></td>
+<td><code>-</code></td>
+<td>Target directory for Nar file unpacking. Defaults to
+&quot;${targetDirectory}/depenencies&quot;<br />
+</td>
+</tr>
+<tr class="a"><td><strong><a href="#useFile">useFile</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Option to generate a file test report or just output the test
 report to the console.<br />
 <strong>Default value is</strong>: <code>true</code>.</td>
 </tr>
-<tr class="a"><td><strong><a href="#useManifestOnlyJar">useManifestOnlyJar</a></strong></td>
+<tr class="b"><td><strong><a href="#useManifestOnlyJar">useManifestOnlyJar</a></strong></td>
 <td><code>boolean</code></td>
 <td><code>2.4.3</code></td>
 <td>By default, Surefire forks your tests using a manifest-only jar;
@@ -760,7 +775,7 @@ may cause your tests to fail on Windows if your classpath is too
 long.<br />
 <strong>Default value is</strong>: <code>true</code>.</td>
 </tr>
-<tr class="b"><td><strong><a href="#useSystemClassLoader">useSystemClassLoader</a></strong></td>
+<tr class="a"><td><strong><a href="#useSystemClassLoader">useSystemClassLoader</a></strong></td>
 <td><code>Boolean</code></td>
 <td><code>2.3</code></td>
 <td>Option to pass dependencies to the system's classloader instead of
@@ -769,7 +784,7 @@ JDKs which implement the service provider lookup mechanism by using
 the system's classloader. Default value is &quot;true&quot;.<br />
 </td>
 </tr>
-<tr class="a"><td><strong><a href="#workingDirectory">workingDirectory</a></strong></td>
+<tr class="b"><td><strong><a href="#workingDirectory">workingDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>2.1.3</code></td>
 <td>Command line working directory.<br />
@@ -821,7 +836,7 @@ obtained in your unit test by System.getProperty(&quot;basedir&quot;).</div><ul>
 delegation instead of the default Maven isolated classloader. Only
 used when forking (forkMode is not &quot;none&quot;).<br />
 
- Setting it to false helps with some problems caused by conflicts
+Setting it to false helps with some problems caused by conflicts
 between xml parsers in the classpath and the Java 5 provider
 parser.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Since</strong>: <code>2.1</code></li>
@@ -987,7 +1002,7 @@ as the one used to run Maven.</div><ul><li><strong>Type</strong>: <code>java.lan
 </ul>
 <hr />
 <p><strong><a name="layout">layout</a>:</strong></p>
-<div>Layout to be used for building and upacking artifacts</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<div>Layout to be used for building and unpacking artifacts</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
 <li><strong>Required</strong>: <code>Yes</code></li>
 <li><strong>Expression</strong>: <code>${nar.layout}</code></li>
 <li><strong>Default</strong>: <code>org.apache.maven.plugin.nar.NarLayout21</code></li>
@@ -1138,7 +1153,7 @@ run a single test instead of an entire suite).</div><ul><li><strong>Type</strong
 </ul>
 <hr />
 <p><strong><a name="targetDirectory">targetDirectory</a>:</strong></p>
-<div>Target directory for Nar file construction Defaults to
+<div>Target directory for Nar file construction. Defaults to
 &quot;${project.build.directory}/nar&quot; for &quot;nar-compile&quot; goal Defaults to
 &quot;${project.build.directory}/test-nar&quot; for &quot;nar-testCompile&quot; goal</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
@@ -1206,6 +1221,12 @@ within the test, or show the full trace.</div><ul><li><strong>Type</strong>: <co
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>Expression</strong>: <code>${trimStackTrace}</code></li>
 <li><strong>Default</strong>: <code>true</code></li>
+</ul>
+<hr />
+<p><strong><a name="unpackDirectory">unpackDirectory</a>:</strong></p>
+<div>Target directory for Nar file unpacking. Defaults to
+&quot;${targetDirectory}/depenencies&quot;</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
 </ul>
 <hr />
 <p><strong><a name="useFile">useFile</a>:</strong></p>

@@ -106,98 +106,99 @@
 <a name="96" href="#96">96</a>          <strong class="jxr_keyword">if</strong> ( library.getType().equals( Library.EXECUTABLE ) &amp;&amp; library.shouldRun() )
 <a name="97" href="#97">97</a>          {
 <a name="98" href="#98">98</a>              MavenProject project = getMavenProject();
-<a name="99" href="#99">99</a>              <em class="jxr_comment">// FIXME NAR-90, we could make dure we get the final name from layout</em>
+<a name="99" href="#99">99</a>              <em class="jxr_comment">// FIXME NAR-90, we could make sure we get the final name from layout</em>
 <a name="100" href="#100">100</a>             File executable =
-<a name="101" href="#101">101</a>                 <strong class="jxr_keyword">new</strong> File( getLayout().getBinDirectory( getTargetDirectory(), getAOL().toString() ),
-<a name="102" href="#102">102</a>                           project.getArtifactId() );
-<a name="103" href="#103">103</a>             getLog().info( <span class="jxr_string">"Running executable "</span> + executable );
-<a name="104" href="#104">104</a>             List args = library.getArgs();
-<a name="105" href="#105">105</a>             <strong class="jxr_keyword">int</strong> result =
-<a name="106" href="#106">106</a>                 NarUtil.runCommand( executable.getPath(), (String[]) args.toArray( <strong class="jxr_keyword">new</strong> String[args.size()] ), <strong class="jxr_keyword">null</strong>,
-<a name="107" href="#107">107</a>                                     generateEnvironment(), getLog() );
-<a name="108" href="#108">108</a>             <strong class="jxr_keyword">if</strong> ( result != 0 )
-<a name="109" href="#109">109</a>             {
-<a name="110" href="#110">110</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoFailureException( <span class="jxr_string">"Test "</span> + executable + <span class="jxr_string">" failed with exit code: "</span> + result + <span class="jxr_string">" 0x"</span>
-<a name="111" href="#111">111</a>                     + Integer.toHexString( result ) );
-<a name="112" href="#112">112</a>             }
-<a name="113" href="#113">113</a>         }
-<a name="114" href="#114">114</a>     }
-<a name="115" href="#115">115</a> 
-<a name="116" href="#116">116</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> File getTestTargetDirectory()
-<a name="117" href="#117">117</a>     {
-<a name="118" href="#118">118</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> File( getMavenProject().getBuild().getDirectory(), <span class="jxr_string">"test-nar"</span> );
-<a name="119" href="#119">119</a>     }
-<a name="120" href="#120">120</a> 
-<a name="121" href="#121">121</a>     <strong class="jxr_keyword">private</strong> String[] generateEnvironment()
-<a name="122" href="#122">122</a>         <strong class="jxr_keyword">throws</strong> MojoExecutionException, MojoFailureException
-<a name="123" href="#123">123</a>     {
-<a name="124" href="#124">124</a>         List env = <strong class="jxr_keyword">new</strong> ArrayList();
-<a name="125" href="#125">125</a> 
-<a name="126" href="#126">126</a>         Set<em class="jxr_comment">/*<em class="jxr_comment"> &lt;File&gt; */</em>sharedPaths = <strong class="jxr_keyword">new</strong> HashSet();</em>
-<a name="127" href="#127">127</a> 
-<a name="128" href="#128">128</a>         <em class="jxr_comment">// add all shared libraries of this package</em>
-<a name="129" href="#129">129</a>         <strong class="jxr_keyword">for</strong> ( Iterator i = getLibraries().iterator(); i.hasNext(); )
-<a name="130" href="#130">130</a>         {
-<a name="131" href="#131">131</a>             <a href="../../../../../org/apache/maven/plugin/nar/Library.html">Library</a> lib = (Library) i.next();
-<a name="132" href="#132">132</a>             <strong class="jxr_keyword">if</strong> ( lib.getType().equals( Library.SHARED ) )
-<a name="133" href="#133">133</a>             {
-<a name="134" href="#134">134</a>                 File path =
-<a name="135" href="#135">135</a>                     getLayout().getLibDirectory( getTargetDirectory(), getAOL().toString(), lib.getType() );
-<a name="136" href="#136">136</a>                 getLog().debug( <span class="jxr_string">"Adding path to shared library: "</span> + path );
-<a name="137" href="#137">137</a>                 sharedPaths.add( path );
-<a name="138" href="#138">138</a>             }
-<a name="139" href="#139">139</a>         }
-<a name="140" href="#140">140</a> 
-<a name="141" href="#141">141</a>         <em class="jxr_comment">// add dependent shared libraries</em>
-<a name="142" href="#142">142</a>         String classifier = getAOL() + <span class="jxr_string">"-shared"</span>;
-<a name="143" href="#143">143</a>         List narArtifacts = getNarManager().getNarDependencies( <span class="jxr_string">"compile"</span> );
-<a name="144" href="#144">144</a>         List dependencies = getNarManager().getAttachedNarDependencies( narArtifacts, classifier );
-<a name="145" href="#145">145</a>         <strong class="jxr_keyword">for</strong> ( Iterator d = dependencies.iterator(); d.hasNext(); )
-<a name="146" href="#146">146</a>         {
-<a name="147" href="#147">147</a>             Artifact dependency = (Artifact) d.next();
-<a name="148" href="#148">148</a>             getLog().debug( <span class="jxr_string">"Looking for dependency "</span> + dependency );
-<a name="149" href="#149">149</a> 
-<a name="150" href="#150">150</a>             <em class="jxr_comment">// FIXME reported to maven developer list, isSnapshot</em>
-<a name="151" href="#151">151</a>             <em class="jxr_comment">// changes behaviour</em>
-<a name="152" href="#152">152</a>             <em class="jxr_comment">// of getBaseVersion, called in pathOf.</em>
-<a name="153" href="#153">153</a>             dependency.isSnapshot();
-<a name="154" href="#154">154</a> 
-<a name="155" href="#155">155</a>             <em class="jxr_comment">// FIXME NAR-90</em>
-<a name="156" href="#156">156</a>             File libDir = <strong class="jxr_keyword">new</strong> File( getLocalRepository().pathOf( dependency ) );
-<a name="157" href="#157">157</a>             libDir = <strong class="jxr_keyword">new</strong> File( getLocalRepository().getBasedir(), libDir.getParent() );
-<a name="158" href="#158">158</a>             libDir = <strong class="jxr_keyword">new</strong> File( libDir, <span class="jxr_string">"nar/lib/"</span> + getAOL() + <span class="jxr_string">"/shared"</span> );
-<a name="159" href="#159">159</a>             sharedPaths.add( libDir );
-<a name="160" href="#160">160</a>         }
-<a name="161" href="#161">161</a> 
-<a name="162" href="#162">162</a>         <em class="jxr_comment">// set environment</em>
-<a name="163" href="#163">163</a>         <strong class="jxr_keyword">if</strong> ( sharedPaths.size() &gt; 0 )
-<a name="164" href="#164">164</a>         {
-<a name="165" href="#165">165</a>             String sharedPath = <span class="jxr_string">""</span>;
-<a name="166" href="#166">166</a>             <strong class="jxr_keyword">for</strong> ( Iterator i = sharedPaths.iterator(); i.hasNext(); )
-<a name="167" href="#167">167</a>             {
-<a name="168" href="#168">168</a>                 sharedPath += ( (File) i.next() ).getPath();
-<a name="169" href="#169">169</a>                 <strong class="jxr_keyword">if</strong> ( i.hasNext() )
-<a name="170" href="#170">170</a>                 {
-<a name="171" href="#171">171</a>                     sharedPath += File.pathSeparator;
-<a name="172" href="#172">172</a>                 }
-<a name="173" href="#173">173</a>             }
-<a name="174" href="#174">174</a> 
-<a name="175" href="#175">175</a>             String sharedEnv = NarUtil.addLibraryPathToEnv( sharedPath, <strong class="jxr_keyword">null</strong>, getOS() );
-<a name="176" href="#176">176</a>             env.add( sharedEnv );
-<a name="177" href="#177">177</a>         }
-<a name="178" href="#178">178</a> 
-<a name="179" href="#179">179</a>         <em class="jxr_comment">// necessary to find WinSxS</em>
-<a name="180" href="#180">180</a>         <strong class="jxr_keyword">if</strong> ( getOS().equals( OS.WINDOWS ) )
-<a name="181" href="#181">181</a>         {
-<a name="182" href="#182">182</a>             env.add( <span class="jxr_string">"SystemRoot="</span> + NarUtil.getEnv( <span class="jxr_string">"SystemRoot"</span>, <span class="jxr_string">"SystemRoot"</span>, <span class="jxr_string">"C:&#92;&#92;Windows"</span> ) );
-<a name="183" href="#183">183</a>         }
-<a name="184" href="#184">184</a> 
-<a name="185" href="#185">185</a>         <em class="jxr_comment">// add CLASSPATH</em>
-<a name="186" href="#186">186</a>         env.add( <span class="jxr_string">"CLASSPATH="</span> + StringUtils.join( classpathElements.iterator(), File.pathSeparator ) );
-<a name="187" href="#187">187</a> 
-<a name="188" href="#188">188</a>         <strong class="jxr_keyword">return</strong> env.size() &gt; 0 ? (String[]) env.toArray( <strong class="jxr_keyword">new</strong> String[env.size()] ) : <strong class="jxr_keyword">null</strong>;
-<a name="189" href="#189">189</a>     }
-<a name="190" href="#190">190</a> }
+<a name="101" href="#101">101</a>                 <strong class="jxr_keyword">new</strong> File( getLayout().getBinDirectory( getTargetDirectory(), getMavenProject().getArtifactId(),
+<a name="102" href="#102">102</a>                                                        getMavenProject().getVersion(), getAOL().toString() ),
+<a name="103" href="#103">103</a>                           project.getArtifactId() );
+<a name="104" href="#104">104</a>             getLog().info( <span class="jxr_string">"Running executable "</span> + executable );
+<a name="105" href="#105">105</a>             List args = library.getArgs();
+<a name="106" href="#106">106</a>             <strong class="jxr_keyword">int</strong> result =
+<a name="107" href="#107">107</a>                 NarUtil.runCommand( executable.getPath(), (String[]) args.toArray( <strong class="jxr_keyword">new</strong> String[args.size()] ), <strong class="jxr_keyword">null</strong>,
+<a name="108" href="#108">108</a>                                     generateEnvironment(), getLog() );
+<a name="109" href="#109">109</a>             <strong class="jxr_keyword">if</strong> ( result != 0 )
+<a name="110" href="#110">110</a>             {
+<a name="111" href="#111">111</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoFailureException( <span class="jxr_string">"Test "</span> + executable + <span class="jxr_string">" failed with exit code: "</span> + result + <span class="jxr_string">" 0x"</span>
+<a name="112" href="#112">112</a>                     + Integer.toHexString( result ) );
+<a name="113" href="#113">113</a>             }
+<a name="114" href="#114">114</a>         }
+<a name="115" href="#115">115</a>     }
+<a name="116" href="#116">116</a> 
+<a name="117" href="#117">117</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> File getTestTargetDirectory()
+<a name="118" href="#118">118</a>     {
+<a name="119" href="#119">119</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> File( getMavenProject().getBuild().getDirectory(), <span class="jxr_string">"test-nar"</span> );
+<a name="120" href="#120">120</a>     }
+<a name="121" href="#121">121</a> 
+<a name="122" href="#122">122</a>     <strong class="jxr_keyword">private</strong> String[] generateEnvironment()
+<a name="123" href="#123">123</a>         <strong class="jxr_keyword">throws</strong> MojoExecutionException, MojoFailureException
+<a name="124" href="#124">124</a>     {
+<a name="125" href="#125">125</a>         List env = <strong class="jxr_keyword">new</strong> ArrayList();
+<a name="126" href="#126">126</a> 
+<a name="127" href="#127">127</a>         Set<em class="jxr_comment">/*<em class="jxr_comment"> &lt;File&gt; */</em>sharedPaths = <strong class="jxr_keyword">new</strong> HashSet();</em>
+<a name="128" href="#128">128</a> 
+<a name="129" href="#129">129</a>         <em class="jxr_comment">// add all shared libraries of this package</em>
+<a name="130" href="#130">130</a>         <strong class="jxr_keyword">for</strong> ( Iterator i = getLibraries().iterator(); i.hasNext(); )
+<a name="131" href="#131">131</a>         {
+<a name="132" href="#132">132</a>             <a href="../../../../../org/apache/maven/plugin/nar/Library.html">Library</a> lib = (Library) i.next();
+<a name="133" href="#133">133</a>             <strong class="jxr_keyword">if</strong> ( lib.getType().equals( Library.SHARED ) )
+<a name="134" href="#134">134</a>             {
+<a name="135" href="#135">135</a>                 File path =
+<a name="136" href="#136">136</a>                     getLayout().getLibDirectory( getTargetDirectory(), getMavenProject().getArtifactId(),
+<a name="137" href="#137">137</a>                                                  getMavenProject().getVersion(), getAOL().toString(), lib.getType() );
+<a name="138" href="#138">138</a>                 getLog().debug( <span class="jxr_string">"Adding path to shared library: "</span> + path );
+<a name="139" href="#139">139</a>                 sharedPaths.add( path );
+<a name="140" href="#140">140</a>             }
+<a name="141" href="#141">141</a>         }
+<a name="142" href="#142">142</a> 
+<a name="143" href="#143">143</a>         <em class="jxr_comment">// add dependent shared libraries</em>
+<a name="144" href="#144">144</a>         String classifier = getAOL() + <span class="jxr_string">"-shared"</span>;
+<a name="145" href="#145">145</a>         List narArtifacts = getNarManager().getNarDependencies( <span class="jxr_string">"compile"</span> );
+<a name="146" href="#146">146</a>         List dependencies = getNarManager().getAttachedNarDependencies( narArtifacts, classifier );
+<a name="147" href="#147">147</a>         <strong class="jxr_keyword">for</strong> ( Iterator d = dependencies.iterator(); d.hasNext(); )
+<a name="148" href="#148">148</a>         {
+<a name="149" href="#149">149</a>             Artifact dependency = (Artifact) d.next();
+<a name="150" href="#150">150</a>             getLog().debug( <span class="jxr_string">"Looking for dependency "</span> + dependency );
+<a name="151" href="#151">151</a> 
+<a name="152" href="#152">152</a>             <em class="jxr_comment">// FIXME reported to maven developer list, isSnapshot</em>
+<a name="153" href="#153">153</a>             <em class="jxr_comment">// changes behaviour</em>
+<a name="154" href="#154">154</a>             <em class="jxr_comment">// of getBaseVersion, called in pathOf.</em>
+<a name="155" href="#155">155</a>             dependency.isSnapshot();
+<a name="156" href="#156">156</a> 
+<a name="157" href="#157">157</a>             File libDirectory =
+<a name="158" href="#158">158</a>                 getLayout().getLibDirectory( getUnpackDirectory(), dependency.getArtifactId(), dependency.getVersion(),
+<a name="159" href="#159">159</a>                                              getAOL().toString(), Library.SHARED );
+<a name="160" href="#160">160</a>             sharedPaths.add( libDirectory );
+<a name="161" href="#161">161</a>         }
+<a name="162" href="#162">162</a> 
+<a name="163" href="#163">163</a>         <em class="jxr_comment">// set environment</em>
+<a name="164" href="#164">164</a>         <strong class="jxr_keyword">if</strong> ( sharedPaths.size() &gt; 0 )
+<a name="165" href="#165">165</a>         {
+<a name="166" href="#166">166</a>             String sharedPath = <span class="jxr_string">""</span>;
+<a name="167" href="#167">167</a>             <strong class="jxr_keyword">for</strong> ( Iterator i = sharedPaths.iterator(); i.hasNext(); )
+<a name="168" href="#168">168</a>             {
+<a name="169" href="#169">169</a>                 sharedPath += ( (File) i.next() ).getPath();
+<a name="170" href="#170">170</a>                 <strong class="jxr_keyword">if</strong> ( i.hasNext() )
+<a name="171" href="#171">171</a>                 {
+<a name="172" href="#172">172</a>                     sharedPath += File.pathSeparator;
+<a name="173" href="#173">173</a>                 }
+<a name="174" href="#174">174</a>             }
+<a name="175" href="#175">175</a> 
+<a name="176" href="#176">176</a>             String sharedEnv = NarUtil.addLibraryPathToEnv( sharedPath, <strong class="jxr_keyword">null</strong>, getOS() );
+<a name="177" href="#177">177</a>             env.add( sharedEnv );
+<a name="178" href="#178">178</a>         }
+<a name="179" href="#179">179</a> 
+<a name="180" href="#180">180</a>         <em class="jxr_comment">// necessary to find WinSxS</em>
+<a name="181" href="#181">181</a>         <strong class="jxr_keyword">if</strong> ( getOS().equals( OS.WINDOWS ) )
+<a name="182" href="#182">182</a>         {
+<a name="183" href="#183">183</a>             env.add( <span class="jxr_string">"SystemRoot="</span> + NarUtil.getEnv( <span class="jxr_string">"SystemRoot"</span>, <span class="jxr_string">"SystemRoot"</span>, <span class="jxr_string">"C:&#92;&#92;Windows"</span> ) );
+<a name="184" href="#184">184</a>         }
+<a name="185" href="#185">185</a> 
+<a name="186" href="#186">186</a>         <em class="jxr_comment">// add CLASSPATH</em>
+<a name="187" href="#187">187</a>         env.add( <span class="jxr_string">"CLASSPATH="</span> + StringUtils.join( classpathElements.iterator(), File.pathSeparator ) );
+<a name="188" href="#188">188</a> 
+<a name="189" href="#189">189</a>         <strong class="jxr_keyword">return</strong> env.size() &gt; 0 ? (String[]) env.toArray( <strong class="jxr_keyword">new</strong> String[env.size()] ) : <strong class="jxr_keyword">null</strong>;
+<a name="190" href="#190">190</a>     }
+<a name="191" href="#191">191</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

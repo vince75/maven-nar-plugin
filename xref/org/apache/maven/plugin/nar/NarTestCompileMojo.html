@@ -150,127 +150,133 @@
 <a name="140" href="#140">140</a>         <em class="jxr_comment">// add dependency include paths</em>
 <a name="141" href="#141">141</a>         <strong class="jxr_keyword">for</strong> ( Iterator i = getNarManager().getNarDependencies( <span class="jxr_string">"test"</span> ).iterator(); i.hasNext(); )
 <a name="142" href="#142">142</a>         {
-<a name="143" href="#143">143</a>             File include = <strong class="jxr_keyword">new</strong> File( getNarManager().getNarFile( (Artifact) i.next() ).getParentFile(), <span class="jxr_string">"nar/include"</span> );
-<a name="144" href="#144">144</a>             <strong class="jxr_keyword">if</strong> ( include.exists() )
-<a name="145" href="#145">145</a>             {
-<a name="146" href="#146">146</a>                 task.createIncludePath().setPath( include.getPath() );
-<a name="147" href="#147">147</a>             }
-<a name="148" href="#148">148</a>         }
-<a name="149" href="#149">149</a> 
-<a name="150" href="#150">150</a>         <em class="jxr_comment">// add linker</em>
-<a name="151" href="#151">151</a>         task.addConfiguredLinker( getLinker().getLinker( <strong class="jxr_keyword">this</strong>, antProject, getOS(), getAOL().getKey() + <span class="jxr_string">"linker."</span>, type ) );
-<a name="152" href="#152">152</a> 
-<a name="153" href="#153">153</a>         <em class="jxr_comment">// FIXME hardcoded values</em>
-<a name="154" href="#154">154</a>         String libName = getFinalName();
-<a name="155" href="#155">155</a>         File includeDir = getLayout().getIncludeDirectory( getTargetDirectory() );
-<a name="156" href="#156">156</a>         File libDir = getLayout().getLibDirectory( getTargetDirectory(), getAOL().toString(), test.getLink() );
-<a name="157" href="#157">157</a> 
-<a name="158" href="#158">158</a>         <em class="jxr_comment">// copy shared library</em>
-<a name="159" href="#159">159</a>         <em class="jxr_comment">// FIXME why do we do this ?</em>
-<a name="160" href="#160">160</a>         <em class="jxr_comment">/*</em>
-<a name="161" href="#161">161</a> <em class="jxr_comment">         * Removed in alpha-10 if (test.getLink().equals(Library.SHARED)) { try { // defaults are Unix String libPrefix</em>
-<a name="162" href="#162">162</a> <em class="jxr_comment">         * = NarUtil.getDefaults().getProperty( getAOLKey() + "shared.prefix", "lib"); String libExt =</em>
-<a name="163" href="#163">163</a> <em class="jxr_comment">         * NarUtil.getDefaults().getProperty( getAOLKey() + "shared.extension", "so"); File copyDir = new</em>
-<a name="164" href="#164">164</a> <em class="jxr_comment">         * File(getTargetDirectory(), (getOS().equals( "Windows") ? "bin" : "lib") + "/" + getAOL() + "/" +</em>
-<a name="165" href="#165">165</a> <em class="jxr_comment">         * test.getLink()); FileUtils.copyFileToDirectory(new File(libDir, libPrefix + libName + "." + libExt),</em>
-<a name="166" href="#166">166</a> <em class="jxr_comment">         * copyDir); if (!getOS().equals(OS.WINDOWS)) { libDir = copyDir; } } catch (IOException e) { throw new</em>
-<a name="167" href="#167">167</a> <em class="jxr_comment">         * MojoExecutionException( "NAR: Could not copy shared library", e); } }</em>
-<a name="168" href="#168">168</a> <em class="jxr_comment">         */</em>
-<a name="169" href="#169">169</a>         <em class="jxr_comment">// FIXME what about copying the other shared libs?</em>
-<a name="170" href="#170">170</a> 
-<a name="171" href="#171">171</a>         <em class="jxr_comment">// add include of this package</em>
-<a name="172" href="#172">172</a>         <strong class="jxr_keyword">if</strong> ( includeDir.exists() )
-<a name="173" href="#173">173</a>         {
-<a name="174" href="#174">174</a>             task.createIncludePath().setLocation( includeDir );
-<a name="175" href="#175">175</a>         }
+<a name="143" href="#143">143</a>             Artifact artifact = (Artifact) i.next();
+<a name="144" href="#144">144</a>             File include =
+<a name="145" href="#145">145</a>                 getLayout().getIncludeDirectory( getUnpackDirectory(), artifact.getArtifactId(), artifact.getVersion() );
+<a name="146" href="#146">146</a>             <strong class="jxr_keyword">if</strong> ( include.exists() )
+<a name="147" href="#147">147</a>             {
+<a name="148" href="#148">148</a>                 task.createIncludePath().setPath( include.getPath() );
+<a name="149" href="#149">149</a>             }
+<a name="150" href="#150">150</a>         }
+<a name="151" href="#151">151</a> 
+<a name="152" href="#152">152</a>         <em class="jxr_comment">// add linker</em>
+<a name="153" href="#153">153</a>         task.addConfiguredLinker( getLinker().getLinker( <strong class="jxr_keyword">this</strong>, antProject, getOS(), getAOL().getKey() + <span class="jxr_string">"linker."</span>, type ) );
+<a name="154" href="#154">154</a> 
+<a name="155" href="#155">155</a>         <em class="jxr_comment">// FIXME hardcoded values</em>
+<a name="156" href="#156">156</a>         String libName = getFinalName();
+<a name="157" href="#157">157</a>         File includeDir =
+<a name="158" href="#158">158</a>             getLayout().getIncludeDirectory( getTargetDirectory(), getMavenProject().getArtifactId(),
+<a name="159" href="#159">159</a>                                              getMavenProject().getVersion() );
+<a name="160" href="#160">160</a>         File libDir =
+<a name="161" href="#161">161</a>             getLayout().getLibDirectory( getTargetDirectory(), getMavenProject().getArtifactId(),
+<a name="162" href="#162">162</a>                                          getMavenProject().getVersion(), getAOL().toString(), test.getLink() );
+<a name="163" href="#163">163</a> 
+<a name="164" href="#164">164</a>         <em class="jxr_comment">// copy shared library</em>
+<a name="165" href="#165">165</a>         <em class="jxr_comment">// FIXME why do we do this ?</em>
+<a name="166" href="#166">166</a>         <em class="jxr_comment">/*</em>
+<a name="167" href="#167">167</a> <em class="jxr_comment">         * Removed in alpha-10 if (test.getLink().equals(Library.SHARED)) { try { // defaults are Unix String libPrefix</em>
+<a name="168" href="#168">168</a> <em class="jxr_comment">         * = NarUtil.getDefaults().getProperty( getAOLKey() + "shared.prefix", "lib"); String libExt =</em>
+<a name="169" href="#169">169</a> <em class="jxr_comment">         * NarUtil.getDefaults().getProperty( getAOLKey() + "shared.extension", "so"); File copyDir = new</em>
+<a name="170" href="#170">170</a> <em class="jxr_comment">         * File(getTargetDirectory(), (getOS().equals( "Windows") ? "bin" : "lib") + "/" + getAOL() + "/" +</em>
+<a name="171" href="#171">171</a> <em class="jxr_comment">         * test.getLink()); FileUtils.copyFileToDirectory(new File(libDir, libPrefix + libName + "." + libExt),</em>
+<a name="172" href="#172">172</a> <em class="jxr_comment">         * copyDir); if (!getOS().equals(OS.WINDOWS)) { libDir = copyDir; } } catch (IOException e) { throw new</em>
+<a name="173" href="#173">173</a> <em class="jxr_comment">         * MojoExecutionException( "NAR: Could not copy shared library", e); } }</em>
+<a name="174" href="#174">174</a> <em class="jxr_comment">         */</em>
+<a name="175" href="#175">175</a>         <em class="jxr_comment">// FIXME what about copying the other shared libs?</em>
 <a name="176" href="#176">176</a> 
-<a name="177" href="#177">177</a>         <em class="jxr_comment">// add library of this package</em>
-<a name="178" href="#178">178</a>         <strong class="jxr_keyword">if</strong> ( libDir.exists() )
+<a name="177" href="#177">177</a>         <em class="jxr_comment">// add include of this package</em>
+<a name="178" href="#178">178</a>         <strong class="jxr_keyword">if</strong> ( includeDir.exists() )
 <a name="179" href="#179">179</a>         {
-<a name="180" href="#180">180</a>             LibrarySet libSet = <strong class="jxr_keyword">new</strong> LibrarySet();
-<a name="181" href="#181">181</a>             libSet.setProject( antProject );
-<a name="182" href="#182">182</a>             libSet.setLibs( <strong class="jxr_keyword">new</strong> CUtil.StringArrayBuilder( libName ) );
-<a name="183" href="#183">183</a>             LibraryTypeEnum libType = <strong class="jxr_keyword">new</strong> LibraryTypeEnum();
-<a name="184" href="#184">184</a>             libType.setValue( test.getLink() );
-<a name="185" href="#185">185</a>             libSet.setType( libType );
-<a name="186" href="#186">186</a>             libSet.setDir( libDir );
-<a name="187" href="#187">187</a>             task.addLibset( libSet );
-<a name="188" href="#188">188</a>         }
-<a name="189" href="#189">189</a> 
-<a name="190" href="#190">190</a>         <em class="jxr_comment">// add dependency libraries</em>
-<a name="191" href="#191">191</a>         List depLibOrder = getDependencyLibOrder();
-<a name="192" href="#192">192</a>         List depLibs = getNarManager().getNarDependencies( <span class="jxr_string">"test"</span> );
-<a name="193" href="#193">193</a> 
-<a name="194" href="#194">194</a>         <em class="jxr_comment">// reorder the libraries that come from the nar dependencies</em>
-<a name="195" href="#195">195</a>         <em class="jxr_comment">// to comply with the order specified by the user</em>
-<a name="196" href="#196">196</a>         <strong class="jxr_keyword">if</strong> ( ( depLibOrder != <strong class="jxr_keyword">null</strong> ) &amp;&amp; !depLibOrder.isEmpty() )
-<a name="197" href="#197">197</a>         {
-<a name="198" href="#198">198</a> 
-<a name="199" href="#199">199</a>             List tmp = <strong class="jxr_keyword">new</strong> LinkedList();
-<a name="200" href="#200">200</a> 
-<a name="201" href="#201">201</a>             <strong class="jxr_keyword">for</strong> ( Iterator i = depLibOrder.iterator(); i.hasNext(); )
-<a name="202" href="#202">202</a>             {
-<a name="203" href="#203">203</a> 
-<a name="204" href="#204">204</a>                 String depToOrderName = (String) i.next();
-<a name="205" href="#205">205</a> 
-<a name="206" href="#206">206</a>                 <strong class="jxr_keyword">for</strong> ( Iterator j = depLibs.iterator(); j.hasNext(); )
-<a name="207" href="#207">207</a>                 {
-<a name="208" href="#208">208</a> 
-<a name="209" href="#209">209</a>                     <a href="../../../../../org/apache/maven/plugin/nar/NarArtifact.html">NarArtifact</a> dep = (NarArtifact) j.next();
-<a name="210" href="#210">210</a>                     String depName = dep.getGroupId() + <span class="jxr_string">":"</span> + dep.getArtifactId();
+<a name="180" href="#180">180</a>             task.createIncludePath().setLocation( includeDir );
+<a name="181" href="#181">181</a>         }
+<a name="182" href="#182">182</a> 
+<a name="183" href="#183">183</a>         <em class="jxr_comment">// add library of this package</em>
+<a name="184" href="#184">184</a>         <strong class="jxr_keyword">if</strong> ( libDir.exists() )
+<a name="185" href="#185">185</a>         {
+<a name="186" href="#186">186</a>             LibrarySet libSet = <strong class="jxr_keyword">new</strong> LibrarySet();
+<a name="187" href="#187">187</a>             libSet.setProject( antProject );
+<a name="188" href="#188">188</a>             libSet.setLibs( <strong class="jxr_keyword">new</strong> CUtil.StringArrayBuilder( libName ) );
+<a name="189" href="#189">189</a>             LibraryTypeEnum libType = <strong class="jxr_keyword">new</strong> LibraryTypeEnum();
+<a name="190" href="#190">190</a>             libType.setValue( test.getLink() );
+<a name="191" href="#191">191</a>             libSet.setType( libType );
+<a name="192" href="#192">192</a>             libSet.setDir( libDir );
+<a name="193" href="#193">193</a>             task.addLibset( libSet );
+<a name="194" href="#194">194</a>         }
+<a name="195" href="#195">195</a> 
+<a name="196" href="#196">196</a>         <em class="jxr_comment">// add dependency libraries</em>
+<a name="197" href="#197">197</a>         List depLibOrder = getDependencyLibOrder();
+<a name="198" href="#198">198</a>         List depLibs = getNarManager().getNarDependencies( <span class="jxr_string">"test"</span> );
+<a name="199" href="#199">199</a> 
+<a name="200" href="#200">200</a>         <em class="jxr_comment">// reorder the libraries that come from the nar dependencies</em>
+<a name="201" href="#201">201</a>         <em class="jxr_comment">// to comply with the order specified by the user</em>
+<a name="202" href="#202">202</a>         <strong class="jxr_keyword">if</strong> ( ( depLibOrder != <strong class="jxr_keyword">null</strong> ) &amp;&amp; !depLibOrder.isEmpty() )
+<a name="203" href="#203">203</a>         {
+<a name="204" href="#204">204</a> 
+<a name="205" href="#205">205</a>             List tmp = <strong class="jxr_keyword">new</strong> LinkedList();
+<a name="206" href="#206">206</a> 
+<a name="207" href="#207">207</a>             <strong class="jxr_keyword">for</strong> ( Iterator i = depLibOrder.iterator(); i.hasNext(); )
+<a name="208" href="#208">208</a>             {
+<a name="209" href="#209">209</a> 
+<a name="210" href="#210">210</a>                 String depToOrderName = (String) i.next();
 <a name="211" href="#211">211</a> 
-<a name="212" href="#212">212</a>                     <strong class="jxr_keyword">if</strong> ( depName.equals( depToOrderName ) )
-<a name="213" href="#213">213</a>                     {
+<a name="212" href="#212">212</a>                 <strong class="jxr_keyword">for</strong> ( Iterator j = depLibs.iterator(); j.hasNext(); )
+<a name="213" href="#213">213</a>                 {
 <a name="214" href="#214">214</a> 
-<a name="215" href="#215">215</a>                         tmp.add( dep );
-<a name="216" href="#216">216</a>                         j.remove();
-<a name="217" href="#217">217</a>                     }
-<a name="218" href="#218">218</a>                 }
-<a name="219" href="#219">219</a>             }
+<a name="215" href="#215">215</a>                     <a href="../../../../../org/apache/maven/plugin/nar/NarArtifact.html">NarArtifact</a> dep = (NarArtifact) j.next();
+<a name="216" href="#216">216</a>                     String depName = dep.getGroupId() + <span class="jxr_string">":"</span> + dep.getArtifactId();
+<a name="217" href="#217">217</a> 
+<a name="218" href="#218">218</a>                     <strong class="jxr_keyword">if</strong> ( depName.equals( depToOrderName ) )
+<a name="219" href="#219">219</a>                     {
 <a name="220" href="#220">220</a> 
-<a name="221" href="#221">221</a>             tmp.addAll( depLibs );
-<a name="222" href="#222">222</a>             depLibs = tmp;
-<a name="223" href="#223">223</a>         }
-<a name="224" href="#224">224</a> 
-<a name="225" href="#225">225</a>         <strong class="jxr_keyword">for</strong> ( Iterator i = depLibs.iterator(); i.hasNext(); )
-<a name="226" href="#226">226</a>         {
-<a name="227" href="#227">227</a> 
-<a name="228" href="#228">228</a>             Artifact dependency = (Artifact) i.next();
-<a name="229" href="#229">229</a>             <em class="jxr_comment">// FIXME: this should be preferred binding</em>
-<a name="230" href="#230">230</a>             File lib =
-<a name="231" href="#231">231</a>                 <strong class="jxr_keyword">new</strong> File( getNarManager().getNarFile( dependency ).getParentFile(), <span class="jxr_string">"nar/lib/"</span> + getAOL() + <span class="jxr_string">"/"</span>
-<a name="232" href="#232">232</a>                     + test.getLink() );
-<a name="233" href="#233">233</a>             <strong class="jxr_keyword">if</strong> ( lib.exists() )
-<a name="234" href="#234">234</a>             {
-<a name="235" href="#235">235</a>                 LibrarySet libset = <strong class="jxr_keyword">new</strong> LibrarySet();
-<a name="236" href="#236">236</a>                 libset.setProject( antProject );
-<a name="237" href="#237">237</a>                 libset.setLibs( <strong class="jxr_keyword">new</strong> CUtil.StringArrayBuilder( dependency.getArtifactId() + <span class="jxr_string">"-"</span>
-<a name="238" href="#238">238</a>                     + dependency.getVersion() ) );
-<a name="239" href="#239">239</a>                 libset.setDir( lib );
-<a name="240" href="#240">240</a>                 task.addLibset( libset );
-<a name="241" href="#241">241</a>             }
-<a name="242" href="#242">242</a>         }
-<a name="243" href="#243">243</a> 
-<a name="244" href="#244">244</a>         <em class="jxr_comment">// Add JVM to linker</em>
-<a name="245" href="#245">245</a>         getJava().addRuntime( task, getJavaHome( getAOL() ), getOS(), getAOL().getKey() + <span class="jxr_string">".java."</span> );
-<a name="246" href="#246">246</a> 
-<a name="247" href="#247">247</a>         <em class="jxr_comment">// execute</em>
-<a name="248" href="#248">248</a>         <strong class="jxr_keyword">try</strong>
-<a name="249" href="#249">249</a>         {
-<a name="250" href="#250">250</a>             task.execute();
-<a name="251" href="#251">251</a>         }
-<a name="252" href="#252">252</a>         <strong class="jxr_keyword">catch</strong> ( BuildException e )
-<a name="253" href="#253">253</a>         {
-<a name="254" href="#254">254</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"NAR: Test-Compile failed"</span>, e );
-<a name="255" href="#255">255</a>         }
-<a name="256" href="#256">256</a>     }
-<a name="257" href="#257">257</a> 
-<a name="258" href="#258">258</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> File getTestTargetDirectory()
-<a name="259" href="#259">259</a>     {
-<a name="260" href="#260">260</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> File( getMavenProject().getBuild().getDirectory(), <span class="jxr_string">"test-nar"</span> );
-<a name="261" href="#261">261</a>     }
-<a name="262" href="#262">262</a> 
-<a name="263" href="#263">263</a> }
+<a name="221" href="#221">221</a>                         tmp.add( dep );
+<a name="222" href="#222">222</a>                         j.remove();
+<a name="223" href="#223">223</a>                     }
+<a name="224" href="#224">224</a>                 }
+<a name="225" href="#225">225</a>             }
+<a name="226" href="#226">226</a> 
+<a name="227" href="#227">227</a>             tmp.addAll( depLibs );
+<a name="228" href="#228">228</a>             depLibs = tmp;
+<a name="229" href="#229">229</a>         }
+<a name="230" href="#230">230</a> 
+<a name="231" href="#231">231</a>         <strong class="jxr_keyword">for</strong> ( Iterator i = depLibs.iterator(); i.hasNext(); )
+<a name="232" href="#232">232</a>         {
+<a name="233" href="#233">233</a> 
+<a name="234" href="#234">234</a>             Artifact dependency = (Artifact) i.next();
+<a name="235" href="#235">235</a>             <em class="jxr_comment">// FIXME: this should be preferred binding</em>
+<a name="236" href="#236">236</a>             File libDirectory =
+<a name="237" href="#237">237</a>                 getLayout().getLibDirectory( getUnpackDirectory(), dependency.getArtifactId(), dependency.getVersion(),
+<a name="238" href="#238">238</a>                                              getAOL().toString(), test.getLink() );
+<a name="239" href="#239">239</a>             <strong class="jxr_keyword">if</strong> ( libDirectory.exists() )
+<a name="240" href="#240">240</a>             {
+<a name="241" href="#241">241</a>                 LibrarySet libset = <strong class="jxr_keyword">new</strong> LibrarySet();
+<a name="242" href="#242">242</a>                 libset.setProject( antProject );
+<a name="243" href="#243">243</a>                 libset.setLibs( <strong class="jxr_keyword">new</strong> CUtil.StringArrayBuilder( dependency.getArtifactId() + <span class="jxr_string">"-"</span>
+<a name="244" href="#244">244</a>                     + dependency.getVersion() ) );
+<a name="245" href="#245">245</a>                 libset.setDir( libDirectory );
+<a name="246" href="#246">246</a>                 task.addLibset( libset );
+<a name="247" href="#247">247</a>             }
+<a name="248" href="#248">248</a>         }
+<a name="249" href="#249">249</a> 
+<a name="250" href="#250">250</a>         <em class="jxr_comment">// Add JVM to linker</em>
+<a name="251" href="#251">251</a>         getJava().addRuntime( task, getJavaHome( getAOL() ), getOS(), getAOL().getKey() + <span class="jxr_string">".java."</span> );
+<a name="252" href="#252">252</a> 
+<a name="253" href="#253">253</a>         <em class="jxr_comment">// execute</em>
+<a name="254" href="#254">254</a>         <strong class="jxr_keyword">try</strong>
+<a name="255" href="#255">255</a>         {
+<a name="256" href="#256">256</a>             task.execute();
+<a name="257" href="#257">257</a>         }
+<a name="258" href="#258">258</a>         <strong class="jxr_keyword">catch</strong> ( BuildException e )
+<a name="259" href="#259">259</a>         {
+<a name="260" href="#260">260</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> MojoExecutionException( <span class="jxr_string">"NAR: Test-Compile failed"</span>, e );
+<a name="261" href="#261">261</a>         }
+<a name="262" href="#262">262</a>     }
+<a name="263" href="#263">263</a> 
+<a name="264" href="#264">264</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> File getTestTargetDirectory()
+<a name="265" href="#265">265</a>     {
+<a name="266" href="#266">266</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> File( getMavenProject().getBuild().getDirectory(), <span class="jxr_string">"test-nar"</span> );
+<a name="267" href="#267">267</a>     }
+<a name="268" href="#268">268</a> 
+<a name="269" href="#269">269</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

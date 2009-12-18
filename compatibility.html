@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>maven-nar-plugin - Maven NAR Plugin</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                                                    
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+                                                        
+<script type="text/javascript">_uacct = "UA-140879-1";
+        urchinTracker();</script>
+                    </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="" id="bannerLeft">
+    
+                                    <img src="http://maven.apache.org/images/apache-maven-project-2.png" alt="" />
+    
+            </a>
+                        <a href="http://maven.apache.org/" id="bannerRight">
+    
+                                    <img src="http://maven.apache.org/images/maven-logo-2.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+          
+                <a href="http://www.apache.org/" class="externalLink">Apache</a>
+                &gt;
+      
+                <a href="http://maven.apache.org/index.html" class="externalLink">Maven</a>
+                &gt;
+      
+                <a href="http://maven.apache.org/plugins/index.html" class="externalLink">Plugins</a>
+                &gt;
+      
+                <a href="http://duns.github.com/maven-nar-plugin/" class="externalLink">Maven NAR Plugin</a>
+                  </div>
+            <div class="xright">            <a href="http://java.freehep.org/maven1.x/freehep-nar-plugin" class="externalLink">NAR Plugin for Maven1</a>
+            |
+                <a href="http://maven.apache.org/" class="externalLink">Maven</a>
+            
+  
+
+  
+    
+            
+  
+    
+            &nbsp;| Last Published: 2009-12-18
+              &nbsp;| Version: 2.1-SNAPSHOT
+            </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="philosophy.html">Philosophy</a>
+          </li>
+              
+    <li class="none">
+                    <a href="NARPlugin.ppt">Presentation (ppt)</a>
+          </li>
+          </ul>
+              <h5>User Info</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="plugin-info.html">Goals</a>
+          </li>
+              
+    <li class="none">
+                    <a href="usage.html">Usage</a>
+          </li>
+              
+    <li class="none">
+                    <a href="lifecycle.html">Lifecycle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="configuration.html">Configuration</a>
+          </li>
+              
+    <li class="none">
+                    <a href="faq.html">FAQ</a>
+          </li>
+              
+    <li class="none">
+                    <a href="aol.html">AOL Properties</a>
+          </li>
+              
+    <li class="none">
+                    <a href="examples.html">Examples</a>
+          </li>
+              
+    <li class="none">
+                    <a href="archetypes.html">Archetypes</a>
+          </li>
+              
+    <li class="none">
+              <strong>Compatibility</strong>
+        </li>
+          </ul>
+              <h5>Developer Info</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="narDependencies.html">NAR Dependencies</a>
+          </li>
+              
+    <li class="none">
+                    <a href="https://issues.sonatype.org/browse/NAR" class="externalLink">Bug Reports</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://forum.freehep.org/index.php?t=threadt&frm_id=14&rid=4" class="externalLink">Forum</a>
+          </li>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">APIDocs</a>
+          </li>
+              
+    <li class="none">
+                    <a href="narLibrary.html">NAR Library</a>
+          </li>
+              
+    <li class="none">
+                    <a href="cpptasks.html">CPPTasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://github.com/duns/maven-nar-plugin" class="externalLink">Git Browse nar-plugin</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://github.com/duns/cpptasks-parallel" class="externalLink">Git Browse cpptasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="source-repository.html">Git Repository</a>
+          </li>
+          </ul>
+              <h5>Other Information</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://docs.codehaus.org/display/MAVEN/Support+for+other+languages" class="externalLink">Maven and other languages</a>
+          </li>
+          </ul>
+                        <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+              <h5>Maven Projects</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/ant-tasks/index.html" class="externalLink">Ant Tasks</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/doxia/index.html" class="externalLink">Doxia</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/jxr/index.html" class="externalLink">JXR</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/maven-1.x/index.html" class="externalLink">Maven 1.x</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/index.html" class="externalLink">Maven 2</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/mercury/index.html" class="externalLink">Mercury</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/plugins/index.html" class="externalLink">Plugins</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/scm/index.html" class="externalLink">SCM</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/shared/index.html" class="externalLink">Shared Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/surefire/index.html" class="externalLink">Surefire</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://maven.apache.org/wagon/index.html" class="externalLink">Wagon</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>Compatibility</h2>
+<p>For most of the NAR plugin we try to keep things backwards compatible. Versions 1.x were made for Maven 1 and therefore we are not compatible with those.</p>
+<p>In the NAR Plugin 2.x series we had to introduce some backward incompatibilites and other changes. Below a (rather incomplete) list.</p>
+<div class="section"><h3>Version 2.1.x</h3>
+<ul><li>The internal layout of the nar files (.nar extension) is stable. No changes were made.</li>
+<li>The layout of the files under target and under the unpacked directory has changed. For more information see NarLayout21 (version 2.1.x and up) and NarLayout20 (version 2.0.x).</li>
+<li>The dependency in 2.0 used to be without a <i>type</i> specified. You now need to specify <i>type</i>nar<i>/type</i> as this is more in line with the standard of maven. It also allows the NAR plugin to find dependencies locally in a multi-module build. </li>
+<li>The main artifact is a jar file, where the NAR plugin attaches a -noarch nar file and some platform specific nar files. When installed and or deployed the main jar file is renamed to a nar file, hence the dependecy type change from jar to nar. </li>
+<li>The unpacking of nar files used to take place in a subdirectory of the local repositories directory of that artifact. As of 2.1.x we unpack in a subdirectory of the target directory. This used more diskspace (and a little time), however it avoids concurrent access to possibly half unpacked nar files when 2 or more maven invocations are running in parallel.</li>
+</ul>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2002-2009
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+   - <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a></div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

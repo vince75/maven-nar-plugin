@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-12-03
+            &nbsp;| Last Published: 2009-12-18
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -136,6 +136,14 @@
               
     <li class="none">
                     <a href="examples.html">Examples</a>
+          </li>
+              
+    <li class="none">
+                    <a href="archetypes.html">Archetypes</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compatibility.html">Compatibility</a>
           </li>
           </ul>
               <h5>Developer Info</h5>
@@ -294,7 +302,7 @@
     <div id="bodyColumn">
       <div id="contentBox">
         <div class="section"><h2>NAR Dependencies</h2>
-<p>Dependencies on other NARs are handled by the standard maven dependency mechanism. The type for NAR files is <tt>nar</tt>, however to ease the inclusion of Java code and lookup of properties any nar file is always published as an attached artifact to a jar artifact. A nar dependency therefore becomes a jar dependency and is declared in the following way:</p>
+<p>Dependencies on other NARs are handled by the standard maven dependency mechanism. The type for NAR files is <tt>nar</tt>. The main nar file is equivalent to a jar file, but with some nar specific information in it. The other nar files are always published as attached artifacts to the main nar artifact. A nar dependency is declared in the following way:</p>
 <div class="source"><pre>&lt;project&gt;
   ...
   &lt;dependencies&gt;
@@ -302,15 +310,16 @@
       &lt;groupId&gt;dependent-group&lt;/groupId&gt;
       &lt;artifactId&gt;dependent-artifact&lt;/artifactId&gt;
       &lt;version&gt;dependent-version&lt;/version&gt;
+      &lt;type&gt;nar&lt;/type&gt;
     &lt;/dependency&gt;
   &lt;/dependencies&gt;
 &lt;/project&gt;</pre>
 </div>
-<p>as is any other jar dependency. Maven will automatically download this jar file for any goal that requires it.</p>
-<p>The NAR plugin knows this is a nar dependency by looking inside the jar file for a properties file with the following name:</p>
+<p>As of version 2.1.x the type needs to be declared as &quot;nar&quot;. Maven will automatically download this nar file for any goal that requires it.</p>
+<p>The NAR plugin knows this is a true nar dependency by looking inside the nar file for a properties file with the following name:</p>
 <div class="source"><pre>META-INF/nar/groupId/artifactId/nar.properties</pre>
 </div>
-<p>This file is normally generated in the nar-package goal for pickup by the standard package goal to be included in the jar file. <b>TBD there is no way to include a hand-written file</b>.</p>
+<p>This file is normally generated in the nar-package goal. <b>TBD there is no way to include a hand-written file</b>.</p>
 <p>The file may contain the following properties:</p>
 <table class="bodyTable"><tbody><tr class="a"><td align="left"><b>Property</b></td>
 <td align="left"><b>Default-Value</b></td>

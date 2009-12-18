@@ -75,7 +75,7 @@
             
   
     
-            &nbsp;| Last Published: 2009-12-03
+            &nbsp;| Last Published: 2009-12-18
               &nbsp;| Version: 2.1-SNAPSHOT
             </div>
       <div class="clear">
@@ -136,6 +136,14 @@
               
     <li class="none">
                     <a href="examples.html">Examples</a>
+          </li>
+              
+    <li class="none">
+                    <a href="archetypes.html">Archetypes</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compatibility.html">Compatibility</a>
           </li>
           </ul>
               <h5>Developer Info</h5>
@@ -328,7 +336,7 @@ ${os.arch}<br />
 <tr class="b"><td><strong><a href="#layout">layout</a></strong></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
-<td>Layout to be used for building and upacking artifacts<br />
+<td>Layout to be used for building and unpacking artifacts<br />
 <strong>Default value is</strong>: <code>org.apache.maven.plugin.nar.NarLayout21</code>.</td>
 </tr>
 <tr class="a"><td><strong><a href="#libtool">libtool</a></strong></td>
@@ -436,7 +444,7 @@ ${os.name} FIXME table missing<br />
 <tr class="a"><td><strong><a href="#targetDirectory">targetDirectory</a></strong></td>
 <td><code>File</code></td>
 <td><code>-</code></td>
-<td>Target directory for Nar file construction Defaults to
+<td>Target directory for Nar file construction. Defaults to
 &quot;${project.build.directory}/nar&quot; for &quot;nar-compile&quot; goal Defaults to
 &quot;${project.build.directory}/test-nar&quot; for &quot;nar-testCompile&quot; goal<br />
 </td>
@@ -445,6 +453,13 @@ ${os.name} FIXME table missing<br />
 <td><code>List</code></td>
 <td><code>-</code></td>
 <td>List of tests to create<br />
+</td>
+</tr>
+<tr class="a"><td><strong><a href="#unpackDirectory">unpackDirectory</a></strong></td>
+<td><code>File</code></td>
+<td><code>-</code></td>
+<td>Target directory for Nar file unpacking. Defaults to
+&quot;${targetDirectory}/depenencies&quot;<br />
 </td>
 </tr>
 </table>
@@ -502,7 +517,7 @@ ${os.arch}</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li
 </ul>
 <hr />
 <p><strong><a name="layout">layout</a>:</strong></p>
-<div>Layout to be used for building and upacking artifacts</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
+<div>Layout to be used for building and unpacking artifacts</div><ul><li><strong>Type</strong>: <code>java.lang.String</code></li>
 <li><strong>Required</strong>: <code>Yes</code></li>
 <li><strong>Expression</strong>: <code>${nar.layout}</code></li>
 <li><strong>Default</strong>: <code>org.apache.maven.plugin.nar.NarLayout21</code></li>
@@ -558,7 +573,7 @@ ${os.name} FIXME table missing</div><ul><li><strong>Type</strong>: <code>java.la
 </ul>
 <hr />
 <p><strong><a name="targetDirectory">targetDirectory</a>:</strong></p>
-<div>Target directory for Nar file construction Defaults to
+<div>Target directory for Nar file construction. Defaults to
 &quot;${project.build.directory}/nar&quot; for &quot;nar-compile&quot; goal Defaults to
 &quot;${project.build.directory}/test-nar&quot; for &quot;nar-testCompile&quot; goal</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
@@ -566,6 +581,12 @@ ${os.name} FIXME table missing</div><ul><li><strong>Type</strong>: <code>java.la
 <hr />
 <p><strong><a name="tests">tests</a>:</strong></p>
 <div>List of tests to create</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="unpackDirectory">unpackDirectory</a>:</strong></p>
+<div>Target directory for Nar file unpacking. Defaults to
+&quot;${targetDirectory}/depenencies&quot;</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 </ul>
 </div>

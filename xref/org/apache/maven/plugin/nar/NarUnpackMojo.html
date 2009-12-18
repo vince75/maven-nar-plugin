@@ -47,7 +47,7 @@
 <a name="37" href="#37">37</a>  <em class="jxr_javadoccomment"> * @author Mark Donszelmann</em>
 <a name="38" href="#38">38</a>  <em class="jxr_javadoccomment"> */</em>
 <a name="39" href="#39">39</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../org/apache/maven/plugin/nar/NarUnpackMojo.html">NarUnpackMojo</a>
-<a name="40" href="#40">40</a>      <strong class="jxr_keyword">extends</strong> <a href="../../../../../org/apache/maven/plugin/nar/AbstractDependencyMojo.html">AbstractDependencyMojo</a>
+<a name="40" href="#40">40</a>      <strong class="jxr_keyword">extends</strong> <a href="../../../../../org/apache/maven/plugin/nar/AbstractCompileMojo.html">AbstractCompileMojo</a>
 <a name="41" href="#41">41</a>  {
 <a name="42" href="#42">42</a>  
 <a name="43" href="#43">43</a>      <em class="jxr_javadoccomment">/**</em>
@@ -71,13 +71,13 @@
 <a name="61" href="#61">61</a>          List narArtifacts = getNarManager().getNarDependencies( <span class="jxr_string">"compile"</span> );
 <a name="62" href="#62">62</a>          <strong class="jxr_keyword">if</strong> ( classifiers == <strong class="jxr_keyword">null</strong> )
 <a name="63" href="#63">63</a>          {
-<a name="64" href="#64">64</a>              getNarManager().unpackAttachedNars( narArtifacts, archiverManager, <strong class="jxr_keyword">null</strong>, getOS() );
+<a name="64" href="#64">64</a>              getNarManager().unpackAttachedNars( narArtifacts, archiverManager, <strong class="jxr_keyword">null</strong>, getOS(), getLayout(), getUnpackDirectory() );
 <a name="65" href="#65">65</a>          }
 <a name="66" href="#66">66</a>          <strong class="jxr_keyword">else</strong>
 <a name="67" href="#67">67</a>          {
 <a name="68" href="#68">68</a>              <strong class="jxr_keyword">for</strong> ( Iterator j = classifiers.iterator(); j.hasNext(); )
 <a name="69" href="#69">69</a>              {
-<a name="70" href="#70">70</a>                  getNarManager().unpackAttachedNars( narArtifacts, archiverManager, (String) j.next(), getOS() );
+<a name="70" href="#70">70</a>                  getNarManager().unpackAttachedNars( narArtifacts, archiverManager, (String) j.next(), getOS(), getLayout(), getUnpackDirectory() );
 <a name="71" href="#71">71</a>              }
 <a name="72" href="#72">72</a>          }
 <a name="73" href="#73">73</a>      }
