@@ -192,7 +192,7 @@ public class Linker
 
         if ( name.equals( "g++" ) || name.equals( "gcc" ) )
         {
-            NarUtil.runCommand( "gcc", new String[] { "--version" }, null, null, out, err, dbg );
+            NarUtil.runCommand( "gcc", new String[] { "--version" }, null, null, out, err, dbg, null );
             Pattern p = Pattern.compile( "\\d+\\.\\d+\\.\\d+" );
             Matcher m = p.matcher( out.toString() );
             if ( m.find() )
@@ -202,7 +202,7 @@ public class Linker
         }
         else if ( name.equals( "msvc" ) )
         {
-            NarUtil.runCommand( "link", new String[] { "/version" }, null, null, out, err, dbg );
+            NarUtil.runCommand( "link", new String[] { "/version" }, null, null, out, err, dbg, null );
             Pattern p = Pattern.compile( "\\d+\\.\\d+\\.\\d+" );
             Matcher m = p.matcher( out.toString() );
             if ( m.find() )
@@ -212,7 +212,7 @@ public class Linker
         }
         else if ( name.equals( "icc" ) || name.equals( "icpc" ) )
         {
-            NarUtil.runCommand( "icc", new String[] { "--version" }, null, null, out, err, dbg );
+            NarUtil.runCommand( "icc", new String[] { "--version" }, null, null, out, err, dbg, null );
             Pattern p = Pattern.compile( "\\d+\\.\\d+" );
             Matcher m = p.matcher( out.toString() );
             if ( m.find() )
@@ -222,7 +222,7 @@ public class Linker
         }
         else if ( name.equals( "icl" ) )
         {
-            NarUtil.runCommand( "icl", new String[] { "/QV" }, null, null, out, err, dbg );
+            NarUtil.runCommand( "icl", new String[] { "/QV" }, null, null, out, err, dbg, null );
             Pattern p = Pattern.compile( "\\d+\\.\\d+" );
             Matcher m = p.matcher( err.toString() );
             if ( m.find() )
@@ -232,7 +232,7 @@ public class Linker
         }
         else if ( name.equals( "CC" ) )
         {
-        	NarUtil.runCommand( "CC", new String[] { "-V" }, null, null, out, err, dbg );
+        	NarUtil.runCommand( "CC", new String[] { "-V" }, null, null, out, err, dbg, null );
         	Pattern p = Pattern.compile( "\\d+\\.d+" );
         	Matcher m = p.matcher( err.toString() );
         	if ( m.find() )

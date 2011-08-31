@@ -19,11 +19,7 @@ package org.apache.maven.plugin.nar;
  * under the License.
  */
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashSet;
@@ -204,7 +200,7 @@ public final class NarUtil
             File subjectFile = ( File )i.next();
             String subjectName = subjectFile.getName();
             String subjectPath = subjectFile.getPath();
-            
+
             int idResult = runCommand(
                     "install_name_tool",
                     new String[] { "-id", subjectPath, subjectPath },
@@ -229,7 +225,7 @@ public final class NarUtil
                  String dependentPath = dependentFile.getPath();
 
                  if (dependentPath == subjectPath) continue;
-                 
+
                  int changeResult = runCommand(
                         "install_name_tool",
                          new String[] { "-change", subjectName, subjectPath, dependentPath },
@@ -320,7 +316,7 @@ public final class NarUtil
 
     /**
      * Returns the Bcel Class corresponding to the given class filename
-     * 
+     *
      * @param filename the absolute file name of the class
      * @return the Bcel Class.
      * @throws IOException
@@ -334,7 +330,7 @@ public final class NarUtil
 
     /**
      * Returns the header file name (javah) corresponding to the given class file name
-     * 
+     *
      * @param filename the absolute file name of the class
      * @return the header file name.
      */
@@ -354,7 +350,7 @@ public final class NarUtil
 
     /**
      * Replaces target with replacement in string. For jdk 1.4 compatiblity.
-     * 
+     *
      * @param target
      * @param replacement
      * @param string
@@ -577,7 +573,13 @@ public final class NarUtil
         return pathName + "=" + value;
     }
 
-    public static int runCommand( String cmd, String[] args, File workingDirectory, String[] env, final Log log )
+    public static int runCommand( String cmd, String[] args, File workingDirectory, String[] env, Log log )
+        throws MojoExecutionException, MojoFailureException
+    {
+        return runCommand( cmd, args, workingDirectory, env, log, null );
+    }
+
+    public static int runCommand( String cmd, String[] args, File workingDirectory, String[] env, final Log log, InputStream in )
         throws MojoExecutionException, MojoFailureException
     {
         return runCommand( cmd, args, workingDirectory, env, new TextStream()
@@ -599,11 +601,11 @@ public final class NarUtil
             {
                 log.debug( text );
             }
-        } );
+        }, in );
     }
 
     public static int runCommand( String cmd, String[] args, File workingDirectory, String[] env, TextStream out,
-                                  TextStream err, TextStream dbg )
+                                  TextStream err, TextStream dbg, InputStream in )
         throws MojoExecutionException, MojoFailureException
     {
         Commandline cmdLine = new Commandline();
@@ -644,6 +646,16 @@ public final class NarUtil
             Process process = cmdLine.execute();
             StreamGobbler errorGobbler = new StreamGobbler( process.getErrorStream(), err );
             StreamGobbler outputGobbler = new StreamGobbler( process.getInputStream(), out );
+            StreamForwarder inputForwarder;
+            if ( in == null )
+            {
+                inputForwarder = null;
+            }
+            else
+            {
+                inputForwarder = new StreamForwarder ( in, process.getOutputStream(), err );
+                inputForwarder.start();
+            }
 
             errorGobbler.start();
             outputGobbler.start();
@@ -652,6 +664,10 @@ public final class NarUtil
             final int timeout = 5000;
             errorGobbler.join( timeout );
             outputGobbler.join( timeout );
+            if( inputForwarder != null )
+            {
+                inputForwarder.join( timeout );
+            }
             return process.exitValue();
         }
         catch ( Exception e )
@@ -697,12 +713,58 @@ public final class NarUtil
         }
     }
 
+    private static final class StreamForwarder
+        extends Thread
+    {
+        private InputStream from;
+
+        private OutputStream to;
+
+        private TextStream err;
+
+        private StreamForwarder( InputStream from, OutputStream to, TextStream err )
+        {
+            this.from = from;
+            this.to = to;
+            this.err = err;
+        }
+
+        public void run()
+        {
+            try
+            {
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ( ( bytesRead = from.read( buffer ) ) != -1 )
+                {
+                    try
+                    {
+                        to.write(buffer, 0, bytesRead);
+                        to.flush();
+                    } catch ( IOException e )
+                    {
+                        // Failed write means that process has terminated.
+                        break;
+                    }
+                }
+            }
+            catch ( IOException e )
+            {
+                // e.printStackTrace()
+                StackTraceElement[] stackTrace = e.getStackTrace();
+                for ( int i = 0; i < stackTrace.length; i++ )
+                {
+                    err.println( stackTrace[i].toString() );
+                }
+            }
+        }
+    }
 
 	/**
 	 * (Darren) this code lifted from mvn help:active-profiles plugin Recurses
 	 * into the project's parent poms to find the active profiles of the
 	 * specified project and all its parents.
-	 * 
+	 *
 	 * @param project
 	 *            The project to start with
 	 * @return A list of active profiles
