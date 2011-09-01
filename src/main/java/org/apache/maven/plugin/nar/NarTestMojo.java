@@ -67,7 +67,7 @@ public class NarTestMojo
             Library library = (Library) i.next();
             if ( library.getType().equals( Library.EXECUTABLE ) && library.shouldRun() )
             {
-                runExecutable( library, null );
+                runExecutable( library, null, null );
             }
         }
     }

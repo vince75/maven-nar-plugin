@@ -13,7 +13,7 @@ import java.util.*;
 public abstract class AbstractRunMojo
     extends AbstractCompileMojo {
 
-  protected void runExecutable( Library library, InputStream in )
+  protected void runExecutable( Library library, String args, InputStream in )
       throws MojoExecutionException, MojoFailureException
   {
       if ( !library.getType().equals( Library.EXECUTABLE ) )
@@ -34,9 +34,9 @@ public abstract class AbstractRunMojo
           return;
       }
       getLog().info( "Running executable " + executable );
-      List args = library.getArgs();
+      List argList = args == null ? library.getArgs() : Collections.singletonList( args );
       int result =
-          NarUtil.runCommand( executable.getPath(), (String[]) args.toArray( new String[args.size()] ), null,
+          NarUtil.runCommand( executable.getPath(), (String[]) argList.toArray( new String[argList.size()] ), null,
                               generateEnvironment(), getLog(), in );
       if ( result != 0 )
       {

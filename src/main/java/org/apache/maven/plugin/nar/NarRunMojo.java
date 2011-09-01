@@ -20,13 +20,16 @@ import java.util.List;
  */
 public class NarRunMojo
     extends AbstractRunMojo {
+
+    public static final String ARGS = "run.args";
+
     public void narExecute() throws MojoFailureException, MojoExecutionException {
         for ( Iterator i = getLibraries().iterator(); i.hasNext(); )
         {
             Library library = (Library) i.next();
             if ( library.getType().equals( Library.EXECUTABLE ) )
             {
-                runExecutable( library, System.in );
+                runExecutable( library, System.getProperty( ARGS ), System.in );
             }
         }
     }
