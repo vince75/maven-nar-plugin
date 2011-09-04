@@ -1,5 +1,6 @@
 package org.apache.maven.plugin.nar;
 
+import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
@@ -16,7 +17,7 @@ import java.util.List;
  *
  * @goal nar-run
  * @requiresProject
- * @requiresDependencyResolution
+ * @requiresDependencyResolution runtime
  */
 public class NarRunMojo
     extends AbstractRunMojo {
@@ -29,7 +30,7 @@ public class NarRunMojo
             Library library = (Library) i.next();
             if ( library.getType().equals( Library.EXECUTABLE ) )
             {
-                runExecutable( library, System.getProperty( ARGS ), System.in );
+                runExecutable( library, Artifact.SCOPE_RUNTIME, System.getProperty( ARGS ), System.in );
             }
         }
     }

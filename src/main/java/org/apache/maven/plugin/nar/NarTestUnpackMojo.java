@@ -22,6 +22,7 @@ package org.apache.maven.plugin.nar;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
@@ -43,7 +44,7 @@ public class NarTestUnpackMojo
         throws MojoExecutionException, MojoFailureException
     {
         NarManager mgr = getNarManager();
-        List narArtifacts = mgr.getNarDependencies( "test" );
+        List narArtifacts = mgr.getNarDependencies( Artifact.SCOPE_TEST );
         if ( classifiers == null )
         {
             mgr.unpackAttachedNars( narArtifacts, archiverManager, null, getOS(), getLayout(), getTestUnpackDirectory() );

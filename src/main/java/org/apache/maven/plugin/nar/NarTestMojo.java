@@ -38,7 +38,7 @@ import org.codehaus.plexus.util.StringUtils;
  * @goal nar-test
  * @phase test
  * @requiresProject
- * @requiresDependencyResolution
+ * @requiresDependencyResolution test
  * @author Mark Donszelmann
  */
 public class NarTestMojo
@@ -67,7 +67,7 @@ public class NarTestMojo
             Library library = (Library) i.next();
             if ( library.getType().equals( Library.EXECUTABLE ) && library.shouldRun() )
             {
-                runExecutable( library, null, null );
+                runExecutable( library, Artifact.SCOPE_TEST, null, null );
             }
         }
     }
@@ -96,7 +96,7 @@ public class NarTestMojo
             List args = test.getArgs();
             int result =
                 NarUtil.runCommand( path.toString(), (String[]) args.toArray( new String[args.size()] ), workingDir,
-                                    generateEnvironment(), getLog() );
+                                    generateEnvironment( Artifact.SCOPE_TEST ), getLog() );
             if ( result != 0 )
             {
                 throw new MojoFailureException( "Test " + name + " failed with exit code: " + result + " 0x"
