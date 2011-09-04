@@ -63,7 +63,7 @@ public class NarTestMojo
 
         for ( Iterator i = getLibraries().iterator(); i.hasNext(); )
         {
-            runExecutable( (Library) i.next() );
+            runExecutable( (Library) i.next(), "test" );
         }
     }
 
@@ -91,7 +91,7 @@ public class NarTestMojo
             List args = test.getArgs();
             int result =
                 NarUtil.runCommand( path.toString(), (String[]) args.toArray( new String[args.size()] ), workingDir,
-                                    generateEnvironment(), getLog() );
+                                    generateEnvironment( "test" ), getLog() );
             if ( result != 0 )
             {
                 throw new MojoFailureException( "Test " + name + " failed with exit code: " + result + " 0x"
@@ -100,7 +100,7 @@ public class NarTestMojo
         }
     }
 
-    private void runExecutable( Library library )
+    private void runExecutable( Library library, String scope )
         throws MojoExecutionException, MojoFailureException
     {
         if ( library.getType().equals( Library.EXECUTABLE ) && library.shouldRun() )
@@ -121,7 +121,7 @@ public class NarTestMojo
             List args = library.getArgs();
             int result =
                 NarUtil.runCommand( executable.getPath(), (String[]) args.toArray( new String[args.size()] ), null,
-                                    generateEnvironment(), getLog() );
+                                    generateEnvironment( scope ), getLog() );
             if ( result != 0 )
             {
                 throw new MojoFailureException( "Test " + executable + " failed with exit code: " + result + " 0x"
@@ -130,7 +130,7 @@ public class NarTestMojo
         }
     }
 
-    private String[] generateEnvironment()
+    private String[] generateEnvironment( String scope )
         throws MojoExecutionException, MojoFailureException
     {
         List env = new ArrayList();
@@ -153,7 +153,7 @@ public class NarTestMojo
 
         // add dependent shared libraries
         String classifier = getAOL() + "-shared";
-        List narArtifacts = getNarManager().getNarDependencies( "compile" );
+        List narArtifacts = getNarManager().getNarDependencies( scope );
         List dependencies = getNarManager().getAttachedNarDependencies( narArtifacts, classifier );
         for ( Iterator d = dependencies.iterator(); d.hasNext(); )
         {
