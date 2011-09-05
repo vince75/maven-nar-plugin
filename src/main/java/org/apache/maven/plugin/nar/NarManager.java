@@ -74,7 +74,7 @@ public class NarManager
 	/**
      * Returns dependencies which are dependent on NAR files (i.e. contain NarInfo)
 	 */
-	public final List/* <NarArtifact> */getNarDependencies(String scope)
+	public final List/* <NarArtifact> */getNarDependencies( String scope )
         throws MojoExecutionException
     {
 		List narDependencies = new LinkedList();
