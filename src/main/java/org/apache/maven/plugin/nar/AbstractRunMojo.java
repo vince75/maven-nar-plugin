@@ -13,6 +13,12 @@ import java.util.*;
 public abstract class AbstractRunMojo
     extends AbstractCompileMojo
 {
+    /**
+     * Whether to use Valgrind.
+     *
+     * @parameter expression="${valgrind}"
+     */
+    protected boolean valgrind;
 
     protected void runExecutable( Library library, String scope, String args, InputStream in )
         throws MojoExecutionException, MojoFailureException
@@ -35,7 +41,12 @@ public abstract class AbstractRunMojo
             return;
         }
         getLog().info( "Running executable " + executable );
-        List argList = args == null ? library.getArgs() : Collections.singletonList( args );
+        LinkedList argList = new LinkedList( args == null ? library.getArgs() : Collections.singletonList( args ) );
+        if ( valgrind )
+        {
+            argList.addFirst( executable.getPath() );
+            executable = new File( "valgrind" );
+        }
         int result =
             NarUtil.runCommand( executable.getPath(), (String[]) argList.toArray( new String[argList.size()] ), null,
                                 generateEnvironment( scope ), getLog(), in );

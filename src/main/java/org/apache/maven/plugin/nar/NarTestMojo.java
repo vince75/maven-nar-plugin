@@ -20,17 +20,13 @@ package org.apache.maven.plugin.nar;
  */
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.util.StringUtils;
 
 /**
  * Tests NAR files. Runs Native Tests and executables if produced.
@@ -61,7 +57,7 @@ public class NarTestMojo
         {
             runTest( (Test) i.next() );
         }
-
+        // run executables
         for ( Iterator i = getLibraries().iterator(); i.hasNext(); )
         {
             Library library = (Library) i.next();
@@ -93,7 +89,12 @@ public class NarTestMojo
             workingDir.mkdirs();
             getLog().info( "Running test " + name + " in " + workingDir );
 
-            List args = test.getArgs();
+            LinkedList args = new LinkedList( test.getArgs() );
+            if ( valgrind )
+            {
+                args.addFirst( path.toString() );
+                path = new File( "valgrind" );
+            }
             int result =
                 NarUtil.runCommand( path.toString(), (String[]) args.toArray( new String[args.size()] ), workingDir,
                                     generateEnvironment( Artifact.SCOPE_TEST ), getLog() );
