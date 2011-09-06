@@ -49,13 +49,28 @@ public class NarTestMojo
      */
     private List classpathElements;
 
+    /**
+     * Test to execute.
+     *
+     * @parameter expression="${nar.test}"
+     */
+    private String test;
+
     public final void narExecute()
         throws MojoExecutionException, MojoFailureException
     {
         // run all tests
         for ( Iterator i = getTests().iterator(); i.hasNext(); )
         {
-            runTest( (Test) i.next() );
+            Test test = (Test) i.next();
+            if ( this.test == null || this.test.isEmpty() || this.test.equals( test.getName() ) )
+            {
+                runTest( test );
+            }
+            else
+            {
+                getLog().info( "Not running test " + test.getName() );
+            }
         }
         // run executables
         for ( Iterator i = getLibraries().iterator(); i.hasNext(); )

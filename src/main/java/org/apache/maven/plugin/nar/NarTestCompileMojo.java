@@ -60,6 +60,13 @@ public class NarTestCompileMojo
      */
     protected boolean skipNar;
 
+    /**
+     * Test to compile.
+     *
+     * @parameter expression="${nar.test}"
+     */
+    private String test;
+
     public final void narExecute()
         throws MojoExecutionException, MojoFailureException
     {
@@ -68,7 +75,15 @@ public class NarTestCompileMojo
 
         for ( Iterator i = getTests().iterator(); i.hasNext(); )
         {
-            createTest( getAntProject(), (Test) i.next() );
+            Test test = (Test) i.next();
+            if ( this.test == null || this.test.isEmpty() || this.test.equals( test.getName() ))
+            {
+                createTest( getAntProject(), test );
+            }
+            else
+            {
+                getLog().info("Not compiling test " + test.getName());
+            }
         }
     }
 
